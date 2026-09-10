@@ -23,7 +23,6 @@
 *.dll
 *.so.*
 
-
 # Fortran module files
 *.mod
 *.smod
@@ -66,4 +65,28 @@ vcpkg_installed/
 
 # test output & cache
 Testing/
-.cache/
+.cache/  
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Code coverage 
+coverage/
+*.gcov
+*.gcda
+*.gcno
+coverage.info
+
+# Test frameworks
+libs/googletest/
+libs/Catch2/
+libs/doctest/
+
+# Doxygen 
+html/
+latex/
