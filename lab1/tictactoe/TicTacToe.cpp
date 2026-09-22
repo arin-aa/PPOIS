@@ -1,3 +1,8 @@
+/**
+ * @file TicTacToe.cpp
+ * @brief Реализация методов класса TicTacToe.
+ */
+
 #include "TicTacToe.h"
 #include <vector>
 #include <iostream>
@@ -49,9 +54,6 @@ bool TicTacToe::checkWin(Cell player)const{
 }
 
 void TicTacToe::makeMove(int row,int column){
-    if(winner!=Cell::empty){
-        throw logic_error("Игра уже закончена.\n");
-    }
     if(!inRange(row,column)){
         throw out_of_range("Координаты вне диапазона доски.\n");
     }
@@ -79,6 +81,18 @@ bool TicTacToe::isDraw()const{
         }
     }
     return true;
+}
+
+int TicTacToe::getSize()const{
+    return size;
+}
+
+Cell TicTacToe::getCurrentPlayer()const{
+    return currentPlayer;
+}
+
+Cell TicTacToe::getWinner()const{
+    return winner;
 }
 
 ostream& operator<<(ostream& output,const TicTacToe& game_){
