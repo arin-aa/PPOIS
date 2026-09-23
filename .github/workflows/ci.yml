@@ -1,0 +1,96 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [lab1, main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test-coverage:
+    name: Build, Test & Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cppcheck
+
+      - name: Build main program
+        run: |
+          cd lab1/tictactoe
+          g++ -std=c++17 -O2 main.cpp TicTacToe.cpp -o tictactoe
+
+      - name: Build tests with coverage
+        run: |
+          cd lab1/tictactoe
+          g++ --coverage -std=c++17 tests.cpp TicTacToe.cpp catch_amalgamated.cpp -o tests
+
+      - name: Run tests
+        run: |
+          cd lab1/tictactoe
+          ./tests
+
+      - name: Generate coverage report
+        run: |
+          cd lab1/tictactoe
+          gcov tests-TicTacToe.cpp
+
+      - name: Check coverage >= 90%
+        run: |
+          cd lab1/tictactoe
+          COVERAGE=$(grep "File 'TicTacToe.cpp'" -A 1 TicTacToe.cpp.gcov | grep "Lines executed" | sed 's/.*executed:\([0-9.]*\)%.*/\1/')
+          echo "Coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+            echo "FAIL: Coverage below 90%"
+            exit 1
+          fi
+          echo "PASS: Coverage >= 90%"
+
+      - name: Run linter (cppcheck)
+        run: |
+          cd lab1/tictactoe
+          cppcheck --enable=warning,performance,portability \
+                   --error-exitcode=1 \
+                   --suppress=missingIncludeSystem \
+                   main.cpp TicTacToe.cpp
+
+      - name: Test CLI
+        run: |
+          cd lab1/tictactoe
+          echo -e "3\n3\n1\n1\n1\n2\n1\n1\n3" | ./tictactoe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tictactoe-linux
+          path: lab1/tictactoe/tictactoe
+
+  release:
+    name: Create Release
+    needs: build-test-coverage
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build release binary
+        run: 
+          cd lab1/tictactoe
+          g++ -std=c++17 -O2 main.cpp TicTacToe.cpp -o tictactoe
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Release v1.0.${{ github.run_number }}
+          files: lab1/tictactoe/tictactoe
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
