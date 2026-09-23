@@ -74,14 +74,14 @@ jobs:
     name: Create Release
     needs: build-test-coverage
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/lab1'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Build release binary
-        run: |
+        run: 
           cd lab1/tictactoe
           g++ -std=c++17 -O2 main.cpp TicTacToe.cpp -o tictactoe
 
