@@ -5,7 +5,7 @@
 #include <string>
 #include <stdexcept>
 
-// ========== isEmpty ==========
+
 TEST_CASE("isEmpty: empty set returns true", "[CantorSet]") {
     CantorSet s;
     REQUIRE(s.isEmpty());
@@ -30,7 +30,6 @@ TEST_CASE("isEmpty: with element and subset returns false", "[CantorSet]") {
     REQUIRE_FALSE(s.isEmpty());
 }
 
-// ========== addElement ==========
 TEST_CASE("addElement: new element", "[CantorSet]") {
     CantorSet s;
     REQUIRE(s.addElement("a"));
@@ -55,7 +54,7 @@ TEST_CASE("addElement: multi-character", "[CantorSet]") {
     REQUIRE(s.addElement("a1b2"));
 }
 
-// ========== delElement ==========
+
 TEST_CASE("delElement: removes existing", "[CantorSet]") {
     CantorSet s;
     s.addElement("a");
@@ -78,7 +77,7 @@ TEST_CASE("delElement: repeat removal fails", "[CantorSet]") {
     REQUIRE_FALSE(s.delElement("a"));
 }
 
-// ========== power ==========
+
 TEST_CASE("power: empty set is 0", "[CantorSet]") {
     CantorSet s;
     REQUIRE(s.power() == 0);
@@ -99,7 +98,7 @@ TEST_CASE("power: with subsets", "[CantorSet]") {
     REQUIRE(s.power() == 2);
 }
 
-// ========== operator[] (string) ==========
+
 TEST_CASE("operator[] string: present", "[CantorSet]") {
     CantorSet s;
     s.addElement("a");
@@ -115,7 +114,7 @@ TEST_CASE("operator[] string: absent", "[CantorSet]") {
     REQUIRE_FALSE(s[""]);
 }
 
-// ========== operator[] (CantorSet) ==========
+
 TEST_CASE("operator[] CantorSet: present", "[CantorSet]") {
     CantorSet s;
     CantorSet sub;
@@ -140,7 +139,6 @@ TEST_CASE("operator[] CantorSet: empty subset present", "[CantorSet]") {
     REQUIRE(s[CantorSet()]);
 }
 
-// ========== operator== / operator!= ==========
 TEST_CASE("operator==: both empty", "[CantorSet]") {
     CantorSet a, b;
     REQUIRE(a == b);
@@ -187,7 +185,7 @@ TEST_CASE("operator==: same subsets", "[CantorSet]") {
     REQUIRE(a == b);
 }
 
-// ========== addSubset ==========
+
 TEST_CASE("addSubset: new subset", "[CantorSet]") {
     CantorSet s;
     CantorSet sub;
@@ -219,7 +217,7 @@ TEST_CASE("addSubset: multiple distinct subsets", "[CantorSet]") {
     REQUIRE(s.power() == 2);
 }
 
-// ========== delSubset ==========
+
 TEST_CASE("delSubset: removes existing", "[CantorSet]") {
     CantorSet s;
     CantorSet sub;
@@ -248,7 +246,7 @@ TEST_CASE("delSubset: repeat removal fails", "[CantorSet]") {
     REQUIRE_FALSE(s.delSubset(sub));
 }
 
-// ========== operator< ==========
+
 TEST_CASE("operator<: both empty", "[CantorSet]") {
     CantorSet a, b;
     REQUIRE_FALSE(a < b);
@@ -297,7 +295,7 @@ TEST_CASE("operator<: equal returns false both ways", "[CantorSet]") {
     REQUIRE_FALSE(b < a);
 }
 
-// ========== operator+= ==========
+
 TEST_CASE("operator+=: simple union", "[CantorSet]") {
     CantorSet a, b;
     a.addElement("x");
@@ -343,7 +341,7 @@ TEST_CASE("operator+=: different subsets", "[CantorSet]") {
     REQUIRE(a.power() == 2);
 }
 
-// ========== operator+ ==========
+
 TEST_CASE("operator+: does not modify operands", "[CantorSet]") {
     CantorSet a, b;
     a.addElement("x");
@@ -362,7 +360,6 @@ TEST_CASE("operator+: empty operands", "[CantorSet]") {
     REQUIRE(c.isEmpty());
 }
 
-// ========== operator*= ==========
 TEST_CASE("operator*=: intersection", "[CantorSet]") {
     CantorSet a, b;
     a.addElement("x"); a.addElement("y");
@@ -410,7 +407,6 @@ TEST_CASE("operator*=: no common subsets", "[CantorSet]") {
     REQUIRE(a.isEmpty());
 }
 
-// ========== operator* ==========
 TEST_CASE("operator*: does not modify operands", "[CantorSet]") {
     CantorSet a, b;
     a.addElement("x"); a.addElement("y");
@@ -422,7 +418,7 @@ TEST_CASE("operator*: does not modify operands", "[CantorSet]") {
     REQUIRE(b.power() == 1);
 }
 
-// ========== operator-= ==========
+
 TEST_CASE("operator-=: difference", "[CantorSet]") {
     CantorSet a, b;
     a.addElement("x"); a.addElement("y");
@@ -460,7 +456,7 @@ TEST_CASE("operator-=: no common elements", "[CantorSet]") {
     REQUIRE(a["a"]);
 }
 
-// ========== operator- ==========
+
 TEST_CASE("operator-: does not modify operands", "[CantorSet]") {
     CantorSet a, b;
     a.addElement("x"); a.addElement("y");
@@ -472,7 +468,7 @@ TEST_CASE("operator-: does not modify operands", "[CantorSet]") {
     REQUIRE(b.power() == 1);
 }
 
-// ========== bulean ==========
+
 TEST_CASE("bulean: empty set gives 1 subset", "[CantorSet]") {
     CantorSet s;
     CantorSet b = s.bulean();
@@ -523,7 +519,7 @@ TEST_CASE("bulean: only subsets", "[CantorSet]") {
     REQUIRE(b.power() == 4);
 }
 
-// ========== operator<< ==========
+
 TEST_CASE("operator<<: empty set", "[CantorSet]") {
     CantorSet s;
     std::ostringstream out;
@@ -566,7 +562,6 @@ TEST_CASE("operator<<: element and subset", "[CantorSet]") {
     REQUIRE(out.str() == "{a, {b}}");
 }
 
-// ========== operator>> ==========
 TEST_CASE("operator>>: valid simple", "[CantorSet]") {
     std::istringstream in("{a, b}");
     CantorSet s;
@@ -605,7 +600,7 @@ TEST_CASE("operator>>: multiple lines", "[CantorSet]") {
     REQUIRE(s2["b"]);
 }
 
-// ========== fromString: valid ==========
+
 TEST_CASE("fromString: empty braces", "[CantorSet]") {
     REQUIRE(CantorSet::fromString("{}").isEmpty());
 }
@@ -659,7 +654,6 @@ TEST_CASE("fromString: task example", "[CantorSet]") {
     REQUIRE(s.power() == 6);
 }
 
-// ========== fromString: invalid ==========
 TEST_CASE("fromString: empty string throws", "[CantorSet]") {
     REQUIRE_THROWS_AS(CantorSet::fromString(""), std::runtime_error);
 }
