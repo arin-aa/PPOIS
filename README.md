@@ -18,11 +18,12 @@
 
 Сгенерирована с помощью [Doxygen](https://www.doxygen.nl/) и опубликована через [GitHub Pages](https://pages.github.com/):
 
-- [Лабораторные работы](https://arin-aa.github.io/PPOIS/)
+- [Главная страница документации](https://arin-aa.github.io/PPOIS/)
+- [Лабораторная работа №1](https://arin-aa.github.io/PPOIS/lab_1/index.html)
 
 ## Релизы
 
-Готовые бинарники для Linux публикуются в [Releases](https://github.com/arin-aa/PPOIS/releases/tag/v1.0.10).
+Готовые бинарники для Linux публикуются в [Releases](https://github.com/arin-aa/PPOIS/releases).
 
 ## CI/CD
 
