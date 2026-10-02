@@ -88,5 +88,4 @@ libs/Catch2/
 libs/doctest/
 
 # Doxygen 
-html/
 latex/
