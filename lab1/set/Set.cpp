@@ -1,3 +1,7 @@
+/**
+ * @file Set.cpp
+ * @brief Реализация методов класса CantorSet.
+ */
 #include "Set.h"                    
 #include <algorithm> 
 #include <cctype>
