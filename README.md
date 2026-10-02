@@ -6,7 +6,7 @@
 
 | Лаба | Язык | Содержание | Документация |
 |------|------|------------|--------------|
-| 1 | C++ | CantorSet, TicTacToe | [set](https://arin-aa.github.io/PPOIS_/lab_1/set/), [tictactoe](https://arin-aa.github.io/PPOIS_/lab_1/tictactoe/) |
+| 1 | C++ | CantorSet, TicTacToe | [set](https://arin-aa.github.io/PPOIS/lab_1/set/index.html), [tictactoe](https://arin-aa.github.io/PPOIS/lab_1/tictactoe/index.html) |
 
 ## Требования
 
@@ -18,15 +18,15 @@
 
 Сгенерирована с помощью [Doxygen](https://www.doxygen.nl/) и опубликована через [GitHub Pages](https://pages.github.com/):
 
-- [Лабораторные работы](https://arin-aa.github.io/PPOIS_/)
+- [Лабораторные работы](https://arin-aa.github.io/PPOIS/)
 
 ## Релизы
 
-Готовые бинарники для Linux публикуются в [Releases](https://github.com/arin-aa/PPOIS_/releases).
+Готовые бинарники для Linux публикуются в [Releases](https://github.com/arin-aa/PPOIS/releases/tag/v1.0.10).
 
 ## CI/CD
 
-На каждый push и Pull Request запускается [CI/CD пайплайн](https://github.com/arin-aa/PPOIS_/actions):
+На каждый push и Pull Request запускается [CI/CD пайплайн](https://github.com/arin-aa/PPOIS/actions):
 
 - сборка CLI для обеих задач;
 - unit-тесты с покрытием ≥ 90%.
