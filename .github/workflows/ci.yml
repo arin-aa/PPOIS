@@ -2,16 +2,14 @@ name: CI/CD
 
 on:
   push:
-    branches: [lab1, lab1_2, main]
+    branches: [lab1, lab1_2, laba2, main]
   pull_request:
     branches: [main]
 
 jobs:
-
   set-build-test:
     name: CantorSet — build, test, coverage
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ cppcheck bc
+          sudo apt-get install -y g++ catch2 gcovr cppcheck
 
       - name: Build CLI
         run: |
@@ -29,28 +27,17 @@ jobs:
       - name: Build tests with coverage
         run: |
           cd lab1/set
-          g++ --coverage -std=c++17 tests.cpp Set.cpp catch_amalgamated.cpp -o tests
+          g++ --coverage -O0 -std=c++17 SetTests.cpp Set.cpp -o tests -lCatch2Main -lCatch2
 
       - name: Run tests
         run: |
           cd lab1/set
           ./tests
 
-      - name: Generate coverage report
-        run: |
-          cd lab1/set
-          gcov tests-Set.cpp
-
       - name: Check coverage >= 90%
         run: |
           cd lab1/set
-          COVERAGE=$(grep "File 'Set.cpp'" -A 1 Set.cpp.gcov | grep "Lines executed" | sed 's/.*executed:\([0-9.]*\)%.*/\1/')
-          echo "Coverage: $COVERAGE%"
-          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
-            echo "FAIL: Coverage below 90%"
-            exit 1
-          fi
-          echo "PASS: Coverage >= 90%"
+          gcovr -r . --filter 'Set\.cpp' --fail-under-line 90
 
       - name: Run linter (cppcheck)
         run: |
@@ -71,11 +58,9 @@ jobs:
           name: cantorset-linux
           path: lab1/set/program
 
- 
   tictactoe-build-test:
     name: TicTacToe — build, test, coverage
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -83,7 +68,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ cppcheck bc
+          sudo apt-get install -y g++ catch2 gcovr cppcheck
 
       - name: Build CLI
         run: |
@@ -93,28 +78,17 @@ jobs:
       - name: Build tests with coverage
         run: |
           cd lab1/tictactoe
-          g++ --coverage -std=c++17 tests.cpp TicTacToe.cpp catch_amalgamated.cpp -o tests
+          g++ --coverage -O0 -std=c++17 TicTacToeTests.cpp TicTacToe.cpp -o tests -lCatch2Main -lCatch2
 
       - name: Run tests
         run: |
           cd lab1/tictactoe
           ./tests
 
-      - name: Generate coverage report
-        run: |
-          cd lab1/tictactoe
-          gcov tests-TicTacToe.cpp
-
       - name: Check coverage >= 90%
         run: |
           cd lab1/tictactoe
-          COVERAGE=$(grep "File 'TicTacToe.cpp'" -A 1 TicTacToe.cpp.gcov | grep "Lines executed" | sed 's/.*executed:\([0-9.]*\)%.*/\1/')
-          echo "Coverage: $COVERAGE%"
-          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
-            echo "FAIL: Coverage below 90%"
-            exit 1
-          fi
-          echo "PASS: Coverage >= 90%"
+          gcovr -r . --filter 'TicTacToe\.cpp' --fail-under-line 90
 
       - name: Run linter (cppcheck)
         run: |
@@ -135,13 +109,13 @@ jobs:
           name: tictactoe-linux
           path: lab1/tictactoe/tictactoe
 
-
   release:
     name: Create Release
     needs: [set-build-test, tictactoe-build-test]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -157,7 +131,7 @@ jobs:
           g++ -std=c++17 -O2 main.cpp TicTacToe.cpp -o tictactoe
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
           name: Release v1.0.${{ github.run_number }}
