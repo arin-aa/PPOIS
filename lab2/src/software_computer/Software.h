@@ -18,6 +18,7 @@ public:
 
     virtual bool install(Storage* storage)=0;
     virtual bool uninstall(Storage* storage)=0;
+    bool isInstalledOnDisk();
 
     friend class OperatingSystem;
 };

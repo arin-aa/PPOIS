@@ -14,10 +14,10 @@ private:
 
 public:
     CompatibilityChecker();
-    CompatibilityChecker(bool strictMode);
+    explicit CompatibilityChecker(bool strictMode);
 
-    bool checkSocket(Motherboard* mb,CPU* cpu);
-    int checkRam(Motherboard* mb,RAM* ram);
+    bool checkSocket(Motherboard* board,CPU* cpu);
+    int checkRam(Motherboard* board,RAM* ram);
     int checkPower(PSU* psu,Component* component);
     bool checkCaseFit(Case* chassis,Component* component);
 };

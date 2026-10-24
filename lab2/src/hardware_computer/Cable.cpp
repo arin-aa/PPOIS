@@ -1,9 +1,9 @@
 #include "Cable.h"
 #include "Port.h"
 
-Cable::Cable():type(""),lengthM(0.0){}
+Cable::Cable():type(""),lengthMeters(0.0){}
 
-Cable::Cable(const std::string& type,double lengthM):type(type),lengthM(lengthM){}
+Cable::Cable(const std::string& type,double lengthMeters):type(type),lengthMeters(lengthMeters){}
 
 bool Cable::isCompatibleWith(Port* port){
     if(!port){

@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "Peripheral.h"
 
 class File;
@@ -10,7 +11,7 @@ private:
 
 public:
     Scanner();
-    Scanner(int resolutionDpi);
+    explicit Scanner(int resolutionDpi);
 
-    File* scan();
+    std::unique_ptr<File> scan();
 };

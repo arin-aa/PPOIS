@@ -2,7 +2,10 @@
 #include "Computer.h"
 #include "File.h"
 
-ReportGenerator::ReportGenerator():format("txt"),author("unknown"){}
+const char* const DEFAULT_REPORT_FORMAT="txt";
+const char* const DEFAULT_REPORT_AUTHOR="unknown";
+
+ReportGenerator::ReportGenerator():format(DEFAULT_REPORT_FORMAT),author(DEFAULT_REPORT_AUTHOR){}
 
 ReportGenerator::ReportGenerator(const std::string& format,const std::string& author):format(format),author(author){}
 
@@ -12,15 +15,14 @@ std::string ReportGenerator::generateReport(Computer* computer){
     }
     std::string report="Report by "+author+"\n";
     report+="Format: "+format+"\n";
+    report+="Host: "+computer->hostname+"\n";
+    report+="Power draw: "+std::to_string(computer->totalPowerDraw())+"W\n";
     return report;
 }
 
 bool ReportGenerator::saveToFile(const std::string& content,File* file){
-    if(!file){
+    if(!file || content.empty()){
         return false;
     }
-    if(content.empty()){
-        return false;
-    }
-    return true;
+    return file->writeText(content);
 }

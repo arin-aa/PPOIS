@@ -1,16 +1,16 @@
 #include "Peripheral.h"
-#include "Port.h"
 #include "ComputerExceptions.h"
+#include "Port.h"
 
 Peripheral::Peripheral():name(""),isConnected(false),port(nullptr){}
 
 Peripheral::Peripheral(const std::string& name):name(name),isConnected(false),port(nullptr){}
 
-bool Peripheral::connectTo(Port* p){
-    if(!p){
+bool Peripheral::connectTo(Port* targetPort){
+    if(!targetPort){
         throw PeripheralNotRespondingException("port is null");
     }
-    port=p;
+    port=targetPort;
     isConnected=true;
     return true;
 }

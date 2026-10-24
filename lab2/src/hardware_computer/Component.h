@@ -12,11 +12,11 @@ protected:
     std::string name;
     std::string manufacturer;
     int powerWatts;
-    int lengthMM;
+    int lengthMm;
 
 public:
     Component();
-    Component(const std::string& name,const std::string& manufacturer,int powerWatts,int lengthMM);
+    Component(const std::string& name,const std::string& manufacturer,int powerWatts,int lengthMm);
     virtual ~Component()=default;
 
     virtual std::string describe()=0;

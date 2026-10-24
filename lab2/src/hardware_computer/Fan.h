@@ -8,8 +8,9 @@ private:
 
 public:
     Fan();
-    Fan(int sizeMm);
+    explicit Fan(int sizeMm);
 
     std::string describe() override;
     void setSpeed(int newRpm);
+    int getRpm();
 };

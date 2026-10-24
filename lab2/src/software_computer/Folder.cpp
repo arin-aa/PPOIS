@@ -14,25 +14,25 @@ bool Folder::addFile(File* file){
 }
 
 File* Folder::findFile(const std::string& name){
-    for(File* f:files){
-        if(f && f->fileName==name){
-            return f;
+    for(File* file:files){
+        if(file && file->fileName==name){
+            return file;
         }
     }
     return nullptr;
 }
 
 int Folder::totalSize(){
-    int total=0;
-    for(File* f:files){
-        if(f){
-            total+=f->sizeMb;
+    int totalMb=0;
+    for(File* file:files){
+        if(file){
+            totalMb+=file->sizeMb;
         }
     }
-    for(Folder* sub:subfolders){
-        if(sub){
-            total+=sub->totalSize();
+    for(Folder* subfolder:subfolders){
+        if(subfolder){
+            totalMb+=subfolder->totalSize();
         }
     }
-    return total;
+    return totalMb;
 }

@@ -7,7 +7,7 @@ private:
 
 public:
     SSD();
-    SSD(int capacityGb);
+    explicit SSD(int capacityGb);
 
     std::string describe() override;
     void trim();

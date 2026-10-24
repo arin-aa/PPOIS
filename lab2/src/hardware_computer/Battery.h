@@ -8,9 +8,11 @@ private:
 
 public:
     Battery();
-    Battery(int capacityWh);
+    explicit Battery(int capacityWh);
 
     void charge(int percent);
     void discharge(int percent);
     bool isDegraded();
+    int getChargePercent();
+    int getCycles();
 };

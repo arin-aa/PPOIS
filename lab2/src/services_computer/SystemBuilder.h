@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <vector>
 
 class CompatibilityChecker;
@@ -18,9 +19,11 @@ private:
 
 public:
     SystemBuilder();
-    SystemBuilder(CompatibilityChecker* checker);
+    explicit SystemBuilder(CompatibilityChecker* checker);
 
-    bool installMotherboard(Motherboard* mb);
+    bool installMotherboard(Motherboard* newMotherboard);
+    bool installPsu(PSU* newPsu);
+    bool installCase(Case* newChassis);
     bool addRam(RAM* ram);
-    Computer* build();
+    std::unique_ptr<Computer> build();
 };

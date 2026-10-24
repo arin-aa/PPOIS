@@ -1,20 +1,30 @@
 #include "Radiator.h"
 
-Radiator::Radiator():Cooler("Radiator",250,30),lengthMm(0),coolantLevel(100){}
+const char* const RADIATOR_NAME="Radiator";
+const int MAX_TDP_WATTS=250;
+const int NOISE_DB=30;
+const int FULL_COOLANT_LEVEL=100;
 
-Radiator::Radiator(int lengthMm):Cooler("Radiator",250,30),lengthMm(lengthMm),coolantLevel(100){}
+Radiator::Radiator():Cooler(RADIATOR_NAME,MAX_TDP_WATTS,NOISE_DB),radiatorLengthMm(0),coolantLevel(FULL_COOLANT_LEVEL){}
+
+Radiator::Radiator(int radiatorLengthMm):Cooler(RADIATOR_NAME,MAX_TDP_WATTS,NOISE_DB),radiatorLengthMm(radiatorLengthMm),
+    coolantLevel(FULL_COOLANT_LEVEL){}
 
 std::string Radiator::describe(){
-    return "Radiator "+std::to_string(lengthMm)+"mm";
+    return "Radiator "+std::to_string(radiatorLengthMm)+"mm";
 }
 
-bool Radiator::refillCoolant(int ml){
-    if(ml<=0){
+bool Radiator::refillCoolant(int milliliters){
+    if(milliliters<=0){
         return false;
     }
-    coolantLevel+=ml;
-    if(coolantLevel>100){
-        coolantLevel=100;
+    coolantLevel+=milliliters;
+    if(coolantLevel>FULL_COOLANT_LEVEL){
+        coolantLevel=FULL_COOLANT_LEVEL;
     }
     return true;
+}
+
+int Radiator::getCoolantLevel(){
+    return coolantLevel;
 }

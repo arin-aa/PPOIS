@@ -1,14 +1,24 @@
 #include "OperatingSystem.h"
-#include "Driver.h"
 #include "Application.h"
-#include "Process.h"
-#include "Folder.h"
-#include "Storage.h"
 #include "ComputerExceptions.h"
+#include "Driver.h"
+#include "Folder.h"
+#include "Process.h"
+#include "Storage.h"
 
-OperatingSystem::OperatingSystem():Software("OS","1.0",5000),family(""),architecture("x86_64"),rootFolder(nullptr),isBooted(false){}
+const char* const OS_NAME="OS";
+const char* const OS_DEFAULT_VERSION="1.0";
+const int OS_SIZE_MB=5000;
+const char* const DEFAULT_ARCHITECTURE="x86_64";
+const int FIRST_PID=1000;
 
-OperatingSystem::OperatingSystem(const std::string& family,const std::string& architecture,const std::string& version):Software("OS",version,5000),family(family),architecture(architecture),rootFolder(nullptr),isBooted(false){}
+OperatingSystem::OperatingSystem():Software(OS_NAME,OS_DEFAULT_VERSION,OS_SIZE_MB),family(""),
+    architecture(DEFAULT_ARCHITECTURE),rootFolder(nullptr),isBooted(false),nextPid(FIRST_PID){}
+
+OperatingSystem::OperatingSystem(const std::string& family,const std::string& architecture,const std::string& version):
+    Software(OS_NAME,version,OS_SIZE_MB),family(family),architecture(architecture),rootFolder(nullptr),isBooted(false),nextPid(FIRST_PID){}
+
+OperatingSystem::~OperatingSystem()=default;
 
 bool OperatingSystem::install(Storage* storage){
     if(!storage){
@@ -34,11 +44,11 @@ bool OperatingSystem::boot(){
     if(isBooted){
         return true;
     }
-    for(Driver* d:drivers){
-        if(!d && !d->isSigned){
+    for(Driver* driver:drivers){
+        if(!driver->isSigned){
             throw BootFailureException("unsigned driver cannot be loaded");
         }
-        d->isLoaded=true;
+        driver->isLoaded=true;
     }
     isBooted=true;
     return true;
@@ -48,16 +58,14 @@ Process* OperatingSystem::startProcess(Application* app){
     if(!app){
         return nullptr;
     }
-    static int nextPid=1000;
-    Process* p=new Process(nextPid++,app,app->sizeMb);
-    processes.push_back(p);
-    return p;
+    processes.push_back(std::make_unique<Process>(nextPid++,app,app->sizeMb));
+    return processes.back().get();
 }
 
 bool OperatingSystem::killProcess(int pid){
-    for(Process* p:processes){
-        if(p && p->pid==pid){
-            p->terminate();
+    for(auto& process:processes){
+        if(process->pid==pid){
+            process->terminate();
             return true;
         }
     }
@@ -65,13 +73,26 @@ bool OperatingSystem::killProcess(int pid){
 }
 
 bool OperatingSystem::installDriver(Driver* driver){
-    if(!driver){
-        return false;
-    }
-    if(!driver->isSigned){
+    if(!driver || !driver->isSigned){
         return false;
     }
     drivers.push_back(driver);
     return true;
 }
 
+Driver* OperatingSystem::findDriverFor(Component* component){
+    for(Driver* driver:drivers){
+        if(driver->matches(component)){
+            return driver;
+        }
+    }
+    throw DriverNotFoundException("no driver installed for the component");
+}
+
+bool OperatingSystem::isRunning(){
+    return isBooted;
+}
+
+int OperatingSystem::getProcessCount(){
+    return static_cast<int>(processes.size());
+}

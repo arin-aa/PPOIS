@@ -1,9 +1,14 @@
 #include "Storage.h"
 #include "ComputerExceptions.h"
 
-Storage::Storage():Component("","",5,100),capacityGb(0),usedGb(0),readSpeedMBs(0){}
+const char* const STORAGE_MANUFACTURER="Generic";
+const int STORAGE_POWER_WATTS=5;
+const int STORAGE_LENGTH_MM=100;
 
-Storage::Storage(const std::string& name,int capacityGb,int readSpeedMBs):Component(name,"Generic",5,100),capacityGb(capacityGb),usedGb(0),readSpeedMBs(readSpeedMBs){}
+Storage::Storage():Component("","",STORAGE_POWER_WATTS,STORAGE_LENGTH_MM),capacityGb(0),usedGb(0),readSpeedMbPerSec(0){}
+
+Storage::Storage(const std::string& name,int capacityGb,int readSpeedMbPerSec):
+    Component(name,STORAGE_MANUFACTURER,STORAGE_POWER_WATTS,STORAGE_LENGTH_MM),capacityGb(capacityGb),usedGb(0),readSpeedMbPerSec(readSpeedMbPerSec){}
 
 bool Storage::write(int gb){
     if(gb<=0){
@@ -17,10 +22,7 @@ bool Storage::write(int gb){
 }
 
 bool Storage::erase(int gb){
-    if(gb<=0){
-        return false;
-    }
-    if(gb>usedGb){
+    if(gb<=0 || gb>usedGb){
         return false;
     }
     usedGb-=gb;
@@ -29,4 +31,8 @@ bool Storage::erase(int gb){
 
 int Storage::freeSpace(){
     return capacityGb-usedGb;
+}
+
+int Storage::getUsedGb(){
+    return usedGb;
 }

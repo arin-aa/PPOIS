@@ -11,4 +11,5 @@ public:
     Mouse(int dpi,int buttonsCount);
 
     bool setDpi(int newDpi);
+    int getDpi();
 };

@@ -1,6 +1,7 @@
 #pragma once
-#include "Computer.h"
+#include <string>
 #include <vector>
+#include "Computer.h"
 
 class NetworkInterface;
 class Packet;
@@ -19,6 +20,4 @@ public:
     void setupRaid(const std::string& level);
     bool handleRequest(Packet* packet);
     void restart();
-
-    friend class NetworkInterface;
 };

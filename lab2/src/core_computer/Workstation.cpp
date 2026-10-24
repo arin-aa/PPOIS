@@ -1,6 +1,8 @@
 #include "Workstation.h"
-#include "GPU.h"
 #include "Cooler.h"
+#include "GPU.h"
+
+const int WORKSTATION_NOT_AVAILABLE=-1;
 
 Workstation::Workstation():Computer(){}
 
@@ -10,12 +12,12 @@ void Workstation::installGpu(GPU* newGpu){
     if(!newGpu){
         return;
     }
-    gpu.push_back(newGpu);
+    gpus.push_back(newGpu);
 }
 
 int Workstation::renderTask(int complexity){
-    if(gpu.empty() || complexity<=0){
-        return -1;
+    if(gpus.empty() || complexity<=0){
+        return WORKSTATION_NOT_AVAILABLE;
     }
-    return complexity/(int)gpu.size();
+    return complexity/static_cast<int>(gpus.size());
 }

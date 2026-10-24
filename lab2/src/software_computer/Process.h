@@ -18,6 +18,8 @@ public:
     void suspend();
     void resume();
     void terminate();
+    std::string getState();
+    int getPid();
 
     friend class OperatingSystem;
 };

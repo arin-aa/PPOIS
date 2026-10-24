@@ -12,7 +12,7 @@ private:
 
 public:
     DiagnosticService();
-    DiagnosticService(Logger* logger);
+    explicit DiagnosticService(Logger* logger);
 
     bool checkTemperature(Computer* computer,Sensor* sensor);
     bool checkStorage(Computer* computer,Storage* storage);

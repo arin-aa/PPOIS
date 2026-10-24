@@ -16,9 +16,11 @@ public:
     RepairTicket();
     RepairTicket(int id,const std::string& description,Computer* computer);
 
-    bool assign(Technician* tech);
+    bool assign(Technician* assignee);
     bool close();
     bool escalate();
+    std::string getStatus();
+    std::string getDescription();
 
     friend class Technician;
 };

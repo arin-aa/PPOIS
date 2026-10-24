@@ -1,19 +1,32 @@
 #include "GPU.h"
+#include "ComputerExceptions.h"
 #include "Sensor.h"
 
-GPU::GPU():Component("GPU","NVIDIA",250,300),vramGb(0),coreClockMhz(0),tempSensor(nullptr){}
+const int GPU_MAX_PERCENT=100;
+const char* const GPU_NAME="GPU";
+const char* const GPU_MANUFACTURER="NVIDIA";
+const int GPU_POWER_WATTS=250;
+const int GPU_LENGTH_MM=300;
+const double LOAD_BOOST_DIVISOR=200.0;
 
-GPU::GPU(int vramGb,int coreClockMhz):Component("GPU","NVIDIA",250,300),vramGb(vramGb),coreClockMhz(coreClockMhz),tempSensor(nullptr){}
+GPU::GPU():Component(GPU_NAME,GPU_MANUFACTURER,GPU_POWER_WATTS,GPU_LENGTH_MM),vramGb(0),coreClockMhz(0),tempSensor(nullptr){}
+
+GPU::GPU(int vramGb,int coreClockMhz):Component(GPU_NAME,GPU_MANUFACTURER,GPU_POWER_WATTS,GPU_LENGTH_MM),vramGb(vramGb),coreClockMhz(coreClockMhz),
+    tempSensor(nullptr){}
 
 std::string GPU::describe(){
     return "GPU "+std::to_string(vramGb)+"GB";
 }
 
 void GPU::runLoad(int percent){
-    if(percent<=0 || percent>100){
+    if(percent<=0 || percent>GPU_MAX_PERCENT){
         return;
     }
-    coreClockMhz=(int)(coreClockMhz*(1.0+percent/200.0));
+    double boostFactor=1.0+percent/LOAD_BOOST_DIVISOR;
+    coreClockMhz=static_cast<int>(coreClockMhz*boostFactor);
+    if(tempSensor && tempSensor->isCritical()){
+        throw OverheatingException("GPU temperature is critical");
+    }
 }
 
 bool GPU::isSufficientFor(int neededVram){

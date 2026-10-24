@@ -12,14 +12,16 @@ private:
     std::string certification;
     std::vector<PowerConnector*> connectors;
 
+    int totalDraw(const std::vector<Component*>& components);
+
 public:
     PSU();
     PSU(int wattage,const std::string& certification);
 
     std::string describe() override;
-    bool canPower(std::vector<Component*> components);
-    int loadPercent(std::vector<Component*> components);
-    bool connect(PowerConnector* c);
+    bool canPower(const std::vector<Component*>& components);
+    int loadPercent(const std::vector<Component*>& components);
+    bool connect(PowerConnector* connector);
 
     friend class CompatibilityChecker;
 };

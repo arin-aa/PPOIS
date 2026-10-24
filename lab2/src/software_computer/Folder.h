@@ -12,7 +12,7 @@ private:
 
 public:
     Folder();
-    Folder(const std::string& folderName);
+    explicit Folder(const std::string& folderName);
 
     bool addFile(File* file);
     File* findFile(const std::string& name);

@@ -3,13 +3,14 @@
 
 class Radiator:public Cooler{
 private:
-    int lengthMm;
+    int radiatorLengthMm;
     int coolantLevel;
 
 public:
     Radiator();
-    Radiator(int lengthMm);
+    explicit Radiator(int radiatorLengthMm);
 
     std::string describe() override;
-    bool refillCoolant(int ml);
+    bool refillCoolant(int milliliters);
+    int getCoolantLevel();
 };

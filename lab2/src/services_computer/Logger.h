@@ -12,7 +12,8 @@ public:
     Logger();
     Logger(const std::string& level,int maxEntries);
 
-    void log(const std::string& msg);
-    int getLastEntries(int n);
+    void log(const std::string& message);
+    std::vector<std::string> getLastEntries(int count);
     void clear();
+    int getEntryCount();
 };

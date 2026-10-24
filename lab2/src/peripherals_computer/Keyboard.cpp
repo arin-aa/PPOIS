@@ -1,8 +1,11 @@
 #include "Keyboard.h"
 
-Keyboard::Keyboard():Peripheral("Keyboard"),layout("QWERTY"),isMechanical(false){}
+const char* const KEYBOARD_NAME="Keyboard";
+const char* const DEFAULT_LAYOUT="QWERTY";
 
-Keyboard::Keyboard(const std::string& layout,bool isMechanical):Peripheral("Keyboard"),layout(layout),isMechanical(isMechanical){}
+Keyboard::Keyboard():Peripheral(KEYBOARD_NAME),layout(DEFAULT_LAYOUT),isMechanical(false){}
+
+Keyboard::Keyboard(const std::string& layout,bool isMechanical):Peripheral(KEYBOARD_NAME),layout(layout),isMechanical(isMechanical){}
 
 bool Keyboard::changeLayout(const std::string& newLayout){
     if(newLayout.empty()){
@@ -10,4 +13,8 @@ bool Keyboard::changeLayout(const std::string& newLayout){
     }
     layout=newLayout;
     return true;
+}
+
+std::string Keyboard::getLayout(){
+    return layout;
 }

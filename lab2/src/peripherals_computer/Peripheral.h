@@ -11,10 +11,10 @@ protected:
 
 public:
     Peripheral();
-    Peripheral(const std::string& name);
+    explicit Peripheral(const std::string& name);
     virtual ~Peripheral()=default;
 
-    bool connectTo(Port* p);
+    bool connectTo(Port* targetPort);
     void disconnect();
 
     friend class Port;

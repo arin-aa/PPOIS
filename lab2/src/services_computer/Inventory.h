@@ -17,4 +17,5 @@ public:
     bool addItem(Component* item);
     Component* takeItem(const std::string& name);
     int countByType(const std::string& type);
+    int getItemCount();
 };

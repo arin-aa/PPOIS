@@ -10,6 +10,7 @@ class Port;
 class CompatibilityChecker;
 class SystemBuilder;
 class Case;
+class Application;
 
 class Motherboard:public Component{
 private:

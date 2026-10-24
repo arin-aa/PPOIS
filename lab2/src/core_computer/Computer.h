@@ -10,6 +10,8 @@ class OperatingSystem;
 class User;
 class ReportGenerator;
 class DiagnosticService;
+class SystemBuilder;
+class Application;
 
 class Computer{
 protected:
@@ -24,7 +26,7 @@ protected:
 
 public:
     Computer();
-    Computer(const std::string& hostname);
+    explicit Computer(const std::string& hostname);
     virtual ~Computer()=default;
 
     void powerOn();
@@ -32,8 +34,11 @@ public:
     void addStorage(Storage* storage);
     void installOs(OperatingSystem* newOs);
     int totalPowerDraw();
+    bool isOn();
+    std::string getHostname();
 
     friend class ReportGenerator;
     friend class DiagnosticService;
+    friend class SystemBuilder;
     friend class Application;
 };

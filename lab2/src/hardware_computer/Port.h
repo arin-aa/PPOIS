@@ -11,11 +11,11 @@ private:
 
 public:
     Port();
-    Port(const std::string& type);
+    explicit Port(const std::string& type);
 
-    void plug(Cable* c);
+    void plug(Cable* newCable);
     void unplug();
-    bool connectPeripheral(Peripheral* p);
+    bool connectPeripheral(Peripheral* peripheral);
 
     friend class Cable;
 };

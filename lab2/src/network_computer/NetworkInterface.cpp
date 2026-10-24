@@ -1,8 +1,8 @@
 #include "NetworkInterface.h"
-#include "MacAddress.h"
-#include "IpAddress.h"
-#include "Packet.h"
 #include "ComputerExceptions.h"
+#include "IpAddress.h"
+#include "MacAddress.h"
+#include "Packet.h"
 
 NetworkInterface::NetworkInterface():name(""),mac(nullptr),ip(nullptr),isUp(false),speedMbps(0){}
 
@@ -31,15 +31,19 @@ bool NetworkInterface::send(Packet* packet,IpAddress* target){
     if(!packet || !target){
         return false;
     }
+    if(!target->isValid()){
+        throw InvalidAddressException("target address is malformed");
+    }
     return packet->decrementTtl()>0;
 }
 
 bool NetworkInterface::receive(Packet* packet){
-    if(!isUp){
-        return false;
-    }
-    if(!packet){
+    if(!isUp || !packet){
         return false;
     }
     return packet->isValid();
+}
+
+bool NetworkInterface::isActive(){
+    return isUp;
 }

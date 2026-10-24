@@ -1,8 +1,13 @@
 #include "DiagnosticService.h"
-#include "Logger.h"
 #include "Computer.h"
-#include "Storage.h"
+#include "Logger.h"
 #include "Sensor.h"
+#include "Storage.h"
+
+const int DIAGNOSTIC_SERVICE_NOT_AVAILABLE=-1;
+const char* const MSG_CRITICAL_TEMPERATURE="Critical temperature";
+const char* const MSG_STORAGE_FAILED="Storage integrity failed";
+const char* const MSG_DIAGNOSTIC_START="Running diagnostic";
 
 DiagnosticService::DiagnosticService():logger(nullptr),issuesFound(0){}
 
@@ -15,7 +20,7 @@ bool DiagnosticService::checkTemperature(Computer* computer,Sensor* sensor){
     if(sensor->isCritical()){
         issuesFound++;
         if(logger){
-            logger->log("Critical temperature");
+            logger->log(MSG_CRITICAL_TEMPERATURE);
         }
         return false;
     }
@@ -29,7 +34,7 @@ bool DiagnosticService::checkStorage(Computer* computer,Storage* storage){
     if(storage->freeSpace()<0){
         issuesFound++;
         if(logger){
-            logger->log("Storage integrity failed");
+            logger->log(MSG_STORAGE_FAILED);
         }
         return false;
     }
@@ -38,11 +43,14 @@ bool DiagnosticService::checkStorage(Computer* computer,Storage* storage){
 
 int DiagnosticService::runFullDiagnostic(Computer* computer){
     if(!computer){
-        return -1;
+        return DIAGNOSTIC_SERVICE_NOT_AVAILABLE;
     }
     issuesFound=0;
     if(logger){
-        logger->log("Running diagnostic");
+        logger->log(MSG_DIAGNOSTIC_START);
+    }
+    for(Storage* storage:computer->storages){
+        checkStorage(computer,storage);
     }
     return issuesFound;
 }

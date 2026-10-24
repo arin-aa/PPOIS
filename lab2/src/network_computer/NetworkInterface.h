@@ -22,6 +22,7 @@ public:
     bool down();
     bool send(Packet* packet,IpAddress* target);
     bool receive(Packet* packet);
+    bool isActive();
 
     friend class Server;
 };

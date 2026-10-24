@@ -7,7 +7,7 @@ private:
 
 public:
     PowerConnector();
-    PowerConnector(int pinCount);
+    explicit PowerConnector(int pinCount);
 
     bool connect();
 };

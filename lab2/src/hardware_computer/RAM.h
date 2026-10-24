@@ -18,6 +18,7 @@ public:
     std::string describe() override;
     bool allocate(int gb);
     bool release(int gb);
+    int getUsedGb();
 
     friend class CompatibilityChecker;
 };

@@ -1,33 +1,32 @@
 #include "IpAddress.h"
+#include <algorithm>
 
-IpAddress::IpAddress():address(""),subnetMask(24){}
+const int DEFAULT_SUBNET_MASK=24;
+const int MIN_SUBNET_MASK=0;
+const int MAX_SUBNET_MASK=32;
+const int IP_SEPARATOR_COUNT=3;
+const char IP_SEPARATOR='.';
+
+IpAddress::IpAddress():address(""),subnetMask(DEFAULT_SUBNET_MASK){}
 
 IpAddress::IpAddress(const std::string& address,int subnetMask):address(address),subnetMask(subnetMask){}
 
 bool IpAddress::isValid(){
-    int dots=0;
-    for(char c:address){
-        if(c=='.'){
-            dots++;
-        }
-    }
-    if(dots!=3 || address.empty()){
+    int separators=static_cast<int>(std::count(address.begin(),address.end(),IP_SEPARATOR));
+    if(separators!=IP_SEPARATOR_COUNT){
         return false;
     }
-    if(subnetMask<0 || subnetMask>32){
-        return false;
-    }
-    return true;
+    return subnetMask>=MIN_SUBNET_MASK && subnetMask<=MAX_SUBNET_MASK;
 }
 
 bool IpAddress::isInSameSubnet(IpAddress* other){
     if(!other){
         return false;
     }
-    int pos=address.find_last_of('.');
-    int pos2=other->address.find_last_of('.');
-    if(pos<0 || pos2<0){
+    std::size_t lastDotHere=address.find_last_of(IP_SEPARATOR);
+    std::size_t lastDotThere=other->address.find_last_of(IP_SEPARATOR);
+    if(lastDotHere==std::string::npos || lastDotThere==std::string::npos){
         return false;
     }
-    return address.substr(0,pos)==other->address.substr(0,pos2);
+    return address.substr(0,lastDotHere)==other->address.substr(0,lastDotThere);
 }

@@ -14,5 +14,7 @@ public:
     Printer(int paperLevel,int inkLevel);
 
     bool print(File* file);
-    void refillPaper(int n);
+    void refillPaper(int sheetCount);
+    int getPaperLevel();
+    int getInkLevel();
 };

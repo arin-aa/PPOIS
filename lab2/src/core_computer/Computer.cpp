@@ -8,7 +8,8 @@
 
 Computer::Computer():hostname(""),isPoweredOn(false),motherboard(nullptr),psu(nullptr),chassis(nullptr),os(nullptr),owner(nullptr){}
 
-Computer::Computer(const std::string& hostname):hostname(hostname),isPoweredOn(false),motherboard(nullptr),psu(nullptr),chassis(nullptr),os(nullptr),owner(nullptr){}
+Computer::Computer(const std::string& hostname):hostname(hostname),isPoweredOn(false),motherboard(nullptr),psu(nullptr),chassis(nullptr),os(nullptr),
+    owner(nullptr){}
 
 void Computer::powerOn(){
     if(isPoweredOn){
@@ -39,11 +40,19 @@ void Computer::installOs(OperatingSystem* newOs){
 }
 
 int Computer::totalPowerDraw(){
-    int total=0;
-    for(Storage* s:storages){
-        if(s){
-            total+=s->powerWatts;
+    int totalWatts=0;
+    for(Storage* storage:storages){
+        if(storage){
+            totalWatts+=storage->powerWatts;
         }
     }
-    return total;
+    return totalWatts;
+}
+
+bool Computer::isOn(){
+    return isPoweredOn;
+}
+
+std::string Computer::getHostname(){
+    return hostname;
 }

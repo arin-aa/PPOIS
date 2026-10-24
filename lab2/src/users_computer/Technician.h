@@ -19,4 +19,5 @@ public:
 
     bool acceptTicket(RepairTicket* ticket);
     bool repair(Computer* computer,Component* newComponent);
+    int getTicketCount();
 };

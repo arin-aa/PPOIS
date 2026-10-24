@@ -12,4 +12,5 @@ public:
     Keyboard(const std::string& layout,bool isMechanical);
 
     bool changeLayout(const std::string& newLayout);
+    std::string getLayout();
 };

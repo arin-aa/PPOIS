@@ -7,15 +7,16 @@ class Storage:public Component{
 protected:
     int capacityGb;
     int usedGb;
-    int readSpeedMBs;
+    int readSpeedMbPerSec;
 
 public:
     Storage();
-    Storage(const std::string& name,int capacityGb,int readSpeedMBs);
+    Storage(const std::string& name,int capacityGb,int readSpeedMbPerSec);
 
     bool write(int gb);
     bool erase(int gb);
     int freeSpace();
+    int getUsedGb();
 
     friend class DiagnosticService;
 };

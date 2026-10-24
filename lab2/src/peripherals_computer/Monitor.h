@@ -13,4 +13,5 @@ public:
     Monitor(const std::string& resolution,int refreshRateHz);
 
     void setBrightness(int value);
+    int getBrightness();
 };

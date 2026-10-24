@@ -1,6 +1,7 @@
 #pragma once
-#include "Peripheral.h"
+#include <memory>
 #include <string>
+#include "Peripheral.h"
 
 class File;
 
@@ -14,5 +15,5 @@ public:
     Webcam();
     Webcam(const std::string& resolution,int fps);
 
-    File* record(int seconds);
+    std::unique_ptr<File> record(int seconds);
 };

@@ -13,6 +13,8 @@ public:
     User(const std::string& login,const std::string& password);
     virtual ~User()=default;
 
-    bool authenticate(const std::string& pass);
-    bool changePassword(const std::string& oldPass,const std::string& newPass);
+    bool authenticate(const std::string& candidate);
+    bool changePassword(const std::string& oldPassword,const std::string& newPassword);
+    int getFailedAttempts();
+    bool isLocked();
 };
