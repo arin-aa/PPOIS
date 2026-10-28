@@ -1,27 +1,44 @@
+/**
+ * @file PSU.h
+ * @brief Объявление класса PSU.
+ */
 #pragma once
 #include <string>
-#include <vector>
 #include "Component.h"
 
-class PowerConnector;
-class CompatibilityChecker;
-
+/**
+ * @class PSU
+ * @brief Класс блока питания.
+ */
 class PSU:public Component{
 private:
-    int wattage;
-    std::string certification;
-    std::vector<PowerConnector*> connectors;
-
-    int totalDraw(const std::vector<Component*>& components);
+    int wattage;///<Мощность
+    std::string certification;///<Сертификат
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     PSU();
+
+/**
+ * @brief Конструктор с параметрами.
+ * @param wattage Мощность.
+ * @param certification Сертификат.
+ */
     PSU(int wattage,const std::string& certification);
 
-    std::string describe() override;
-    bool canPower(const std::vector<Component*>& components);
-    int loadPercent(const std::vector<Component*>& components);
-    bool connect(PowerConnector* connector);
+/**
+ * @brief Вычисляет резерв мощности.
+ * @param loadWatts Текущая нагрузка.
+ * @return Резерв.
+ */
+    int reserve(int loadWatts);
 
-    friend class CompatibilityChecker;
+/**
+ * @brief Вычисляет потребление из сети.
+ * @param loadWatts Полезная нагрузка.
+ * @return Потребление из розетки.
+ */
+    int wallDraw(int loadWatts);
 };

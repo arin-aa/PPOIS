@@ -1,58 +1,69 @@
 #include "Computer.h"
+#include "ComputerExceptions.h"
 #include "Motherboard.h"
-#include "PSU.h"
-#include "Case.h"
-#include "Storage.h"
 #include "OperatingSystem.h"
-#include "User.h"
+#include "PSU.h"
+#include "Storage.h"
 
-Computer::Computer():hostname(""),isPoweredOn(false),motherboard(nullptr),psu(nullptr),chassis(nullptr),os(nullptr),owner(nullptr){}
+const int BASE_WATTS=30;
+const int LOAD=50;
 
-Computer::Computer(const std::string& hostname):hostname(hostname),isPoweredOn(false),motherboard(nullptr),psu(nullptr),chassis(nullptr),os(nullptr),
-    owner(nullptr){}
+Computer::Computer():hostname(""),bootCount(0),motherboard(nullptr),psu(nullptr),os(nullptr){}
 
-void Computer::powerOn(){
-    if(isPoweredOn){
-        return;
-    }
-    if(os){
-        os->boot();
-    }
-    isPoweredOn=true;
-}
+Computer::Computer(const std::string& hostname):hostname(hostname),bootCount(0),motherboard(nullptr),psu(nullptr),os(nullptr){}
 
-void Computer::powerOff(){
-    isPoweredOn=false;
+void Computer::assemble(Motherboard* board,PSU* supply){
+    motherboard=board;
+    psu=supply;
 }
 
 void Computer::addStorage(Storage* storage){
-    if(!storage){
-        return;
-    }
     storages.push_back(storage);
 }
 
 void Computer::installOs(OperatingSystem* newOs){
-    if(!newOs){
-        return;
+    if(storages.empty()){
+        throw InvalidConfigurationException(hostname+" has no disk for the OS");
     }
+    storages[0]->write(newOs->install(storages[0]->freeSpace()));
     os=newOs;
 }
 
-int Computer::totalPowerDraw(){
-    int totalWatts=0;
-    for(Storage* storage:storages){
-        if(storage){
-            totalWatts+=storage->powerWatts;
-        }
+void Computer::powerOn(){
+    if(!motherboard || !psu){
+        throw BootFailureException(hostname+" is not assembled");
     }
-    return totalWatts;
+    if(powerReserve()<0){
+        throw InsufficientPowerException(hostname+" draws more than the PSU gives");
+    }
+    if(os){
+        os->boot();
+    }
+    bootCount++;
 }
 
-bool Computer::isOn(){
-    return isPoweredOn;
+int Computer::freeStorageGb(){
+    int freeGb=0;
+    for(Storage* storage:storages){
+        freeGb+=storage->freeSpace();
+    }
+    return freeGb;
 }
 
-std::string Computer::getHostname(){
-    return hostname;
+int Computer::powerDraw(){
+    int watts=BASE_WATTS;
+    if(motherboard){
+        watts+=motherboard->draw(LOAD);
+    }
+    for(Storage* storage:storages){
+        watts+=storage->draw(LOAD);
+    }
+    return watts;
+}
+
+int Computer::powerReserve(){
+    if(!psu){
+        throw BootFailureException(hostname+" has no power supply");
+    }
+    return psu->reserve(powerDraw());
 }

@@ -1,22 +1,14 @@
 #include "Scanner.h"
-#include "File.h"
 
 const char* const SCANNER_NAME="Scanner";
-const int DEFAULT_SCAN_DPI=300;
-const char* const SCAN_FILE_NAME="scan.pdf";
-const int SCAN_FILE_SIZE_MB=5;
+const int KB_PER_UNIT=1000;
 
-Scanner::Scanner():Peripheral(SCANNER_NAME),resolutionDpi(DEFAULT_SCAN_DPI),isBusy(false){}
+Scanner::Scanner():Peripheral(SCANNER_NAME),resolutionDpi(0),colorBits(0),pagesScanned(0){}
 
-Scanner::Scanner(int resolutionDpi):Peripheral(SCANNER_NAME),resolutionDpi(resolutionDpi),isBusy(false){}
+Scanner::Scanner(int resolutionDpi,int colorBits):Peripheral(SCANNER_NAME),resolutionDpi(resolutionDpi),colorBits(colorBits),pagesScanned(0){}
 
-std::unique_ptr<File> Scanner::scan(){
-    if(isBusy){
-        return nullptr;
-    }
-    isBusy=true;
-    auto scannedFile=std::make_unique<File>(SCAN_FILE_NAME,
-                                              SCAN_FILE_SIZE_MB,false);
-    isBusy=false;
-    return scannedFile;
+int Scanner::scanPages(int pages){
+    ping();
+    pagesScanned+=pages;
+    return pages*resolutionDpi*colorBits/KB_PER_UNIT;
 }

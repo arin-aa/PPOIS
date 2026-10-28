@@ -1,45 +1,22 @@
 #include "Application.h"
-#include "Computer.h"
-#include "Motherboard.h"
-#include "Storage.h"
+#include "ComputerExceptions.h"
 
-const int RAM_PER_SLOT_MB=8192;
-const int MB_PER_GB=1024;
+Application::Application():Software(),requiredRamMb(0),licenseKey(""),launches(0){}
 
-Application::Application():Software(),requiredRamMb(0),licenseKey(""){}
-
-Application::Application(const std::string& name,const std::string& version,int sizeMb,int requiredRamMb,const std::string& licenseKey):
-    Software(name,version,sizeMb),requiredRamMb(requiredRamMb),licenseKey(licenseKey){}
-
-bool Application::install(Storage* storage){
-    if(!storage || !storage->write(sizeMb/MB_PER_GB+1)){
-        return false;
-    }
-    isInstalled=true;
-    return true;
-}
-
-bool Application::uninstall(Storage* storage){
-    if(!storage || !isInstalled){
-        return false;
-    }
-    storage->erase(sizeMb/MB_PER_GB+1);
-    isInstalled=false;
-    return true;
-}
+Application::Application(const std::string& name,int sizeMb,int requiredRamMb,const std::string& licenseKey):Software(name,sizeMb),
+    requiredRamMb(requiredRamMb),licenseKey(licenseKey),launches(0){}
 
 bool Application::checkLicense(const std::string& key){
-    if(key.empty() || licenseKey.empty()){
-        return false;
-    }
-    return key==licenseKey;
+    return !licenseKey.empty() && key==licenseKey;
 }
 
-bool Application::canRunOn(Computer* computer){
-    if(!computer || !computer->motherboard){
-        return false;
+int Application::launch(int freeRamMb){
+    if(!isInstalled){
+        throw InvalidConfigurationException(name+" is not installed");
     }
-    Motherboard* board=computer->motherboard;
-    int totalRamMb=board->ramSlots*RAM_PER_SLOT_MB;
-    return totalRamMb>=requiredRamMb;
+    if(freeRamMb<requiredRamMb){
+        throw MemoryOverflowException(name+" needs more memory");
+    }
+    launches++;
+    return freeRamMb-requiredRamMb;
 }

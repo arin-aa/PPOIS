@@ -1,14 +1,12 @@
 #include "Cooler.h"
 
-const char* const COOLER_MANUFACTURER="Generic";
-const int COOLER_POWER_WATTS=3;
-const int COOLER_LENGTH_MM=80;
+const char* const COOLER_MAKER="Cooler Master";
+const int COOLER_WATTS=5;
 
-Cooler::Cooler():Component("","",COOLER_POWER_WATTS,COOLER_LENGTH_MM),maxTdpWatts(0),noiseDb(0){}
+Cooler::Cooler():Component("",COOLER_MAKER,COOLER_WATTS),maxTdpWatts(0){}
 
-Cooler::Cooler(const std::string& name,int maxTdpWatts,int noiseDb):Component(name,COOLER_MANUFACTURER,COOLER_POWER_WATTS,COOLER_LENGTH_MM),
-    maxTdpWatts(maxTdpWatts),noiseDb(noiseDb){}
+Cooler::Cooler(const std::string& name,int maxTdpWatts):Component(name,COOLER_MAKER,COOLER_WATTS),maxTdpWatts(maxTdpWatts){}
 
-bool Cooler::canCool(int tdp){
-    return maxTdpWatts>=tdp;
+int Cooler::headroom(int tdp){
+    return maxTdpWatts-tdp;
 }

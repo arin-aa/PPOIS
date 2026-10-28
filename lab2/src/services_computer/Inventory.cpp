@@ -2,44 +2,26 @@
 #include "Component.h"
 #include "ComputerExceptions.h"
 
-const int DEFAULT_INVENTORY_CAPACITY=100;
+Inventory::Inventory():warehouse(""),capacity(0),takenCount(0){}
 
-Inventory::Inventory():warehouseName(""),capacity(DEFAULT_INVENTORY_CAPACITY){}
+Inventory::Inventory(const std::string& warehouse,int capacity):warehouse(warehouse),capacity(capacity),takenCount(0){}
 
-Inventory::Inventory(const std::string& warehouseName,int capacity):warehouseName(warehouseName),capacity(capacity){}
-
-bool Inventory::addItem(Component* item){
-    if(!item){
-        return false;
-    }
+int Inventory::addItem(Component* item){
     if(static_cast<int>(items.size())>=capacity){
-        throw InventoryFullException("warehouse "+warehouseName+" is full");
+        throw InventoryFullException(warehouse+" has no free shelves");
     }
     items.push_back(item);
-    return true;
+    return static_cast<int>(items.size());
 }
 
-Component* Inventory::takeItem(const std::string& name){
-    for(auto position=items.begin(); position!=items.end(); ++position){
-        Component* item=*position;
-        if(item && item->name==name){
-            items.erase(position);
-            return item;
+Component* Inventory::takeItem(const std::string& key){
+    for(size_t index=0;index<items.size();index++){
+        if(items[index]->isNamed(key)){
+            Component* found=items[index];
+            items.erase(items.begin()+index);
+            takenCount++;
+            return found;
         }
     }
     return nullptr;
-}
-
-int Inventory::countByType(const std::string& type){
-    int matches=0;
-    for(Component* item:items){
-        if(item && item->name.find(type)!=std::string::npos){
-            matches++;
-        }
-    }
-    return matches;
-}
-
-int Inventory::getItemCount(){
-    return static_cast<int>(items.size());
 }

@@ -1,21 +1,14 @@
 #include "Webcam.h"
-#include "File.h"
 
 const char* const WEBCAM_NAME="Webcam";
-const char* const VIDEO_FILE_NAME="video.mp4";
-const int SECONDS_PER_MEGABYTE=10;
+const int KB_PER_UNIT=10000;
 
-Webcam::Webcam():Peripheral(WEBCAM_NAME),resolution(""),fps(0),isRecording(false){}
+Webcam::Webcam():Peripheral(WEBCAM_NAME),heightPx(0),fps(0),recordedSeconds(0){}
 
-Webcam::Webcam(const std::string& resolution,int fps):Peripheral(WEBCAM_NAME),resolution(resolution),fps(fps),isRecording(false){}
+Webcam::Webcam(int heightPx,int fps):Peripheral(WEBCAM_NAME),heightPx(heightPx),fps(fps),recordedSeconds(0){}
 
-std::unique_ptr<File> Webcam::record(int seconds){
-    if(seconds<=0){
-        return nullptr;
-    }
-    isRecording=true;
-    int sizeMb=seconds/SECONDS_PER_MEGABYTE+1;
-    auto video=std::make_unique<File>(VIDEO_FILE_NAME,sizeMb,false);
-    isRecording=false;
-    return video;
+int Webcam::record(int seconds){
+    ping();
+    recordedSeconds+=seconds;
+    return seconds*fps*heightPx/KB_PER_UNIT;
 }

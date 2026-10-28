@@ -1,24 +1,44 @@
+/**
+ * @file RAM.h
+ * @brief Объявление класса RAM.
+ */
 #pragma once
-#include <string>
 #include "Component.h"
 
-class CompatibilityChecker;
-
+/**
+ * @class RAM
+ * @brief Класс оперативной памяти.
+ */
 class RAM:public Component{
 private:
-    int capacityGb;
-    std::string type;
-    int speedMhz;
-    int usedGb;
+    int capacityGb;///<Объем в ГБ.
+    int usedGb;///<Сколько использовано ГБ.
+    int speedMhz;///<Частота.
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     RAM();
-    RAM(int capacityGb,const std::string& type,int speedMhz);
 
-    std::string describe() override;
-    bool allocate(int gb);
-    bool release(int gb);
-    int getUsedGb();
+/**
+ * @brief Конструктор с параметрами.
+ * @param capacityGb Объем.
+ * @param speedMhz Частота.
+ */ 
+    RAM(int capacityGb,int speedMhz);
 
-    friend class CompatibilityChecker;
+/**
+ * @brief Выделяет память под процесс.
+ * @param gb Запрашиваемый объем.
+ * @return Время выделения в мс.
+ * @exception MemoryOverflowException если не хватает памяти.
+ */    
+    int allocate(int gb);
+
+/**
+ * @brief Возвращает свободный объем.
+ * @return Свободно ГБ.
+ */
+    int freeGb();
 };

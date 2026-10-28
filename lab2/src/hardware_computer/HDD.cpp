@@ -1,21 +1,25 @@
 #include "HDD.h"
 
 const char* const HDD_NAME="HDD";
-const int HDD_READ_SPEED_MB_PER_SEC=150;
-const int MAX_BAD_SECTORS=100;
+const int DEFAULT_RPM=5400;
+const int MIN_BASE=10800;
+const int WEAR_MIN=30;
+const int SECTOR_COST=5;
+const int LIFE=100;
 
-HDD::HDD():Storage(HDD_NAME,0,HDD_READ_SPEED_MB_PER_SEC),rpm(0),badSectors(0),fragmentationPercent(0){}
+HDD::HDD():Storage(HDD_NAME,0),rpm(DEFAULT_RPM),badSectors(0),fragmentation(0){}
 
-HDD::HDD(int capacityGb,int rpm):Storage(HDD_NAME,capacityGb,HDD_READ_SPEED_MB_PER_SEC),rpm(rpm),badSectors(0),fragmentationPercent(0){}
+HDD::HDD(int capacityGb,int rpm,int fragmentation):Storage(HDD_NAME,capacityGb),rpm(rpm>0?rpm:DEFAULT_RPM),badSectors(0),
+    fragmentation(fragmentation){}
 
-std::string HDD::describe(){
-    return "HDD "+std::to_string(capacityGb)+"GB";
+int HDD::defragment(){
+    int minutes=fragmentation*MIN_BASE/rpm;
+    fragmentation=0;
+    badSectors+=minutes/WEAR_MIN;
+    return minutes;
 }
 
-bool HDD::defragment(){
-    if(badSectors>MAX_BAD_SECTORS){
-        return false;
-    }
-    fragmentationPercent=0;
-    return true;
+int HDD::lifeLeft(){
+    int left=LIFE-badSectors*SECTOR_COST;
+    return left<0?0:left;
 }

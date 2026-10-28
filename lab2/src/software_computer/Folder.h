@@ -1,20 +1,43 @@
+/**
+ * @file Folder.h
+ * @brief Объявление класса Folder.
+ */
 #pragma once
-#include <string>
 #include <vector>
 
 class File;
 
+/**
+ * @class Folder
+ * @brief Класс папки, содержащей файлы.
+ */
 class Folder{
 private:
-    std::string folderName;
-    std::vector<File*> files;
-    std::vector<Folder*> subfolders;
+    int freeMb;///<Свободное место в папке в МБ.
+    std::vector<File*> files;///<Список файлов в папке.
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     Folder();
-    explicit Folder(const std::string& folderName);
 
-    bool addFile(File* file);
-    File* findFile(const std::string& name);
-    int totalSize();
+/**
+ * @brief Конструктор с указанием свободного места.
+ * @param freeMb Начальное свободное место в МБ.
+ */
+    explicit Folder(int freeMb);
+
+/**
+ * @brief Добавляет файл в папку.
+ * @param file Указатель на файл.
+ * @exception DiskFullException если файл не помещается в папку.
+ */
+    void addFile(File* file);
+
+/**
+ * @brief Считает общее количество страниц во всех файлах папки.
+ * @return Суммарное количество страниц.
+ */
+    int totalPages();
 };

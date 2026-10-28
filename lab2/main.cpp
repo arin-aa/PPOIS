@@ -1,8 +1,15 @@
-#include <functional>
+/**
+ * @file main.cpp
+ * @brief Консольный пользовательский интерфейс для системы учета компьютерной техники.
+ */
+
 #include <iomanip>
 #include <iostream>
-#include <memory>
+#include <sstream>
 #include <string>
+#include <stdexcept>
+#include <limits>
+
 #include "Application.h"
 #include "Cable.h"
 #include "Case.h"
@@ -10,284 +17,286 @@
 #include "Computer.h"
 #include "ComputerExceptions.h"
 #include "CPU.h"
-#include "DiagnosticService.h"
 #include "Driver.h"
+#include "Fan.h"
 #include "File.h"
+#include "Folder.h"
 #include "HDD.h"
+#include "Inventory.h"
 #include "IpAddress.h"
-#include "Logger.h"
 #include "Motherboard.h"
 #include "Mouse.h"
 #include "NetworkInterface.h"
-#include "NVMe.h"
 #include "OperatingSystem.h"
 #include "Packet.h"
 #include "Port.h"
+#include "PowerConnector.h"
 #include "Printer.h"
 #include "Process.h"
 #include "PSU.h"
+#include "Radiator.h"
 #include "RAM.h"
 #include "RepairTicket.h"
-#include "ReportGenerator.h"
-#include "Scanner.h"
-#include "Sensor.h"
 #include "Server.h"
 #include "SSD.h"
 #include "SystemBuilder.h"
 #include "Technician.h"
 
-const int MENU_WIDTH=50;
-const int EXIT_CHOICE=0;
-const int RUN_ALL_CHOICE=6;
-const int INVALID_CHOICE=-1;
-const int WRONG_PASSWORDS=5;
-const int LOG_EVENTS=4;
-const int LOG_CAPACITY=3;
-const int DECIMAL_DIGITS=1;
+using namespace std;
 
-template<typename Value>
-void show(const std::string& call,const Value& result){
-    std::cout<<"  "<<call<<" -> "<<std::boolalpha<<std::fixed<<std::setprecision(DECIMAL_DIGITS)<<result<<"\n";
-}
+//Максимальное число символов, игнорируемых в потоке ввода при ошибке.
+const int MAX_IGNOR=100000;
+const int ACTION_WIDTH=50;///<Ширина колонки с названием действия.
+const int RESULT_WIDTH=44;///<Ширина колонки с результатом.
 
-void expectError(const std::string& call,const std::function<void()>& action){
-    try{
-        action();
-        show(call,"no error");
-    }catch(const ComputerException& error){
-        show(call,std::string("BLOCKED: ")+error.what());
+/**
+ * @brief Запрашивает у пользователя целое число с проверкой корректности ввода.
+ * @param line Текст, выводимый перед ожидаемым вводом числа.
+ * @return choice Введённое пользователем число.
+ * 
+ * При некорректном вводе (например строки, букв, пробелов или других значений)
+ * очищает поток ввода и повторяет запрос до получения правильного значения.
+ */
+int readChoice(const string& line){
+    int choice;
+    while(true){
+        cout<<line;
+        if(cin>>choice){
+            cin.clear(); cin.ignore(MAX_IGNOR,'\n');
+            return choice; 
+        }
+        cin.clear(); cin.ignore(MAX_IGNOR,'\n');
+        cout<<"Invalid input. Try again.\n";
     }
 }
 
-void showChecks(){
-    Motherboard board("LGA1700",2,"ATX");
+/**
+ * @brief Выводит заголовок сценария и шапку таблицы.
+ * @param number Порядковый номер сценария.
+ * @param name Название сценария.
+ */
+void title(int number,const string& name){
+    cout<<"\n=== "<<number<<". "<<name<<" ===\n"<<left<<setw(ACTION_WIDTH)<<"Action"<<"Result\n";
+    cout<<string(ACTION_WIDTH-2,'-')<<"  "<<string(RESULT_WIDTH,'-')<<"\n";
+}
+
+/**
+ * @brief Выводит одну строку таблицы с выравниванием.
+ * @param action Описание действия.
+ * @param result Результат выполнения.
+ */
+void row(const string& action,const string& result){
+    cout<<left<<setw(ACTION_WIDTH)<<action<<result<<"\n";
+}
+
+/**
+ * @brief Вывод числового или логического результата.
+ * @tparam Value Тип передаваемого значения (int, double, bool).
+ * @param action Описание действия.
+ * @param value Само значение.
+ * @param unit Единица измерения (по умолчанию пустая строка).
+ */
+template<typename Value>
+void report(const string& action,const Value& value,const string& unit=""){
+    ostringstream text;
+    text<<boolalpha<<fixed<<setprecision(1)<<value;
+    row(action,"done, "+text.str()+unit);
+}
+
+/**
+ * @brief Выполняет действие и перехватывает возможные исключения.
+ * @tparam Action Тип вызываемой лямбда-функции.
+ * @param action Описание действия.
+ * @param run Лямбда-функция с кодом для выполнения.
+ */
+template<typename Action>
+void attempt(const string& action,Action run){
+    try{
+        run();
+        row(action,"done");
+    }catch(const ComputerException& error){
+        row(action,string("ERROR: ")+error.what());
+    }
+}
+
+/**
+ * @brief Сценарий 1: Сборка ПК и проверка совместимости CPU с платой.
+ */
+void scenarioBuild(){
+    title(1,"Building a computer");
+    Motherboard board("LGA1700",1);
     CPU intel("LGA1700",8,3.6);
     CPU amd("AM5",8,4.2);
-    RAM ddr4(16,"DDR4",3200);
-    PSU weakPsu(50,"80+");
-    CompatibilityChecker strict(true);
-    show("checkSocket(AM5 CPU)",strict.checkSocket(&board,&amd));
-    show("checkRam(DDR4), index",strict.checkRam(&board,&ddr4));
-    expectError("strict checkPower(50 W PSU)",[&]{strict.checkPower(&weakPsu,&board);});
-    show("installCpu(LGA1700 CPU)",board.installCpu(&intel));
-    expectError("installCpu(AM5 CPU)",[&]{Motherboard other("LGA1700",1,"ATX");other.installCpu(&amd);});
-    intel.runLoad(99);
-    show("CPU GHz after runLoad(99)",intel.getFrequencyGhz());
-    expectError("overclock(3.0)",[&]{intel.overclock(3.0);});
-    ddr4.allocate(8);
-    show("RAM used GB after allocate(8)",ddr4.getUsedGb());
-    expectError("allocate(16)",[&]{ddr4.allocate(16);});
-}
-
-void scenarioBuildComputer(){
-    std::cout<<"\n[Scenario 1: building, checking and starting a computer]\n";
-    Motherboard board("LGA1700",2,"ATX");
+    RAM ram(16,3200);
     PSU psu(650,"80+ Gold");
-    Case chassis("ATX",350);
-    SSD disk(512);
-    SystemBuilder builder;
-    builder.installMotherboard(&board);
-    builder.installPsu(&psu);
-    show("build() without a case is empty",builder.build()==nullptr);
-    builder.installCase(&chassis);
-    std::unique_ptr<Computer> computer=builder.build();
-    computer->addStorage(&disk);
-    show("totalPowerDraw(), W",computer->totalPowerDraw());
-    computer->powerOn();
-    show("isOn() after powerOn()",computer->isOn());
-    showChecks();
-}
-
-void showProcess(OperatingSystem* os,Application* app){
-    Process* process=os->startProcess(app);
-    show("startProcess(), state",process->getState());
-    process->suspend();
-    show("suspend(), state",process->getState());
-    process->resume();
-    show("resume(), state",process->getState());
-    show("killProcess(pid)",os->killProcess(process->getPid()));
-    show("state after the kill",process->getState());
-}
-
-void showSystem(){
-    OperatingSystem os("Linux","x86_64","6.1");
-    SSD disk(256);
-    CPU cpu("AM5",8,4.0);
-    Driver rogue("rogue","CPU",false);
-    Driver driver("cpu-driver","CPU",true);
-    Application editor("Blender","3.6",2000,4096,"KEY-1");
-    expectError("boot() before install()",[&]{os.boot();});
-    os.install(&disk);
-    show("installDriver(unsigned)",os.installDriver(&rogue));
-    show("installDriver(signed)",os.installDriver(&driver));
-    show("findDriverFor(cpu) is the signed driver",os.findDriverFor(&cpu)==&driver);
-    show("boot(), isRunning()",os.boot()&&os.isRunning());
-    editor.install(&disk);
-    show("disk.getUsedGb() after editor.install()",disk.getUsedGb());
-    show("editor.checkLicense(WRONG)",editor.checkLicense("WRONG"));
-    showProcess(&os,&editor);
-}
-
-void scenarioStorageAndSystem(){
-    std::cout<<"\n[Scenario 2: storage devices, operating system and software]\n";
-    HDD hdd(1000,7200);
-    SSD ssd(256);
-    NVMe nvme(512,4);
-    hdd.write(200);
-    show("hdd.getUsedGb() after write(200)",hdd.getUsedGb());
-    show("hdd.erase(500)",hdd.erase(500));
-    show("hdd.defragment()",hdd.defragment());
-    ssd.write(200);
-    expectError("ssd.write(100)",[&]{ssd.write(100);});
-    ssd.trim();
-    show("ssd.getUsedGb() after trim()",ssd.getUsedGb());
-    show("nvme.calcThroughput(), MB/s",nvme.calcThroughput());
-    showSystem();
-}
-
-void scenarioNetwork(){
-    std::cout<<"\n[Scenario 3: network and server]\n";
-    IpAddress source("192.168.0.10",24);
-    IpAddress target("192.168.0.20",24);
-    IpAddress broken("not-an-ip",24);
-    Packet packet(&source,&target,512);
-    NetworkInterface nic("eth0",1000);
-    Server server("web-01",2);
-    show("source.isInSameSubnet(target)",source.isInSameSubnet(&target));
-    expectError("send() through a down interface",[&]{nic.send(&packet,&target);});
-    nic.up();
-    show("TTL before send()",packet.getTtl());
-    nic.send(&packet,&target);
-    show("TTL after send()",packet.getTtl());
-    expectError("send() to a malformed address",[&]{nic.send(&packet,&broken);});
-    show("server.handleRequest(packet)",server.handleRequest(&packet));
-    show("server.handleRequest(nullptr)",server.handleRequest(nullptr));
-    server.setupRaid("RAID1");
-    show("server.getRaidLevel()",server.getRaidLevel());
-}
-
-void showPrinting(){
-    Printer printer(0,100);
-    Scanner scanner(300);
-    std::unique_ptr<File> page=scanner.scan();
-    show("scanner.scan(), file",page->getFileName());
-    show("print() without paper",printer.print(page.get()));
-    printer.refillPaper(10);
-    show("print() after refillPaper(10)",printer.print(page.get()));
-    show("printer.getPaperLevel()",printer.getPaperLevel());
-}
-
-void scenarioPeripherals(){
-    std::cout<<"\n[Scenario 4: ports and peripherals]\n";
-    Port usbPort("USB");
-    Cable usbCable("USB",1.5);
-    Cable hdmiCable("HDMI",2.0);
-    Mouse mouse(800,3);
-    expectError("plug(HDMI cable) into a USB port",[&]{usbPort.plug(&hdmiCable);});
-    expectError("plug(USB cable) into a USB port",[&]{usbPort.plug(&usbCable);});
-    expectError("mouse.connectTo(nullptr)",[&]{mouse.connectTo(nullptr);});
-    show("mouse.connectTo(usbPort)",mouse.connectTo(&usbPort));
-    show("usbPort.connectPeripheral(mouse)",usbPort.connectPeripheral(&mouse));
-    show("mouse.setDpi(50)",mouse.setDpi(50));
-    mouse.setDpi(1600);
-    show("mouse.getDpi() after setDpi(1600)",mouse.getDpi());
-    showPrinting();
-}
-
-void showAuthentication(){
-    User user("ivanov","secret");
-    show("authenticate(secret)",user.authenticate("secret"));
-    for(int attempt=0;attempt<WRONG_PASSWORDS;attempt++){
-        user.authenticate("guess");
-    }
-    show("getFailedAttempts()",user.getFailedAttempts());
-    expectError("authenticate(secret) on a locked account",[&]{user.authenticate("secret");});
-}
-
-void showServiceTools(){
-    Computer pc("diag-pc");
-    Sensor alarm("C",0.0);
-    Logger logger("INFO",LOG_CAPACITY);
-    DiagnosticService diagnostics(&logger);
-    ReportGenerator generator("txt","admin");
-    File report("report.txt",1,false);
-    show("checkTemperature(alarm sensor)",diagnostics.checkTemperature(&pc,&alarm));
-    for(int event=1;event<=LOG_EVENTS;event++){
-        logger.log("Event "+std::to_string(event));
-    }
-    show("logger.getEntryCount()",logger.getEntryCount());
-    show("saveToFile()",generator.saveToFile(generator.generateReport(&pc),&report));
-    show("report.getContent()",report.getContent());
-}
-
-void scenarioServiceDesk(){
-    std::cout<<"\n[Scenario 5: repairs, access, diagnostics and reports]\n";
-    Technician technician("ivanov","secret","hardware",5);
     Computer pc("office-pc");
-    SSD disk(512);
-    RepairTicket ticket(1,"Disk failure",&pc);
-    show("ticket.getStatus()",ticket.getStatus());
-    technician.acceptTicket(&ticket);
-    show("status after acceptTicket()",ticket.getStatus());
-    technician.repair(&pc,&disk);
-    show("status after repair()",ticket.getStatus());
-    show("escalate() of a closed ticket",ticket.escalate());
-    showAuthentication();
-    showServiceTools();
+    attempt("Install an AMD (AM5) CPU on an LGA1700 board",[&]{board.installCpu(&amd);});
+    attempt("Install an Intel (LGA1700) CPU",[&]{board.installCpu(&intel);});
+    attempt("Install a second RAM module into one slot",[&]{board.installRam(&ram);board.installRam(&ram);});
+    attempt("Power on before assembling",[&]{pc.powerOn();});
+    pc.assemble(&board,&psu);
+    attempt("Power on the assembled computer",[&]{pc.powerOn();});
+    report("Power reserve of the PSU",pc.powerReserve()," W");
 }
 
-struct Scenario{
-    const char* title;
-    void (*run)();
-};
-
-const Scenario SCENARIOS[]={
-    {"Building, checking and starting a computer",scenarioBuildComputer},
-    {"Storage devices, operating system and software",scenarioStorageAndSystem},
-    {"Network and server",scenarioNetwork},
-    {"Ports and peripherals",scenarioPeripherals},
-    {"Repairs, access, diagnostics and reports",scenarioServiceDesk}
-};
-
-const int SCENARIO_COUNT=sizeof(SCENARIOS)/sizeof(SCENARIOS[0]);
-
-void showMenu(){
-    std::cout<<"\n"<<std::string(MENU_WIDTH,'=')<<"\n  COMPUTER - SCENARIO DEMONSTRATION\n";
-    for(int index=0;index<SCENARIO_COUNT;index++){
-        std::cout<<"  "<<index+1<<". "<<SCENARIOS[index].title<<"\n";
-    }
-    std::cout<<"  "<<RUN_ALL_CHOICE<<". Run all scenarios\n  "<<EXIT_CHOICE<<". Exit\nYour choice: ";
+/**
+ * @brief Сценарий 2: Расчет мощности БП, работа кулеров и разъемов питания.
+ */
+void scenarioPower(){
+    title(2,"Power and cooling");
+    CompatibilityChecker checker(true,100);
+    SystemBuilder builder(1000,&checker);
+    Fan fan1(120,1000);
+    Fan fan2(140,800);
+    Case chassis(1);
+    Radiator radiator(240,300);
+    PowerConnector connector(8);
+    builder.addPart(105,500);
+    report("Recommended PSU for the chosen parts",builder.recommendedPsu()," W");
+    attempt("Check a 150 W PSU in strict mode",[&]{builder.powerMargin(150);});
+    attempt("Add a part for 900 to a budget of 1000",[&]{builder.addPart(300,900);});
+    chassis.addFan(&fan1);
+    attempt("Mount a second fan into a one-fan case",[&]{chassis.addFan(&fan2);});
+    report("Case airflow",chassis.totalAirflow()," units");
+    report("Refill the radiator with 1000 ml",radiator.refill(1000)," ml");
+    attempt("Plug the 8-pin power connector twice",[&]{connector.attach();connector.attach();});
 }
 
-int parseChoice(const std::string& line){
-    try{
-        return std::stoi(line);
-    }catch(const std::exception&){
-        return INVALID_CHOICE;
-    }
+/**
+ * @brief Сценарий 3: Работа с накопителями и файловой системой.
+ */
+void scenarioStorage(){
+    title(3,"Storage devices and files");
+    SSD ssd(256);
+    HDD hdd(1000,7200,40);
+    File notes("notes.txt",10,false);
+    File image("disk.iso",20,false);
+    Folder folder(15);
+    attempt("Write 200 GB and then 100 GB to a 256 GB SSD",[&]{ssd.write(200);ssd.write(100);});
+    report("Trim the SSD, freed",ssd.trim()," GB");
+    report("Defragment the HDD, it takes",hdd.defragment()," min");
+    attempt("Put a 10 MB file into a 15 MB folder",[&]{folder.addFile(&notes);});
+    attempt("Put a 20 MB file into the same folder",[&]{folder.addFile(&image);});
 }
 
-void runChoice(int choice){
-    if(choice==RUN_ALL_CHOICE){
-        for(const Scenario& scenario:SCENARIOS){
-            scenario.run();
-        }
-    }else if(choice>0 && choice<=SCENARIO_COUNT){
-        SCENARIOS[choice-1].run();
-    }else if(choice!=EXIT_CHOICE){
-        std::cout<<"No such scenario\n";
-    }
+/**
+ * @brief Сценарий 4: Установка ОС и управление процессами.
+ */
+void scenarioSoftware(){
+    title(4,"Operating system and programs");
+    OperatingSystem os("Linux",5000);
+    OperatingSystem legacy("Legacy",100);
+    Driver rogue("rogue","GPU",false);
+    Application editor("Blender",2000,4096,"KEY-1");
+    Process process(&editor);
+    os.install(10);
+    legacy.install(10);
+    legacy.addDriver(&rogue);
+    os.boot();
+    attempt("Boot an OS that has an unsigned driver",[&]{legacy.boot();});
+    attempt("Start Blender before installing it",[&]{os.startProcess(&process,8192);});
+    report("Install Blender, it needs",editor.install(50)," GB");
+    int pid=os.startProcess(&process,8192);
+    report("Start Blender, process id",pid);
+    report("Stop the process, freed",os.killProcess(pid)," MB");
 }
 
+/**
+ * @brief Сценарий 5: Настройка сети и работа сервера.
+ */
+void scenarioNetwork(){
+    title(5,"Network and server");
+    IpAddress source("192.168.0.10",24);
+    IpAddress broken("not-an-ip",24);
+    NetworkInterface nic(1000);
+    Packet packet(&source,"192.168.0.20",512,1);
+    attempt("Connect the card to the address not-an-ip",[&]{nic.connect(&broken);});
+    attempt("Send data through a disconnected card",[&]{nic.transmitNs(800);});
+    nic.connect(&source);
+    report("Is the packet inside the local subnet",packet.isLocal());
+    Server server("web-01",2,&nic);
+    report("Server handles a request in",server.handleRequest(&packet)," ns");
+    attempt("Server handles the same packet again",[&]{server.handleRequest(&packet);});
+    report("Set RAID1, usable disk space",server.configureRaid("RAID1"),"%");
+}
+
+/**
+ * @brief Сценарий 6: Подключение периферии через порты и кабели.
+ */
+void scenarioPeripherals(){
+    title(6,"Ports, cables and peripherals");
+    Port usb("USB",480);
+    Cable usbCable("USB",1.5,500);
+    Cable hdmiCable("HDMI",2.0,1000);
+    Mouse mouse(800);
+    Printer printer(0,100);
+    File page("page.txt",1,false);
+    attempt("Plug an HDMI cable into a USB port",[&]{usb.plug(&hdmiCable);});
+    usb.plug(&usbCable);
+    attempt("Click the mouse before connecting it",[&]{mouse.click();});
+    mouse.connectTo(&usb);
+    printer.connectTo(&usb);
+    report("Click the mouse, total clicks",mouse.click());
+    attempt("Set the mouse to 50 DPI",[&]{mouse.changeDpi(50);});
+    attempt("Print a page with an empty paper tray",[&]{printer.print(&page);});
+    printer.loadPaper(10);
+    report("Print a page, pages printed so far",printer.print(&page));
+}
+
+/**
+ * @brief Сценарий 7: Работа сервисного центра и аутентификация.
+ */
+void scenarioRepair(){
+    title(7,"Repairs and access");
+    Technician tech("ivanov","secret1","hardware",5);
+    Computer pc("desk-pc");
+    RepairTicket ticket("No video signal",&pc);
+    Inventory stock("North warehouse",1);
+    Fan spare(120,900);
+    attempt("Close a ticket nobody works on",[&]{ticket.close(2);});
+    ticket.assign(&tech);
+    stock.addItem(&spare);
+    attempt("Order a GPU that is not in stock",[&]{tech.orderPart(&stock,"GPU");});
+    attempt("Order the Noctua fan from the stock",[&]{tech.orderPart(&stock,"Noctua");});
+    report("Close the ticket after 3 hours, cost",ticket.close(3));
+    attempt("Wrong password 3 times, then the right one",[&]{for(int i=0;i<3;i++){tech.authenticate("guess");}tech.authenticate("secret1");});
+}
+
+/**
+ * @brief Точка входа в программу
+ * @return Код завершения программы.
+ * 
+ * Выводит главное меню, предлагая пользователю выбрать один из 7 сценариев 
+ * или выйти из программы. Обрабатывает некорректный ввод.
+ */
 int main(){
-    std::string line;
-    int choice=INVALID_CHOICE;
-    showMenu();
-    while(choice!=EXIT_CHOICE && std::getline(std::cin,line)){
-        choice=parseChoice(line);
-        runChoice(choice);
-        if(choice!=EXIT_CHOICE){
-            showMenu();
+    while(true){
+        cout<<"\nMenu\n";
+        cout<<"1 - Computer assembly and compatibility.\n";
+        cout<<"2 - Power and cooling.\n";
+        cout<<"3 - Storage devices and files.\n";
+        cout<<"4 - Operating system and programs.\n";
+        cout<<"5 - Network and server.\n";
+        cout<<"6 - Peripherals and ports.\n";
+        cout<<"7 - Repair and access.\n";
+        cout<<"0 - Exit.\n";
+        
+        int choice = readChoice("Your choice: "); 
+        cout<<endl;
+
+        switch(choice){
+            case 1: scenarioBuild(); break;
+            case 2: scenarioPower(); break;
+            case 3: scenarioStorage(); break;
+            case 4: scenarioSoftware(); break;
+            case 5: scenarioNetwork(); break;
+            case 6: scenarioPeripherals(); break;
+            case 7: scenarioRepair(); break;
+            case 0:
+                cout<<"Exit.\n";
+                return 0;
+            default:
+                cout<<"Invalid choice.\n";
         }
     }
     return 0;

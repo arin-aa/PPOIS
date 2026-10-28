@@ -2,27 +2,16 @@
 #include "Computer.h"
 #include "File.h"
 
-const char* const DEFAULT_REPORT_FORMAT="txt";
-const char* const DEFAULT_REPORT_AUTHOR="unknown";
+ReportGenerator::ReportGenerator():format(""),author(""),reportsMade(0){}
 
-ReportGenerator::ReportGenerator():format(DEFAULT_REPORT_FORMAT),author(DEFAULT_REPORT_AUTHOR){}
+ReportGenerator::ReportGenerator(const std::string& format,const std::string& author):format(format),author(author),reportsMade(0){}
 
-ReportGenerator::ReportGenerator(const std::string& format,const std::string& author):format(format),author(author){}
-
-std::string ReportGenerator::generateReport(Computer* computer){
-    if(!computer){
-        return "";
-    }
-    std::string report="Report by "+author+"\n";
-    report+="Format: "+format+"\n";
-    report+="Host: "+computer->hostname+"\n";
-    report+="Power draw: "+std::to_string(computer->totalPowerDraw())+"W\n";
-    return report;
+std::string ReportGenerator::generate(Computer* computer){
+    reportsMade++;
+    return "["+format+" #"+std::to_string(reportsMade)+" by "+author+"] draw="+std::to_string(computer->powerDraw())+"W, reserve="+
+        std::to_string(computer->powerReserve())+"W, free="+std::to_string(computer->freeStorageGb())+"GB";
 }
 
-bool ReportGenerator::saveToFile(const std::string& content,File* file){
-    if(!file || content.empty()){
-        return false;
-    }
-    return file->writeText(content);
+void ReportGenerator::save(const std::string& text,File* file){
+    file->append(text);
 }

@@ -1,38 +1,31 @@
 #include "Technician.h"
 #include "Component.h"
-#include "Computer.h"
-#include "RepairTicket.h"
+#include "ComputerExceptions.h"
+#include "Inventory.h"
 
-const char* const DEFAULT_SPECIALIZATION="General";
-const char* const REPLACEMENT_MARK=" replaced: ";
+const char* const HARDWARE="hardware";
+const int BASE_RATE=20;
+const int YEAR_BONUS=2;
+const int HARDWARE_BONUS=10;
 
-Technician::Technician():User(),specialization(DEFAULT_SPECIALIZATION),experienceYears(0){}
+Technician::Technician():User(),specialization(""),experienceYears(0),repairsDone(0){}
 
 Technician::Technician(const std::string& login,const std::string& password,const std::string& specialization,int experienceYears):
-    User(login,password),specialization(specialization),experienceYears(experienceYears){}
+    User(login,password),specialization(specialization),experienceYears(experienceYears),repairsDone(0){}
 
-bool Technician::acceptTicket(RepairTicket* ticket){
-    if(!ticket){
-        return false;
+int Technician::estimate(int hours){
+    int rate=BASE_RATE+experienceYears*YEAR_BONUS;
+    if(specialization==HARDWARE){
+        rate+=HARDWARE_BONUS;
     }
-    tickets.push_back(ticket);
-    ticket->assign(this);
-    return true;
+    return hours*rate;
 }
 
-bool Technician::repair(Computer* computer,Component* newComponent){
-    if(!computer || !newComponent){
-        return false;
+Component* Technician::orderPart(Inventory* stock,const std::string& key){
+    Component* part=stock->takeItem(key);
+    if(!part){
+        throw InvalidConfigurationException(key+" is not in stock");
     }
-    for(RepairTicket* ticket:tickets){
-        if(ticket->computer==computer){
-            ticket->description+=REPLACEMENT_MARK+newComponent->describe();
-            return ticket->close();
-        }
-    }
-    return false;
-}
-
-int Technician::getTicketCount(){
-    return static_cast<int>(tickets.size());
+    repairsDone++;
+    return part;
 }

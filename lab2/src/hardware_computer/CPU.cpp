@@ -2,49 +2,33 @@
 #include "ComputerExceptions.h"
 #include "Sensor.h"
 
-const int CPU_MAX_PERCENT=100;
 const char* const CPU_NAME="CPU";
-const char* const CPU_MANUFACTURER="Intel";
-const int CPU_POWER_WATTS=65;
-const int CPU_LENGTH_MM=40;
-const int THROTTLE_LOAD_PERCENT=95;
-const double THROTTLE_FACTOR=0.9;
+const char* const CPU_MAKER="Intel";
+const int CPU_WATTS=65;
+const int MAX_LOAD=100;
+const int HOT_LOAD=95;
+const double THROTTLE=0.9;
 
-CPU::CPU():Component(CPU_NAME,CPU_MANUFACTURER,CPU_POWER_WATTS,CPU_LENGTH_MM),cores(0),frequencyGhz(0.0),socket(""),tempSensor(nullptr){}
+CPU::CPU():Component(CPU_NAME,CPU_MAKER,CPU_WATTS),cores(0),frequencyGhz(0.0),loadPercent(0),socket(""),tempSensor(nullptr){}
 
-CPU::CPU(const std::string& socket,int cores,double frequencyGhz):Component(CPU_NAME,CPU_MANUFACTURER,CPU_POWER_WATTS,CPU_LENGTH_MM),cores(cores),
-    frequencyGhz(frequencyGhz),socket(socket),tempSensor(nullptr){}
-
-std::string CPU::describe(){
-    return "CPU "+socket+" "+std::to_string(cores)+"c";
-}
+CPU::CPU(const std::string& socket,int cores,double frequencyGhz,Sensor* tempSensor):Component(CPU_NAME,CPU_MAKER,CPU_WATTS),cores(cores),
+    frequencyGhz(frequencyGhz),loadPercent(0),socket(socket),tempSensor(tempSensor){}
 
 void CPU::runLoad(int percent){
-    if(percent<=0 || percent>CPU_MAX_PERCENT){
-        return;
+    if(percent<0 || percent>MAX_LOAD){
+        throw InvalidConfigurationException("load must be between 0 and 100");
     }
-    if(percent>THROTTLE_LOAD_PERCENT){
-        frequencyGhz*=THROTTLE_FACTOR;
+    loadPercent=percent;
+    if(percent>HOT_LOAD){
+        frequencyGhz*=THROTTLE;
     }
-    if(isOverheated()){
+    if(tempSensor && tempSensor->margin()<=0){
         throw OverheatingException("CPU temperature is critical");
     }
 }
 
-bool CPU::isOverheated(){
-    if(!tempSensor){
-        return false;
+void CPU::checkSocket(const std::string& boardSocket){
+    if(socket!=boardSocket){
+        throw IncompatibleSocketException(std::to_string(cores)+"-core CPU needs socket "+socket+", board has "+boardSocket);
     }
-    return tempSensor->isCritical();
-}
-
-void CPU::overclock(double newFrequencyGhz){
-    if(newFrequencyGhz<=frequencyGhz){
-        throw InvalidConfigurationException("overclock must be higher");
-    }
-    frequencyGhz=newFrequencyGhz;
-}
-
-double CPU::getFrequencyGhz(){
-    return frequencyGhz;
 }

@@ -1,24 +1,46 @@
+/**
+ * @file Driver.h
+ * @brief Объявление класса Driver.
+ */
 #pragma once
 #include "Software.h"
-#include <string>
 
 class Component;
-class Storage;
-class OperatingSystem;
 
+/**
+ * @class Driver
+ * @brief Класс драйвера устройства, наследуемый от Software.
+ */
 class Driver:public Software{
 private:
-    std::string deviceName;
-    bool isSigned;
-    bool isLoaded;
+    std::string deviceName;///<Имя устройства, для которого предназначен драйвер.
+    bool isSigned;///<Флаг наличия цифровой подписи.
+    int bindCount;///<Счетчик успешных привязок к устройствам.
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     Driver();
+
+/**
+ * @brief Конструктор с параметрами.
+ * @param name Название драйвера.
+ * @param deviceName Имя устройства.
+ * @param isSigned Наличие подписи.
+ */
     Driver(const std::string& name,const std::string& deviceName,bool isSigned);
 
-    bool install(Storage* storage) override;
-    bool uninstall(Storage* storage) override;
-    bool matches(Component* component);
+/**
+ * @brief Привязывает драйвер к компоненту.
+ * @param part Указатель на компонент.
+ * @exception DriverNotFoundException если драйвер не подходит к этому устройству.
+ */
+    void bind(Component* part);
 
-    friend class OperatingSystem;
+/**
+ * @brief Загружает драйвер в систему.
+ * @exception BootFailureException если драйвер не имеет цифровой подписи.
+ */
+    void load();
 };

@@ -1,13 +1,14 @@
 #include "PowerConnector.h"
+#include "ComputerExceptions.h"
 
-PowerConnector::PowerConnector():pinCount(0),isConnected(false){}
+PowerConnector::PowerConnector():pinCount(0),isPlugged(false){}
 
-PowerConnector::PowerConnector(int pinCount):pinCount(pinCount),isConnected(false){}
+PowerConnector::PowerConnector(int pinCount):pinCount(pinCount),isPlugged(false){}
 
-bool PowerConnector::connect(){
-    if(isConnected){
-        return false;
+int PowerConnector::attach(){
+    if(isPlugged){
+        throw InvalidConfigurationException("connector is already plugged");
     }
-    isConnected=true;
-    return true;
+    isPlugged=true;
+    return pinCount;
 }

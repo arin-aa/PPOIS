@@ -1,26 +1,45 @@
+/**
+ * @file Case.h
+ * @brief Объявление класса Case.
+ */
 #pragma once
-#include <string>
 #include <vector>
 #include "Component.h"
 
-class Motherboard;
 class Fan;
-class CompatibilityChecker;
 
+/**
+ * @class Case
+ * @brief Класс корпуса компьютера, наследуемый от Component.
+ */
 class Case:public Component{
 private:
-    std::string formFactor;
-    int maxGpuLengthMm;
-    std::vector<Fan*> fans;
+    int maxFans;///<Максимальное количество вентиляторов.
+    int dustLevel;///<Уровень запыленности.
+    std::vector<Fan*> fans;///<Установленные вентиляторы.
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     Case();
-    Case(const std::string& formFactor,int maxGpuLengthMm);
 
-    std::string describe() override;
-    bool fits(Motherboard* board);
-    bool addFan(Fan* fan);
-    int getFanCount();
+/**
+ * @brief Конструктор с указанием максимального количества вентиляторов.
+ * @param maxFans Максимум вентиляторов.
+ */ 
+    explicit Case(int maxFans);
 
-    friend class CompatibilityChecker;
+/**
+ * @brief Устанавливает вентилятор в корпус.
+ * @param fan Указатель на вентилятор.
+ * @exception InvalidConfigurationException если все места заняты.
+ */
+    void addFan(Fan* fan);
+
+/**
+ * @brief Рассчитывает общий воздушный поток с учетом запыленности.
+ * @return Суммарный поток.
+ */
+    int totalAirflow();
 };

@@ -1,35 +1,23 @@
 #include "Driver.h"
 #include "Component.h"
-#include "Storage.h"
+#include "ComputerExceptions.h"
 
-const char* const DRIVER_DEFAULT_VERSION="1.0";
-const int DRIVER_SIZE_MB=10;
+const int DRIVER_SIZE_MB=20;
 
-Driver::Driver():Software(),deviceName(""),isSigned(false),isLoaded(false){}
+Driver::Driver():Software(),deviceName(""),isSigned(false),bindCount(0){}
 
-Driver::Driver(const std::string& name,const std::string& deviceName,bool isSigned):Software(name,DRIVER_DEFAULT_VERSION,DRIVER_SIZE_MB),
-    deviceName(deviceName),isSigned(isSigned),isLoaded(false){}
+Driver::Driver(const std::string& name,const std::string& deviceName,bool isSigned):Software(name,DRIVER_SIZE_MB),deviceName(deviceName),
+    isSigned(isSigned),bindCount(0){}
 
-bool Driver::install(Storage* storage){
-    if(!storage){
-        return false;
+void Driver::bind(Component* part){
+    if(!part->isNamed(deviceName)){
+        throw DriverNotFoundException(name+" is a driver for "+deviceName+" only");
     }
-    isInstalled=true;
-    return true;
+    bindCount++;
 }
 
-bool Driver::uninstall(Storage* storage){
-    if(!storage){
-        return false;
+void Driver::load(){
+    if(!isSigned){
+        throw BootFailureException("unsigned driver "+name+" cannot be loaded");
     }
-    isInstalled=false;
-    isLoaded=false;
-    return true;
-}
-
-bool Driver::matches(Component* component){
-    if(!component){
-        return false;
-    }
-    return component->name==deviceName;
 }

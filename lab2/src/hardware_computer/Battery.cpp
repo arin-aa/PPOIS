@@ -1,41 +1,25 @@
 #include "Battery.h"
 
-const int BATTERY_MAX_PERCENT=100;
-const int DEGRADED_CYCLES=500;
+const int FULL=100;
+const int MIN_PER_HOUR=60;
 
 Battery::Battery():capacityWh(0),chargePercent(0),cycles(0){}
 
-Battery::Battery(int capacityWh):capacityWh(capacityWh),chargePercent(BATTERY_MAX_PERCENT),cycles(0){}
+Battery::Battery(int capacityWh,int chargePercent):capacityWh(capacityWh),chargePercent(chargePercent),cycles(0){}
 
-void Battery::charge(int percent){
-    if(percent<=0){
-        return;
-    }
+int Battery::charge(int percent){
     chargePercent+=percent;
-    if(chargePercent>BATTERY_MAX_PERCENT){
-        chargePercent=BATTERY_MAX_PERCENT;
+    if(chargePercent>=FULL){
+        chargePercent=FULL;
+        cycles++;
     }
-}
-
-void Battery::discharge(int percent){
-    if(percent<=0){
-        return;
-    }
-    chargePercent-=percent;
-    if(chargePercent<0){
-        chargePercent=0;
-    }
-    cycles++;
-}
-
-bool Battery::isDegraded(){
-    return cycles>=DEGRADED_CYCLES;
-}
-
-int Battery::getChargePercent(){
     return chargePercent;
 }
 
-int Battery::getCycles(){
-    return cycles;
+int Battery::runtimeMinutes(int watts){
+    if(watts<=0){
+        return 0;
+    }
+    int energyWh=capacityWh*chargePercent/FULL;
+    return energyWh*MIN_PER_HOUR/watts;
 }

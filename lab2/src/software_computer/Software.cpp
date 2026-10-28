@@ -1,9 +1,17 @@
 #include "Software.h"
+#include "ComputerExceptions.h"
 
-Software::Software():name(""),version(""),sizeMb(0),isInstalled(false){}
+const int MB_PER_GB=1024;
 
-Software::Software(const std::string& name,const std::string& version,int sizeMb):name(name),version(version),sizeMb(sizeMb),isInstalled(false){}
+Software::Software():name(""),sizeMb(0),isInstalled(false){}
 
-bool Software::isInstalledOnDisk(){
-    return isInstalled;
+Software::Software(const std::string& name,int sizeMb):name(name),sizeMb(sizeMb),isInstalled(false){}
+
+int Software::install(int freeGb){
+    int needGb=sizeMb/MB_PER_GB+1;
+    if(needGb>freeGb){
+        throw DiskFullException("no room to install "+name);
+    }
+    isInstalled=true;
+    return needGb;
 }

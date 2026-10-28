@@ -1,56 +1,28 @@
 #include "DiagnosticService.h"
 #include "Computer.h"
 #include "Logger.h"
-#include "Sensor.h"
-#include "Storage.h"
 
-const int DIAGNOSTIC_SERVICE_NOT_AVAILABLE=-1;
-const char* const MSG_CRITICAL_TEMPERATURE="Critical temperature";
-const char* const MSG_STORAGE_FAILED="Storage integrity failed";
-const char* const MSG_DIAGNOSTIC_START="Running diagnostic";
+const int FULL_HEALTH=100;
+const int ISSUE_PENALTY=25;
 
-DiagnosticService::DiagnosticService():logger(nullptr),issuesFound(0){}
+DiagnosticService::DiagnosticService():issuesFound(0),lowReserveWatts(0),lowDiskGb(0),logger(nullptr){}
 
-DiagnosticService::DiagnosticService(Logger* logger):logger(logger),issuesFound(0){}
+DiagnosticService::DiagnosticService(int lowReserveWatts,int lowDiskGb,Logger* logger):issuesFound(0),lowReserveWatts(lowReserveWatts),
+    lowDiskGb(lowDiskGb),logger(logger){}
 
-bool DiagnosticService::checkTemperature(Computer* computer,Sensor* sensor){
-    if(!computer || !sensor){
-        return false;
-    }
-    if(sensor->isCritical()){
+int DiagnosticService::scan(Computer* computer){
+    if(computer->powerReserve()<lowReserveWatts){
         issuesFound++;
-        if(logger){
-            logger->log(MSG_CRITICAL_TEMPERATURE);
-        }
-        return false;
+        logger->log("low power reserve");
     }
-    return true;
-}
-
-bool DiagnosticService::checkStorage(Computer* computer,Storage* storage){
-    if(!computer || !storage){
-        return false;
-    }
-    if(storage->freeSpace()<0){
+    if(computer->freeStorageGb()<lowDiskGb){
         issuesFound++;
-        if(logger){
-            logger->log(MSG_STORAGE_FAILED);
-        }
-        return false;
-    }
-    return true;
-}
-
-int DiagnosticService::runFullDiagnostic(Computer* computer){
-    if(!computer){
-        return DIAGNOSTIC_SERVICE_NOT_AVAILABLE;
-    }
-    issuesFound=0;
-    if(logger){
-        logger->log(MSG_DIAGNOSTIC_START);
-    }
-    for(Storage* storage:computer->storages){
-        checkStorage(computer,storage);
+        logger->log("low disk space");
     }
     return issuesFound;
+}
+
+int DiagnosticService::healthScore(){
+    int score=FULL_HEALTH-issuesFound*ISSUE_PENALTY;
+    return score<0?0:score;
 }

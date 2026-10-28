@@ -1,14 +1,36 @@
+/**
+ * @file NVMe.h
+ * @brief Объявление класса NVMe.
+ */
 #pragma once
 #include "Storage.h"
 
-class NVMe:public Storage{
+/**
+ * @class NVMe
+ * @brief Класс накопителя стандарта.
+ */
+class NVMe : public Storage {
 private:
-    int pcieLanes;
+    int pcieLanes;///<Количество линий PCIe.
+    int queueDepth;///<Глубина очереди команд.
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     NVMe();
-    NVMe(int capacityGb,int pcieLanes);
 
-    std::string describe() override;
-    int calcThroughput();
+/**
+ * @brief Конструктор с параметрами.
+ * @param capacityGb Объем.
+ * @param pcieLanes Количество линий.
+ * @param queueDepth Глубина очереди.
+ */ 
+    NVMe(int capacityGb, int pcieLanes, int queueDepth);
+
+/**
+* @brief Рассчитывает скорость чтения.
+* @return Скорость в МБ/с.
+*/
+    int readSpeed();
 };

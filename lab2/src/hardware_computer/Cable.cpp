@@ -1,13 +1,19 @@
 #include "Cable.h"
-#include "Port.h"
+#include "ComputerExceptions.h"
 
-Cable::Cable():type(""),lengthMeters(0.0){}
+const int LOSS_PER_METER=50;
 
-Cable::Cable(const std::string& type,double lengthMeters):type(type),lengthMeters(lengthMeters){}
+Cable::Cable():type(""),lengthMeters(0.0),maxMbps(0){}
 
-bool Cable::isCompatibleWith(Port* port){
-    if(!port){
-        return false;
+Cable::Cable(const std::string& type,double lengthMeters,int maxMbps):type(type),lengthMeters(lengthMeters),maxMbps(maxMbps){}
+
+void Cable::match(const std::string& portType){
+    if(type!=portType){
+        throw InvalidConfigurationException(type+" cable does not fit a "+portType+" port");
     }
-    return type==port->type;
+}
+
+int Cable::effectiveMbps(){
+    int speed=maxMbps-static_cast<int>(lengthMeters*LOSS_PER_METER);
+    return speed<0?0:speed;
 }

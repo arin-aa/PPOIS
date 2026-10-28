@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [lab1, lab1_2, main]
+    branches: [lab1, lab1_2, lab2, main]
   pull_request:
     branches: [main]
 
@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ cppcheck bc
+          sudo apt-get install -y g++ cppcheck bc catch2 lcov
 
       - name: Build CLI
         run: |
@@ -29,23 +29,22 @@ jobs:
       - name: Build tests with coverage
         run: |
           cd lab1/set
-          g++ --coverage -std=c++17 tests.cpp Set.cpp catch_amalgamated.cpp -o tests
+          g++ --coverage -std=c++17 SetTests.cpp Set.cpp -lCatch2Main -lCatch2 -o tests
 
       - name: Run tests
         run: |
           cd lab1/set
           ./tests
 
-      - name: Generate coverage report
+      - name: Generate coverage report and check >= 90%
         run: |
           cd lab1/set
-          gcov tests-Set.cpp
-
-      - name: Check coverage >= 90%
-        run: |
-          cd lab1/set
-          COVERAGE=$(grep "File 'Set.cpp'" -A 1 Set.cpp.gcov | grep "Lines executed" | sed 's/.*executed:\([0-9.]*\)%.*/\1/')
+          lcov --capture --directory . --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' '*/SetTests.cpp' --output-file coverage_filtered.info
+          lcov --list coverage_filtered.info
+          COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
           echo "Coverage: $COVERAGE%"
+          
           if (( $(echo "$COVERAGE < 90" | bc -l) )); then
             echo "FAIL: Coverage below 90%"
             exit 1
@@ -71,7 +70,7 @@ jobs:
           name: cantorset-linux
           path: lab1/set/program
 
- 
+
   tictactoe-build-test:
     name: TicTacToe — build, test, coverage
     runs-on: ubuntu-latest
@@ -83,7 +82,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ cppcheck bc
+          sudo apt-get install -y g++ cppcheck bc catch2 lcov
 
       - name: Build CLI
         run: |
@@ -93,23 +92,22 @@ jobs:
       - name: Build tests with coverage
         run: |
           cd lab1/tictactoe
-          g++ --coverage -std=c++17 tests.cpp TicTacToe.cpp catch_amalgamated.cpp -o tests
+          g++ --coverage -std=c++17 TicTacToeTests.cpp TicTacToe.cpp -lCatch2Main -lCatch2 -o tests
 
       - name: Run tests
         run: |
           cd lab1/tictactoe
           ./tests
 
-      - name: Generate coverage report
+      - name: Generate coverage report and check >= 90%
         run: |
           cd lab1/tictactoe
-          gcov tests-TicTacToe.cpp
-
-      - name: Check coverage >= 90%
-        run: |
-          cd lab1/tictactoe
-          COVERAGE=$(grep "File 'TicTacToe.cpp'" -A 1 TicTacToe.cpp.gcov | grep "Lines executed" | sed 's/.*executed:\([0-9.]*\)%.*/\1/')
+          lcov --capture --directory . --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' '*/TicTacToeTests.cpp' --output-file coverage_filtered.info
+          lcov --list coverage_filtered.info
+          COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
           echo "Coverage: $COVERAGE%"
+          
           if (( $(echo "$COVERAGE < 90" | bc -l) )); then
             echo "FAIL: Coverage below 90%"
             exit 1
@@ -136,9 +134,85 @@ jobs:
           path: lab1/tictactoe/tictactoe
 
 
+  lab2-build-test:
+    name: Lab2 (Computer) — build, test, coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cppcheck lcov catch2 bc
+
+      - name: Build CLI
+        run: |
+          cd lab2
+          g++ -std=c++17 -O2 \
+              main.cpp \
+              $(find src -name '*.cpp' ! -path 'src/tests/*') \
+              -I src/exceptions -I src/core_computer -I src/hardware_computer \
+              -I src/network_computer -I src/peripherals_computer -I src/services_computer \
+              -I src/software_computer -I src/users_computer -I src \
+              -o lab2
+
+      - name: Build tests with coverage
+        run: |
+          cd lab2
+          g++ -std=c++17 --coverage \
+              src/tests/*.cpp \
+              $(find src -name '*.cpp' ! -path 'src/tests/*' ! -name 'main.cpp') \
+              -I src/exceptions -I src/core_computer -I src/hardware_computer \
+              -I src/network_computer -I src/peripherals_computer -I src/services_computer \
+              -I src/software_computer -I src/users_computer -I src \
+              -lCatch2Main -lCatch2 \
+              -o run_tests
+
+      - name: Run tests
+        run: |
+          cd lab2
+          ./run_tests
+
+      - name: Generate coverage report and check >= 90%
+        run: |
+          cd lab2
+          lcov --capture --directory . --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' '*/src/tests/*' --output-file coverage_filtered.info
+          lcov --list coverage_filtered.info
+          COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
+          echo "Coverage: $COVERAGE%"
+          
+          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+            echo "FAIL: Coverage below 90%"
+            exit 1
+          fi
+          echo "PASS: Coverage >= 90%"
+
+      - name: Run linter (cppcheck)
+        run: |
+          cd lab2
+          cppcheck --enable=warning,performance,portability \
+                   --error-exitcode=1 \
+                   --suppress=missingIncludeSystem \
+                   main.cpp src/
+
+      - name: Test CLI
+        run: |
+          cd lab2
+          echo "0" | ./lab2
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab2-linux
+          path: lab2/lab2
+
+
   release:
     name: Create Release
-    needs: [set-build-test, tictactoe-build-test]
+    needs: [set-build-test, tictactoe-build-test, lab2-build-test]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
@@ -156,6 +230,17 @@ jobs:
           cd lab1/tictactoe
           g++ -std=c++17 -O2 main.cpp TicTacToe.cpp -o tictactoe
 
+      - name: Build Lab2 binary
+        run: |
+          cd lab2
+          g++ -std=c++17 -O2 \
+              main.cpp \
+              $(find src -name '*.cpp' ! -path 'src/tests/*') \
+              -I src/exceptions -I src/core_computer -I src/hardware_computer \
+              -I src/network_computer -I src/peripherals_computer -I src/services_computer \
+              -I src/software_computer -I src/users_computer -I src \
+              -o lab2_computer
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -164,6 +249,7 @@ jobs:
           files: |
             lab1/set/cantorset
             lab1/tictactoe/tictactoe
+            lab2/lab2_computer
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

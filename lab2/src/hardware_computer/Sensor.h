@@ -1,19 +1,40 @@
+/**
+ * @file Sensor.h
+ * @brief Объявление класса Sensor.
+ */
 #pragma once
-#include <string>
 
-class DiagnosticService;
-
+/**
+ * @class Sensor
+ * @brief Класс датчика.
+ */
 class Sensor{
 private:
-    std::string unit;
-    double value;
-    double threshold;
+    double value;///<Текущее показание.
+    double threshold;///<Пороговое значение.
+    int readings;///<Количество замеров.
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     Sensor();
-    Sensor(const std::string& unit,double threshold);
 
-    bool isCritical();
+/**
+ * @brief Конструктор с порогом.
+ * @param threshold Пороговое значение.
+ */
+    explicit Sensor(double threshold);
 
-    friend class DiagnosticService;
+/**
+ * @brief Добавляет новое показание и вычисляет среднее.
+ * @param reading Новое значение.
+ */    
+    void measure(double reading);
+
+/**
+ * @brief Вычисляет запас до порога.
+ * @return Разница между порогом и текущим значением.
+ */
+    double margin();
 };

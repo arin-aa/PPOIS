@@ -1,21 +1,25 @@
 #include "Monitor.h"
 
-const int MONITOR_MAX_PERCENT=100;
 const char* const MONITOR_NAME="Monitor";
-const int DEFAULT_BRIGHTNESS=50;
+const int MAX_BRIGHT=100;
+const int START_BRIGHT=50;
+const double MILLION=1000000.0;
 
-Monitor::Monitor():Peripheral(MONITOR_NAME),resolution(""),refreshRateHz(0),brightness(DEFAULT_BRIGHTNESS){}
+Monitor::Monitor():Peripheral(MONITOR_NAME),widthPx(0),heightPx(0),brightness(START_BRIGHT){}
 
-Monitor::Monitor(const std::string& resolution,int refreshRateHz):Peripheral(MONITOR_NAME),resolution(resolution),refreshRateHz(refreshRateHz),
-    brightness(DEFAULT_BRIGHTNESS){}
+Monitor::Monitor(int widthPx,int heightPx):Peripheral(MONITOR_NAME),widthPx(widthPx),heightPx(heightPx),brightness(START_BRIGHT){}
 
-void Monitor::setBrightness(int value){
-    if(value<0 || value>MONITOR_MAX_PERCENT){
-        return;
+int Monitor::adjustBrightness(int delta){
+    brightness+=delta;
+    if(brightness<0){
+        brightness=0;
     }
-    brightness=value;
+    if(brightness>MAX_BRIGHT){
+        brightness=MAX_BRIGHT;
+    }
+    return brightness;
 }
 
-int Monitor::getBrightness(){
-    return brightness;
+double Monitor::megapixels(){
+    return widthPx*heightPx/MILLION;
 }

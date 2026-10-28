@@ -1,17 +1,16 @@
 #include "NVMe.h"
 
-const char* const NVME_NAME="NVMe";
-const int NVME_READ_SPEED_MB_PER_SEC=3500;
-const int LANE_THROUGHPUT_MB_PER_SEC=985;
+const char *const NVME_NAME = "NVMe";
+const int LANE_MBPS = 900;
+const int MAX_QUEUE = 32;
 
-NVMe::NVMe():Storage(NVME_NAME,0,NVME_READ_SPEED_MB_PER_SEC),pcieLanes(0){}
+NVMe::NVMe() : Storage(NVME_NAME, 0), pcieLanes(0), queueDepth(0) {}
 
-NVMe::NVMe(int capacityGb,int pcieLanes):Storage(NVME_NAME,capacityGb,NVME_READ_SPEED_MB_PER_SEC),pcieLanes(pcieLanes){}
+NVMe::NVMe(int capacityGb, int pcieLanes, int queueDepth)
+    : Storage(NVME_NAME, capacityGb), pcieLanes(pcieLanes),
+      queueDepth(queueDepth) {}
 
-std::string NVMe::describe(){
-    return "NVMe "+std::to_string(capacityGb)+"GB";
-}
-
-int NVMe::calcThroughput(){
-    return pcieLanes*LANE_THROUGHPUT_MB_PER_SEC;
+int NVMe::readSpeed() {
+  int queue = queueDepth > MAX_QUEUE ? MAX_QUEUE : queueDepth;
+  return pcieLanes * LANE_MBPS * queue / MAX_QUEUE;
 }

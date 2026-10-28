@@ -1,38 +1,19 @@
 #include "Folder.h"
 #include "File.h"
 
-Folder::Folder():folderName(""){}
+Folder::Folder():freeMb(0){}
 
-Folder::Folder(const std::string& folderName):folderName(folderName){}
+Folder::Folder(int freeMb):freeMb(freeMb){}
 
-bool Folder::addFile(File* file){
-    if(!file){
-        return false;
-    }
+void Folder::addFile(File* file){
+    freeMb=file->fitInto(freeMb);
     files.push_back(file);
-    return true;
 }
 
-File* Folder::findFile(const std::string& name){
+int Folder::totalPages(){
+    int pages=0;
     for(File* file:files){
-        if(file && file->fileName==name){
-            return file;
-        }
+        pages+=file->pageCount();
     }
-    return nullptr;
-}
-
-int Folder::totalSize(){
-    int totalMb=0;
-    for(File* file:files){
-        if(file){
-            totalMb+=file->sizeMb;
-        }
-    }
-    for(Folder* subfolder:subfolders){
-        if(subfolder){
-            totalMb+=subfolder->totalSize();
-        }
-    }
-    return totalMb;
+    return pages;
 }

@@ -1,14 +1,36 @@
+/**
+ * @file Cooler.h
+ * @brief Объявление класса Cooler.
+ */
 #pragma once
+#include <string>
 #include "Component.h"
 
+/**
+ * @class Cooler
+ * @brief Класс для систем охлаждения.
+ */
 class Cooler:public Component{
 protected:
-    int maxTdpWatts;
-    int noiseDb;
+    int maxTdpWatts;///< Максимальный отводимый теплопакет
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */ 
     Cooler();
-    Cooler(const std::string& name,int maxTdpWatts,int noiseDb);
 
-    bool canCool(int tdp);
+/**
+ * @brief Конструктор с параметрами.
+ * @param name Название кулера.
+ * @param maxTdpWatts Максимальный TDP.
+ */
+    Cooler(const std::string& name,int maxTdpWatts);
+
+/**
+ * @brief Вычисляет запас охлаждения.
+ * @param tdp Текущий теплопакет процессора.
+ * @return Разница между максимальным и текущим TDP.
+ */
+    int headroom(int tdp);
 };

@@ -1,38 +1,25 @@
 #include "Logger.h"
 
-const char* const DEFAULT_LOG_LEVEL="INFO";
-const int DEFAULT_LOG_ENTRIES=100;
+const char* const JOIN="; ";
 
-Logger::Logger():level(DEFAULT_LOG_LEVEL),maxEntries(DEFAULT_LOG_ENTRIES){}
+Logger::Logger():level(""),maxEntries(1),dropped(0){}
 
-Logger::Logger(const std::string& level,int maxEntries):level(level),maxEntries(maxEntries){}
+Logger::Logger(const std::string& level,int maxEntries):level(level),maxEntries(maxEntries>0?maxEntries:1),dropped(0){}
 
 void Logger::log(const std::string& message){
-    if(message.empty()){
-        return;
+    if(static_cast<int>(entries.size())>=maxEntries){
+        entries.erase(entries.begin());
+        dropped++;
     }
     entries.push_back("["+level+"] "+message);
-    if(static_cast<int>(entries.size())>maxEntries){
-        entries.erase(entries.begin());
-    }
 }
 
-std::vector<std::string> Logger::getLastEntries(int count){
-    if(count<=0){
-        return {};
+std::string Logger::tail(int count){
+    int size=static_cast<int>(entries.size());
+    int first=count<size?size-count:0;
+    std::string joined;
+    for(int index=first;index<size;index++){
+        joined+=(index>first?JOIN:"")+entries[index];
     }
-    int available=static_cast<int>(entries.size());
-    int firstIndex=0;
-    if(available>count){
-        firstIndex=available-count;
-    }
-    return std::vector<std::string>(entries.begin()+firstIndex,entries.end());
-}
-
-void Logger::clear(){
-    entries.clear();
-}
-
-int Logger::getEntryCount(){
-    return static_cast<int>(entries.size());
+    return joined;
 }

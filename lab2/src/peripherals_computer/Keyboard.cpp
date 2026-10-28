@@ -1,20 +1,24 @@
 #include "Keyboard.h"
+#include "ComputerExceptions.h"
 
-const char* const KEYBOARD_NAME="Keyboard";
-const char* const DEFAULT_LAYOUT="QWERTY";
+const char* const KB_NAME="Keyboard";
+const char* const EN="EN";
+const char* const RU="RU";
+const char* const DE="DE";
 
-Keyboard::Keyboard():Peripheral(KEYBOARD_NAME),layout(DEFAULT_LAYOUT),isMechanical(false){}
+Keyboard::Keyboard():Peripheral(KB_NAME),layout(EN),keyPresses(0){}
 
-Keyboard::Keyboard(const std::string& layout,bool isMechanical):Peripheral(KEYBOARD_NAME),layout(layout),isMechanical(isMechanical){}
+Keyboard::Keyboard(const std::string& layout):Peripheral(KB_NAME),layout(layout),keyPresses(0){}
 
-bool Keyboard::changeLayout(const std::string& newLayout){
-    if(newLayout.empty()){
-        return false;
+void Keyboard::switchLayout(const std::string& newLayout){
+    if(newLayout!=EN && newLayout!=RU && newLayout!=DE){
+        throw InvalidConfigurationException("unsupported layout "+newLayout);
     }
     layout=newLayout;
-    return true;
 }
 
-std::string Keyboard::getLayout(){
-    return layout;
+int Keyboard::press(int count){
+    ping();
+    keyPresses+=count;
+    return keyPresses;
 }

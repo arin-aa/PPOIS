@@ -1,28 +1,22 @@
 #include "Packet.h"
+#include "ComputerExceptions.h"
 #include "IpAddress.h"
 
-const int PACKET_NOT_AVAILABLE=-1;
-const int DEFAULT_TTL=64;
+const int BITS_IN_BYTE=8;
 
-Packet::Packet():source(nullptr),destination(nullptr),sizeBytes(0),ttl(DEFAULT_TTL){}
+Packet::Packet():source(nullptr),destination(""),sizeBytes(0),ttl(0){}
 
-Packet::Packet(IpAddress* source,IpAddress* destination,int sizeBytes):source(source),destination(destination),sizeBytes(sizeBytes),ttl(DEFAULT_TTL){}
+Packet::Packet(IpAddress* source,const std::string& destination,int sizeBytes,int ttl):source(source),destination(destination),
+    sizeBytes(sizeBytes),ttl(ttl){}
 
-bool Packet::isValid(){
-    if(!source || !destination || sizeBytes<=0){
-        return false;
-    }
-    return source->isValid() && destination->isValid();
-}
-
-int Packet::decrementTtl(){
+int Packet::forward(){
     if(ttl<=0){
-        return PACKET_NOT_AVAILABLE;
+        throw NetworkDisconnectedException("packet to "+destination+" expired");
     }
     ttl--;
-    return ttl;
+    return sizeBytes*BITS_IN_BYTE;
 }
 
-int Packet::getTtl(){
-    return ttl;
+bool Packet::isLocal(){
+    return source->sameSubnet(destination);
 }

@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['cable_0',['cable',['../classPort.html#a97d844a0201b34d0c5a7239f21ef70d9',1,'Port']]],
+  ['capacity_1',['capacity',['../classInventory.html#a33b9e1ca3950bfdc78e9e89d63bf87f3',1,'Inventory']]],
+  ['capacitygb_2',['capacityGb',['../classRAM.html#a7b6853d674f8735b076fe06826c0a94d',1,'RAM::capacityGb'],['../classStorage.html#a83d73b45e2ecc6b293d372b06e6dfdaa',1,'Storage::capacityGb']]],
+  ['capacitywh_3',['capacityWh',['../classBattery.html#a6bf623f84e81d9668055356e4f6ebee0',1,'Battery']]],
+  ['certification_4',['certification',['../classPSU.html#a5517e44ce58d9e62123dbfdd036083b6',1,'PSU']]],
+  ['chargedminutes_5',['chargedMinutes',['../classLaptop.html#ad5e7db4a63ebd78f35ce260f81beab54',1,'Laptop']]],
+  ['chargepercent_6',['chargePercent',['../classBattery.html#abacfe844cf68c38b0e4c6e56f6c92799',1,'Battery']]],
+  ['checker_7',['checker',['../classSystemBuilder.html#a4eaff4767f802b881905937aa01313c8',1,'SystemBuilder']]],
+  ['checksdone_8',['checksDone',['../classCompatibilityChecker.html#ab72b8edd13104cfedc831aae94db4821',1,'CompatibilityChecker']]],
+  ['clicks_9',['clicks',['../classMouse.html#aee6b3225e7c75ac2489e05a9be77c4d4',1,'Mouse']]],
+  ['colorbits_10',['colorBits',['../classScanner.html#a3e519df30662493297843ebdbce31b92',1,'Scanner']]],
+  ['computer_11',['computer',['../classRepairTicket.html#a2f178a05a4254360c535c5e38eedf1b3',1,'RepairTicket']]],
+  ['content_12',['content',['../classFile.html#a80aafc77a53bcfe72d632207e1caaacc',1,'File']]],
+  ['coolantml_13',['coolantMl',['../classRadiator.html#aa0f1d7348185bd096ec9a2d5bc665a6a',1,'Radiator']]],
+  ['coreclockmhz_14',['coreClockMhz',['../classGPU.html#af6282b032fa662a83adf2e140ca88abd',1,'GPU']]],
+  ['cores_15',['cores',['../classCPU.html#a2e310df8c8c7044b4e46d3b4dd28b57e',1,'CPU']]],
+  ['cpu_16',['cpu',['../classMotherboard.html#a7d9b5cdb5828e5d639fea76a0c419378',1,'Motherboard']]],
+  ['cycles_17',['cycles',['../classBattery.html#aa6994c5879f279710244c0b27af22190',1,'Battery']]]
+];

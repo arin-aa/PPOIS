@@ -1,46 +1,37 @@
 #include "RepairTicket.h"
 #include "Computer.h"
+#include "ComputerExceptions.h"
 #include "Technician.h"
 
-const char* const STATUS_OPEN="open";
-const char* const STATUS_IN_PROGRESS="in_progress";
-const char* const STATUS_CLOSED="closed";
-const char* const ESCALATION_MARK=" escalated";
+const char* const OPEN="open";
+const char* const ASSIGNED="assigned";
+const char* const CLOSED="closed";
 
-RepairTicket::RepairTicket():id(0),description(""),status(STATUS_OPEN),computer(nullptr),technician(nullptr){}
+RepairTicket::RepairTicket():description(""),status(OPEN),hoursSpent(0),computer(nullptr),technician(nullptr){}
 
-RepairTicket::RepairTicket(int id,const std::string& description,Computer* computer):id(id),description(description),status(STATUS_OPEN),
-    computer(computer),technician(nullptr){}
+RepairTicket::RepairTicket(const std::string& description,Computer* computer):description(description),status(OPEN),hoursSpent(0),computer(computer),technician(nullptr){}
 
-bool RepairTicket::assign(Technician* assignee){
-    if(!assignee){
-        return false;
+void RepairTicket::assign(Technician* worker){
+    if(status!=OPEN){
+        throw InvalidConfigurationException("ticket '"+description+"' is already "+status);
     }
-    technician=assignee;
-    status=STATUS_IN_PROGRESS;
-    return true;
+    technician=worker;
+    status=ASSIGNED;
 }
 
-bool RepairTicket::close(){
-    if(status==STATUS_CLOSED){
-        return false;
+int RepairTicket::diagnose(){
+    return computer->powerReserve();
+}
+
+int RepairTicket::close(int hours){
+    if(status == CLOSED) { 
+        throw UnauthorizedAccessException("ticket is already closed");
     }
-    status=STATUS_CLOSED;
-    return true;
-}
 
-bool RepairTicket::escalate(){
-    if(status==STATUS_CLOSED){
-        return false;
+    if(!technician){
+        throw UnauthorizedAccessException("nobody is assigned to '"+description+"'");
     }
-    description+=ESCALATION_MARK;
-    return true;
-}
-
-std::string RepairTicket::getStatus(){
-    return status;
-}
-
-std::string RepairTicket::getDescription(){
-    return description;
+    hoursSpent+=hours;
+    status=CLOSED;
+    return technician->estimate(hoursSpent);
 }

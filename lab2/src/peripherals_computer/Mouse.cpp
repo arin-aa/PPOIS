@@ -1,23 +1,23 @@
 #include "Mouse.h"
+#include "ComputerExceptions.h"
 
 const char* const MOUSE_NAME="Mouse";
-const int DEFAULT_DPI=800;
-const int DEFAULT_BUTTONS=3;
 const int MIN_DPI=100;
-const int MAX_DPI=30000;
+const int MAX_DPI=16000;
 
-Mouse::Mouse():Peripheral(MOUSE_NAME),dpi(DEFAULT_DPI),buttonsCount(DEFAULT_BUTTONS){}
+Mouse::Mouse():Peripheral(MOUSE_NAME),dpi(MIN_DPI),clicks(0){}
 
-Mouse::Mouse(int dpi,int buttonsCount):Peripheral(MOUSE_NAME),dpi(dpi),buttonsCount(buttonsCount){}
+Mouse::Mouse(int dpi):Peripheral(MOUSE_NAME),dpi(dpi),clicks(0){}
 
-bool Mouse::setDpi(int newDpi){
+int Mouse::changeDpi(int newDpi){
     if(newDpi<MIN_DPI || newDpi>MAX_DPI){
-        return false;
+        throw InvalidConfigurationException("DPI must be between 100 and 16000");
     }
     dpi=newDpi;
-    return true;
+    return dpi;
 }
 
-int Mouse::getDpi(){
-    return dpi;
+int Mouse::click(){
+    ping();
+    return ++clicks;
 }

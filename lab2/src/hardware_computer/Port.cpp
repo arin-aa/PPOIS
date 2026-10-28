@@ -1,29 +1,20 @@
 #include "Port.h"
 #include "Cable.h"
 #include "ComputerExceptions.h"
-#include "Peripheral.h"
 
-Port::Port():type(""),cable(nullptr){}
+Port::Port():type(""),speedMbps(0),cable(nullptr){}
 
-Port::Port(const std::string& type):type(type),cable(nullptr){}
+Port::Port(const std::string& type,int speedMbps):type(type),speedMbps(speedMbps),cable(nullptr){}
 
 void Port::plug(Cable* newCable){
-    if(!newCable){
-        return;
-    }
-    if(!newCable->isCompatibleWith(this)){
-        throw InvalidConfigurationException("cable does not match port type");
-    }
+    newCable->match(type);
     cable=newCable;
 }
 
-void Port::unplug(){
-    cable=nullptr;
-}
-
-bool Port::connectPeripheral(Peripheral* peripheral){
-    if(!peripheral || !cable){
-        return false;
+int Port::throughput(){
+    if(!cable){
+        throw PeripheralNotRespondingException(type+" port has no cable");
     }
-    return peripheral->isConnected;
+    int linkMbps=cable->effectiveMbps();
+    return linkMbps<speedMbps?linkMbps:speedMbps;
 }

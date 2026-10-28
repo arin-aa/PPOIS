@@ -1,33 +1,26 @@
 #include "File.h"
+#include "ComputerExceptions.h"
+
+const int CHARS_PER_PAGE=500;
 
 File::File():fileName(""),sizeMb(0),isReadOnly(false),content(""){}
 
 File::File(const std::string& fileName,int sizeMb,bool isReadOnly):fileName(fileName),sizeMb(sizeMb),isReadOnly(isReadOnly),content(""){}
 
-bool File::rename(const std::string& newName){
-    if(isReadOnly || newName.empty()){
-        return false;
-    }
-    fileName=newName;
-    return true;
-}
-
-bool File::writeText(const std::string& text){
+void File::append(const std::string& text){
     if(isReadOnly){
-        return false;
+        throw UnauthorizedAccessException(fileName+" is read-only");
     }
-    content=text;
-    return true;
+    content+=text;
 }
 
-std::string File::getContent(){
-    return content;
+int File::pageCount(){
+    return static_cast<int>(content.size())/CHARS_PER_PAGE+1;
 }
 
-int File::getSizeMb(){
-    return sizeMb;
-}
-
-std::string File::getFileName(){
-    return fileName;
+int File::fitInto(int freeMb){
+    if(sizeMb>freeMb){
+        throw DiskFullException(fileName+" does not fit");
+    }
+    return freeMb-sizeMb;
 }

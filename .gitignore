@@ -80,7 +80,7 @@ coverage/
 *.gcov
 *.gcda
 *.gcno
-coverage.info
+*.info
 
 # Test frameworks
 libs/googletest/

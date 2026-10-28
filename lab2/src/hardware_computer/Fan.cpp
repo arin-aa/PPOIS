@@ -1,25 +1,26 @@
 #include "Fan.h"
 
 const char* const FAN_NAME="Fan";
-const char* const FAN_MANUFACTURER="Noctua";
-const int FAN_POWER_WATTS=2;
-const int FAN_LENGTH_MM=25;
+const char* const FAN_MAKER="Noctua";
+const int FAN_WATTS=3;
+const int MAX_RPM=2000;
+const int FLOW_DIV=100;
 
-Fan::Fan():Component(FAN_NAME,FAN_MANUFACTURER,FAN_POWER_WATTS,FAN_LENGTH_MM),rpm(0),sizeMm(0){}
+Fan::Fan():Component(FAN_NAME,FAN_MAKER,FAN_WATTS),rpm(0),sizeMm(0){}
 
-Fan::Fan(int sizeMm):Component(FAN_NAME,FAN_MANUFACTURER,FAN_POWER_WATTS,FAN_LENGTH_MM),rpm(0),sizeMm(sizeMm){}
+Fan::Fan(int sizeMm,int rpm):Component(FAN_NAME,FAN_MAKER,FAN_WATTS),rpm(rpm),sizeMm(sizeMm){}
 
-std::string Fan::describe(){
-    return "Fan "+std::to_string(sizeMm)+"mm";
-}
-
-void Fan::setSpeed(int newRpm){
-    if(newRpm<0){
-        return;
+int Fan::accelerate(int delta){
+    rpm+=delta;
+    if(rpm<0){
+        rpm=0;
     }
-    rpm=newRpm;
+    if(rpm>MAX_RPM){
+        rpm=MAX_RPM;
+    }
+    return rpm;
 }
 
-int Fan::getRpm(){
-    return rpm;
+int Fan::airflow(){
+    return rpm*sizeMm/FLOW_DIV;
 }

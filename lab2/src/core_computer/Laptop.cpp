@@ -1,21 +1,23 @@
 #include "Laptop.h"
 #include "Battery.h"
-#include "Monitor.h"
 
-const double DEFAULT_LAPTOP_WEIGHT_KG=2.0;
-const int DISCHARGE_ON_SWITCH_PERCENT=1;
+const int PCT_PER_MIN=2;
+const int WATTS_PER_INCH=2;
 
-Laptop::Laptop():Computer(),battery(nullptr),display(nullptr),weightKg(DEFAULT_LAPTOP_WEIGHT_KG){}
+Laptop::Laptop():Computer(),screenInches(0),chargedMinutes(0),battery(nullptr){}
 
-Laptop::Laptop(const std::string& hostname,double weightKg):Computer(hostname),battery(nullptr),display(nullptr),weightKg(weightKg){}
+Laptop::Laptop(const std::string& hostname,int screenInches,Battery* battery):Computer(hostname),screenInches(screenInches),
+    chargedMinutes(0),battery(battery){}
 
-void Laptop::switchToBattery(){
-    if(!battery){
-        return;
-    }
-    battery->discharge(DISCHARGE_ON_SWITCH_PERCENT);
+int Laptop::plugIn(int minutes){
+    chargedMinutes+=minutes;
+    return battery->charge(minutes*PCT_PER_MIN);
 }
 
-void Laptop::closeLid(){
-    powerOff();
+int Laptop::batteryMinutes(){
+    return battery->runtimeMinutes(powerDraw());
+}
+
+int Laptop::powerDraw(){
+    return Computer::powerDraw()+screenInches*WATTS_PER_INCH;
 }

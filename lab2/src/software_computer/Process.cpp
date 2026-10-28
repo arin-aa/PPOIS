@@ -1,37 +1,23 @@
 #include "Process.h"
 #include "Application.h"
 
-const char* const STATE_RUNNING="running";
-const char* const STATE_SUSPENDED="suspended";
-const char* const STATE_TERMINATED="terminated";
+const char* const NEW="new";
+const char* const RUNNING="running";
+const char* const STOPPED="stopped";
 
-Process::Process():pid(0),ramUsageMb(0),state(STATE_TERMINATED),app(nullptr){}
+Process::Process():ramUsageMb(0),state(NEW),app(nullptr){}
 
-Process::Process(int pid,Application* app,int ramUsageMb):pid(pid),ramUsageMb(ramUsageMb),state(STATE_RUNNING),app(app){}
+Process::Process(Application* app):ramUsageMb(0),state(NEW),app(app){}
 
-void Process::suspend(){
-    if(state==STATE_TERMINATED){
-        return;
-    }
-    state=STATE_SUSPENDED;
+int Process::start(int freeRamMb){
+    ramUsageMb=freeRamMb-app->launch(freeRamMb);
+    state=RUNNING;
+    return ramUsageMb;
 }
 
-void Process::resume(){
-    if(state!=STATE_SUSPENDED){
-        return;
-    }
-    state=STATE_RUNNING;
-}
-
-void Process::terminate(){
-    state=STATE_TERMINATED;
+int Process::terminate(){
+    int freed=state==RUNNING?ramUsageMb:0;
     ramUsageMb=0;
-}
-
-std::string Process::getState(){
-    return state;
-}
-
-int Process::getPid(){
-    return pid;
+    state=STOPPED;
+    return freed;
 }

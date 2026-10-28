@@ -1,22 +1,48 @@
+/**
+ * @file Application.h
+ * @brief Объявление класса Application.
+ */
 #pragma once
 #include "Software.h"
-#include <string>
 
-class Computer;
-class Storage;
-
+/**
+ * @class Application
+ * @brief Класс пользовательского приложения, наследуемый от Software.
+ */
 class Application:public Software{
 private:
-    int requiredRamMb;
-    std::string licenseKey;
+    int requiredRamMb;///<Требуемый объем оперативной памяти.
+    std::string licenseKey;//<Лицензионный ключ приложения.
+    int launches;///<Счетчик успешных запусков.
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     Application();
-    Application(const std::string& name,const std::string& version,int sizeMb,int requiredRamMb,const std::string& licenseKey);
 
-    bool install(Storage* storage) override;
-    bool uninstall(Storage* storage) override;
+/**
+ * @brief Конструктор с параметрами.
+ * @param name Название приложения.
+ * @param sizeMb Размер в МБ.
+ * @param requiredRamMb Требуемая оперативная память.
+ * @param licenseKey Лицензионный ключ.
+ */
+    Application(const std::string& name,int sizeMb,int requiredRamMb,const std::string& licenseKey);
 
+/**
+ * @brief Проверяет правильность лицензионного ключа.
+ * @param key Проверяемый ключ.
+ * @return true, если ключ совпадает и не пуст.
+ */
     bool checkLicense(const std::string& key);
-    bool canRunOn(Computer* computer);
+
+/**
+ * @brief Запускает приложение.
+ * @param freeRamMb Доступная свободная оперативная память.
+ * @return Оставшаяся свободная память после запуска.
+ * @exception InvalidConfigurationException если приложение не установлено.
+ * @exception MemoryOverflowException если недостаточно оперативной памяти.
+ */
+    int launch(int freeRamMb);
 };

@@ -1,23 +1,27 @@
 #include "Workstation.h"
-#include "Cooler.h"
+#include "ComputerExceptions.h"
 #include "GPU.h"
 
-const int WORKSTATION_NOT_AVAILABLE=-1;
+Workstation::Workstation():Computer(),renderJobs(0){}
 
-Workstation::Workstation():Computer(){}
+Workstation::Workstation(const std::string& hostname):Computer(hostname),renderJobs(0){}
 
-Workstation::Workstation(const std::string& hostname):Computer(hostname){}
-
-void Workstation::installGpu(GPU* newGpu){
-    if(!newGpu){
-        return;
-    }
-    gpus.push_back(newGpu);
+void Workstation::addGpu(GPU* gpu){
+    gpus.push_back(gpu);
 }
 
-int Workstation::renderTask(int complexity){
-    if(gpus.empty() || complexity<=0){
-        return WORKSTATION_NOT_AVAILABLE;
+double Workstation::renderTask(int complexity){
+    if(gpus.empty()){
+        throw InvalidConfigurationException(hostname+" has no GPU to render on");
     }
-    return complexity/static_cast<int>(gpus.size());
+    int share=complexity/static_cast<int>(gpus.size());
+    double slowest=0.0;
+    for(GPU* gpu:gpus){
+        double time=gpu->renderTime(share);
+        if(time>slowest){
+            slowest=time;
+        }
+    }
+    renderJobs++;
+    return slowest;
 }

@@ -1,22 +1,21 @@
 #include "MacAddress.h"
+#include "ComputerExceptions.h"
 
 const int MAC_LENGTH=17;
-const int MAC_GROUP_WIDTH=3;
-const char MAC_SEPARATOR=':';
+const int GROUP_LENGTH=3;
+const char SEPARATOR=':';
 
 MacAddress::MacAddress():value(""),vendor(""){}
 
 MacAddress::MacAddress(const std::string& value,const std::string& vendor):value(value),vendor(vendor){}
 
-bool MacAddress::isValid(){
+void MacAddress::verify(){
     if(static_cast<int>(value.size())!=MAC_LENGTH){
-        return false;
+        throw InvalidAddressException(vendor+" MAC address must be 17 characters: "+value);
     }
-    for(int index=0; index<MAC_LENGTH; index++){
-        bool isSeparatorSlot=(index+1)%MAC_GROUP_WIDTH==0;
-        if(isSeparatorSlot && value[index]!=MAC_SEPARATOR){
-            return false;
+    for(int index=GROUP_LENGTH-1;index<MAC_LENGTH;index+=GROUP_LENGTH){
+        if(value[index]!=SEPARATOR){
+            throw InvalidAddressException("MAC address needs ':' separators: "+value);
         }
     }
-    return true;
 }

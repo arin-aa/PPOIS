@@ -1,32 +1,45 @@
 #include "IpAddress.h"
-#include <algorithm>
+#include <cstdio>
+#include "ComputerExceptions.h"
 
-const int DEFAULT_SUBNET_MASK=24;
-const int MIN_SUBNET_MASK=0;
-const int MAX_SUBNET_MASK=32;
-const int IP_SEPARATOR_COUNT=3;
-const char IP_SEPARATOR='.';
+const int OCTETS=4;
+const int MAX_OCTET=255;
+const int BITS_IN_OCTET=8;
 
-IpAddress::IpAddress():address(""),subnetMask(DEFAULT_SUBNET_MASK){}
+static bool parse(const std::string& text,int octets[OCTETS]){
+    char tail;
+    if(sscanf(text.c_str(),"%d.%d.%d.%d%c",&octets[0],&octets[1],&octets[2],&octets[3],&tail)!=OCTETS){
+        return false;
+    }
+    for(int index=0;index<OCTETS;index++){
+        if(octets[index]<0 || octets[index]>MAX_OCTET){
+            return false;
+        }
+    }
+    return true;
+}
+
+IpAddress::IpAddress():address(""),subnetMask(0){}
 
 IpAddress::IpAddress(const std::string& address,int subnetMask):address(address),subnetMask(subnetMask){}
 
-bool IpAddress::isValid(){
-    int separators=static_cast<int>(std::count(address.begin(),address.end(),IP_SEPARATOR));
-    if(separators!=IP_SEPARATOR_COUNT){
-        return false;
+void IpAddress::validate(){
+    int octets[OCTETS];
+    if(!parse(address,octets)){
+        throw InvalidAddressException("malformed IP address: "+address);
     }
-    return subnetMask>=MIN_SUBNET_MASK && subnetMask<=MAX_SUBNET_MASK;
 }
 
-bool IpAddress::isInSameSubnet(IpAddress* other){
-    if(!other){
-        return false;
+bool IpAddress::sameSubnet(const std::string& other){
+    int mine[OCTETS];
+    int theirs[OCTETS];
+    if(!parse(address,mine) || !parse(other,theirs)){
+        throw InvalidAddressException("cannot compare "+address+" with "+other);
     }
-    std::size_t lastDotHere=address.find_last_of(IP_SEPARATOR);
-    std::size_t lastDotThere=other->address.find_last_of(IP_SEPARATOR);
-    if(lastDotHere==std::string::npos || lastDotThere==std::string::npos){
-        return false;
+    for(int index=0;index<subnetMask/BITS_IN_OCTET;index++){
+        if(mine[index]!=theirs[index]){
+            return false;
+        }
     }
-    return address.substr(0,lastDotHere)==other->address.substr(0,lastDotThere);
+    return true;
 }

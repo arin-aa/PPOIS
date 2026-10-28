@@ -1,29 +1,53 @@
+/**
+ * @file Component.h
+ * @brief Объявление базового класса Component.
+ */
 #pragma once
 #include <string>
 
-class CompatibilityChecker;
-class Computer;
-class PSU;
-class Inventory;
-class Driver;
-
+/**
+ * @class Component
+ * @brief Базовый класс для всех комплектующих компьютера.
+ * 
+ * Содержит общие свойства (название, производитель, потребляемая мощность) 
+ * и методы для идентификации и расчета нагрузки.
+ */
 class Component{
 protected:
-    std::string name;
-    std::string manufacturer;
-    int powerWatts;
-    int lengthMm;
+    std::string name;///<Название компонента.
+    std::string manufacturer;///<Производитель.
+    int powerWatts;///<Потребляемая мощность
 
 public:
+/**
+ * @brief Конструктор по умолчанию.
+ */
     Component();
-    Component(const std::string& name,const std::string& manufacturer,int powerWatts,int lengthMm);
+
+/**
+ * @brief Конструктор с параметрами.
+ * @param name Название компонента.
+ * @param manufacturer Производитель.
+ * @param powerWatts Потребляемая мощность (в ваттах).
+ */
+    Component(const std::string& name,const std::string& manufacturer,int powerWatts);
+
+/**
+ * @brief Виртуальный деструктор по умолчанию.
+ */
     virtual ~Component()=default;
 
-    virtual std::string describe()=0;
+/**
+ * @brief Проверяет, совпадает ли переданная строка с именем или производителем.
+ * @param key Искомая строка.
+ * @return true, если совпадение найдено.
+ */
+    bool isNamed(const std::string& key);
 
-    friend class CompatibilityChecker;
-    friend class Computer;
-    friend class PSU;
-    friend class Inventory;
-    friend class Driver;
+/**
+ * @brief Рассчитывает текущее энергопотребление с учетом нагрузки.
+ * @param loadPercent Процент нагрузки.
+ * @return Потребляемая мощность.
+ */
+    int draw(int loadPercent);
 };
