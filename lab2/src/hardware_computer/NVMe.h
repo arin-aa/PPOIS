@@ -9,7 +9,7 @@
  * @class NVMe
  * @brief Класс накопителя стандарта.
  */
-class NVMe : public Storage {
+class NVMe:public Storage{
 private:
     int pcieLanes;///<Количество линий PCIe.
     int queueDepth;///<Глубина очереди команд.
@@ -26,7 +26,7 @@ public:
  * @param pcieLanes Количество линий.
  * @param queueDepth Глубина очереди.
  */ 
-    NVMe(int capacityGb, int pcieLanes, int queueDepth);
+    NVMe(int capacityGb,int pcieLanes,int queueDepth);
 
 /**
 * @brief Рассчитывает скорость чтения.

@@ -12,8 +12,8 @@
  */
 class PSU:public Component{
 private:
-    int wattage;///<Мощность
-    std::string certification;///<Сертификат
+    int wattage;///<Мощность.
+    std::string certification;///<Сертификат.
 
 public:
 /**

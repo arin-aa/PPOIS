@@ -25,7 +25,9 @@ void Computer::installOs(OperatingSystem* newOs){
     if(storages.empty()){
         throw InvalidConfigurationException(hostname+" has no disk for the OS");
     }
-    storages[0]->write(newOs->install(storages[0]->freeSpace()));
+    Storage* systemDisk = storages[0];
+    int installedGb = newOs->install(systemDisk->freeSpace());
+    systemDisk->write(installedGb);
     os=newOs;
 }
 
