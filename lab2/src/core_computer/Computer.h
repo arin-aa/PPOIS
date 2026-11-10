@@ -1,6 +1,6 @@
 /**
  * @file Computer.h
- * @brief Объявление базового класса Computer.
+ * @brief Declaration of the base class Computer.
  */
 #pragma once
 #include <string>
@@ -13,82 +13,82 @@ class OperatingSystem;
 
 /**
  * @class Computer
- * @brief Класс, представляющий персональный компьютер.
+ * @brief Class representing a personal computer.
  * 
- * Хранит информацию о комплектующих (материнская плата, блок питания, накопители),
- * позволяет собирать систему, устанавливать ОС и рассчитывать энергопотребление.
- * Является базовым классом для Laptop, Server и Workstation.
+ * Stores information about components (motherboard, power supply, storage devices),
+ * allows assembling the system, installing an OS, and calculating power consumption.
+ * Is a base class for Laptop, Server, and Workstation.
  */
 class Computer{
 protected:
-    std::string hostname;///<Сетевое имя компьютера.
-    int bootCount;///<Количество успешных включений.
-    Motherboard* motherboard;///<Указатель на материнскую плату.
-    PSU* psu;///<Указатель на блок питания.
-    OperatingSystem* os;///<Указатель на установленную операционную систему.
-    std::vector<Storage*> storages;///<Вектор установленных накопителей.
+    std::string hostname;///<Network name of the computer.
+    int bootCount;///<Number of successful boots.
+    Motherboard* motherboard;///<Pointer to the motherboard.
+    PSU* psu;///<Pointer to the power supply.
+    OperatingSystem* os;///<Pointer to the installed operating system.
+    std::vector<Storage*> storages;///<Vector of installed storage devices.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
- * Создает ПК с пустым именем и нулевыми указателями.
+ * @brief Default constructor.
+ * Creates a PC with an empty name and null pointers.
  */
     Computer();
 
 /**
- * @brief Конструктор с указанием имени.
- * @param hostname Сетевое имя компьютера.
+ * @brief Constructor with name specification.
+ * @param hostname Network name of the computer.
  */
     explicit Computer(const std::string& hostname);
 
 /**
- * @brief Виртуальный деструктор по умолчанию.
+ * @brief Virtual default destructor.
  */
     virtual ~Computer()=default;
 
 /**
- * @brief Собирает компьютер, устанавливая материнскую плату и блок питания.
- * @param board Указатель на материнскую плату.
- * @param supply Указатель на блок питания.
+ * @brief Assembles the computer by installing the motherboard and power supply.
+ * @param board Pointer to the motherboard.
+ * @param supply Pointer to the power supply.
  */
     void assemble(Motherboard* board,PSU* supply);
 
 /**
- * @brief Добавляет накопитель в систему.
- * @param storage Указатель на объект накопителя.
+ * @brief Adds a storage device to the system.
+ * @param storage Pointer to the storage object.
  */
     void addStorage(Storage* storage);
 
 /**
- * @brief Устанавливает операционную систему.
- * @param newOs Указатель на устанавливаемую ОС.
- * @exception InvalidConfigurationException если в системе нет ни одного накопителя.
+ * @brief Installs the operating system.
+ * @param newOs Pointer to the OS to be installed.
+ * @exception InvalidConfigurationException if there is no storage device in the system.
  */   
     void installOs(OperatingSystem* newOs);
 
 /**
- * @brief Включает компьютер.
- * @exception BootFailureException если компьютер не собран (нет платы или БП).
- * @exception InsufficientPowerException если мощности БП недостаточно.
+ * @brief Powers on the computer.
+ * @exception BootFailureException if the computer is not assembled (no motherboard or PSU).
+ * @exception InsufficientPowerException if the PSU power is insufficient.
  */   
     void powerOn();
 
 /**
- * @brief Вычисляет общий объем свободного места на всех накопителях.
- * @return Суммарное свободное место в гигабайтах.
+ * @brief Calculates the total free space on all storage devices.
+ * @return Total free space in gigabytes.
  */
     int freeStorageGb();
 
 /**
- * @brief Вычисляет текущее энергопотребление компьютера.
- * @return Потребляемая мощность в ваттах. Может быть переопределен в наследниках.
+ * @brief Calculates the current power consumption of the computer.
+ * @return Power consumption in watts. Can be overridden in derived classes.
  */  
     virtual int powerDraw();
 
 /**
- * @brief Вычисляет резерв мощности блока питания.
- * @return Разница между мощностью БП и текущим потреблением (в ваттах).
- * @exception BootFailureException если блок питания не установлен.
+ * @brief Calculates the power reserve of the power supply.
+ * @return Difference between PSU power and current consumption (in watts).
+ * @exception BootFailureException if the power supply is not installed.
  */
     int powerReserve();
 };

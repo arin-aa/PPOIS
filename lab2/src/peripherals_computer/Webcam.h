@@ -1,37 +1,37 @@
 /**
  * @file Webcam.h
- * @brief Объявление класса Webcam.
+ * @brief Declaration of the Webcam class.
  */
 #pragma once
 #include "Peripheral.h"
 
 /**
  * @class Webcam
- * @brief Класс веб-камеры, наследуемый от Peripheral.
+ * @brief Webcam class, inheriting from Peripheral.
  */
 class Webcam:public Peripheral{
 private:
-    int heightPx;///<Высота видео в пикселях.
-    int fps;///<Частота кадров в секунду.
-    int recordedSeconds;///<Общее время записи в секундах.
+    int heightPx;///<Video height in pixels.
+    int fps;///<Frame rate per second.
+    int recordedSeconds;///<Total recording time in seconds.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Webcam();
 
 /**
- * @brief Конструктор с указанием параметров видео.
- * @param heightPx Высота кадра.
- * @param fps Частота кадров.
+ * @brief Constructor with video parameters specified.
+ * @param heightPx Frame height.
+ * @param fps Frame rate.
  */
     Webcam(int heightPx,int fps);
 
 /**
- * @brief Записывает видео.
- * @param seconds Длительность записи.
- * @return Объем записанных данных в килобайтах.
+ * @brief Records video.
+ * @param seconds Recording duration.
+ * @return Amount of recorded data in kilobytes.
  */
     int record(int seconds);
 };

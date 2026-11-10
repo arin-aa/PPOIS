@@ -1,6 +1,6 @@
 /**
  * @file PSU.h
- * @brief Объявление класса PSU.
+ * @brief Declaration of the PSU class.
  */
 #pragma once
 #include <string>
@@ -8,37 +8,37 @@
 
 /**
  * @class PSU
- * @brief Класс блока питания.
+ * @brief Power supply unit class.
  */
 class PSU:public Component{
 private:
-    int wattage;///<Мощность.
-    std::string certification;///<Сертификат.
+    int wattage;///<Wattage.
+    std::string certification;///<Certification.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     PSU();
 
 /**
- * @brief Конструктор с параметрами.
- * @param wattage Мощность.
- * @param certification Сертификат.
+ * @brief Constructor with parameters.
+ * @param wattage Wattage.
+ * @param certification Certification.
  */
     PSU(int wattage,const std::string& certification);
 
 /**
- * @brief Вычисляет резерв мощности.
- * @param loadWatts Текущая нагрузка.
- * @return Резерв.
+ * @brief Calculates the power reserve.
+ * @param loadWatts Current load.
+ * @return Reserve.
  */
     int reserve(int loadWatts);
 
 /**
- * @brief Вычисляет потребление из сети.
- * @param loadWatts Полезная нагрузка.
- * @return Потребление из розетки.
+ * @brief Calculates consumption from the mains.
+ * @param loadWatts Useful load.
+ * @return Consumption from the outlet.
  */
     int wallDraw(int loadWatts);
 };

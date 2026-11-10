@@ -1,6 +1,6 @@
 /**
  * @file Server.h
- * @brief Объявление класса Server.
+ * @brief Declaration of the Server class.
  */
 #pragma once
 #include <vector>
@@ -11,52 +11,52 @@ class Packet;
 
 /**
  * @class Server
- * @brief Производный класс, представляющий сервер.
+ * @brief Derived class representing a server.
  * 
- * Расширяет базовый класс Computer, добавляя поддержку RAID, 
- * обработку сетевых запросов и учет юнитов.
+ * Extends the base class Computer by adding RAID support, 
+ * network request handling, and rack unit accounting.
  */
 class Server:public Computer{
 private:
-    int rackUnits;///<Количество юнитов.
-    std::string raidLevel;///<Текущий уровень RAID
-    int requestsServed;///<Счетчик успешно обработанных запросов.
-    std::vector<NetworkInterface*> nics;///<Вектор сетевых интерфейсов (карт).
+    int rackUnits;///<Number of rack units.
+    std::string raidLevel;///<Current RAID level
+    int requestsServed;///<Counter of successfully processed requests.
+    std::vector<NetworkInterface*> nics;///<Vector of network interfaces (cards).
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Server();
 
 /**
- * @brief Конструктор с параметрами.
- * @param hostname Сетевое имя сервера.
- * @param rackUnits Количество занимаемых юнитов.
- * @param firstNic Указатель на первую сетевую карту.
+ * @brief Constructor with parameters.
+ * @param hostname Server network name.
+ * @param rackUnits Number of occupied rack units.
+ * @param firstNic Pointer to the first network card.
  */
     Server(const std::string& hostname,int rackUnits,NetworkInterface* firstNic);
 
 /**
- * @brief Настраивает уровень RAID.
- * @param level Строка с уровнем RAID.
- * @return Процент полезной емкости дисков для данного уровня RAID.
- * @exception InvalidConfigurationException если передан неизвестный уровень RAID.
+ * @brief Configures the RAID level.
+ * @param level String with the RAID level.
+ * @return Percentage of usable disk capacity for the given RAID level.
+ * @exception InvalidConfigurationException if an unknown RAID level is passed.
  */
     int configureRaid(const std::string& level);
 
 /**
- * @brief Обрабатывает входящий сетевой пакет.
- * @param packet Указатель на пакет.
- * @return Время обработки пакета в наносекундах.
- * @exception NetworkDisconnectedException если у сервера нет сетевых карт.
+ * @brief Handles an incoming network packet.
+ * @param packet Pointer to the packet.
+ * @return Packet processing time in nanoseconds.
+ * @exception NetworkDisconnectedException if the server has no network cards.
  */
     int handleRequest(Packet* packet);
 
 /**
- * @brief Переопределенный метод расчета энергопотребления.
- * Учитывает потребление сетевых карт и занимаемых юнитов стойки.
- * @return Потребляемая мощность в ваттах.
+ * @brief Overridden method for calculating power consumption.
+ * Takes into account the power consumption of network cards and occupied rack units.
+ * @return Power consumption in watts.
  */   
     int powerDraw() override;
 };

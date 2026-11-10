@@ -1,6 +1,6 @@
 /**
  * @file Printer.h
- * @brief Объявление класса Printer.
+ * @brief Declaration of the Printer class.
  */
 #pragma once
 #include "Peripheral.h"
@@ -9,39 +9,39 @@ class File;
 
 /**
  * @class Printer
- * @brief Класс принтера, наследуемый от Peripheral.
+ * @brief Printer class, inheriting from Peripheral.
  */
 class Printer:public Peripheral{
 private:
-    int paperLevel;///<Текущее количество листов бумаги.
-    int inkLevel;///<Текущий уровень чернил.
-    int printedPages;///<Общее количество напечатанных страниц.
+    int paperLevel;///<Current number of paper sheets.
+    int inkLevel;///<Current ink level.
+    int printedPages;///<Total number of printed pages.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Printer();
 
 /**
- * @brief Конструктор с указанием начального уровня бумаги и чернил.
- * @param paperLevel Количество листов.
- * @param inkLevel Уровень чернил.
+ * @brief Constructor with initial paper and ink levels specified.
+ * @param paperLevel Number of sheets.
+ * @param inkLevel Ink level.
  */
     Printer(int paperLevel,int inkLevel);
 
 /**
- * @brief Печатает файл.
- * @param file Указатель на файл для печати.
- * @return Общее количество напечатанных страниц.
- * @exception PeripheralNotRespondingException если не хватает бумаги или чернил.
+ * @brief Prints a file.
+ * @param file Pointer to the file to print.
+ * @return Total number of printed pages.
+ * @exception PeripheralNotRespondingException if there is not enough paper or ink.
  */
     int print(File* file);
 
 /**
- * @brief Загружает бумагу в принтер.
- * @param sheets Количество добавляемых листов.
- * @return Итоговое количество бумаги (не более 250 листов).
+ * @brief Loads paper into the printer.
+ * @param sheets Number of sheets to add.
+ * @return Resulting amount of paper (no more than 250 sheets).
  */
     int loadPaper(int sheets);
 };

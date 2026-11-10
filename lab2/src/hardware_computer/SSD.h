@@ -1,40 +1,40 @@
 /**
  * @file SSD.h
- * @brief Объявление класса SSD.
+ * @brief Declaration of the SSD class.
  */
 #pragma once
 #include "Storage.h"
 
 /**
  * @class SSD
- * @brief Класс накопителя.
+ * @brief Storage device class.
  */
 class SSD:public Storage{
 private:
-    int enduranceWrites;///<Ресурс записи (циклы).
-    int trimCount;///<Количество операций TRIM.
+    int enduranceWrites;///<Write endurance (cycles).
+    int trimCount;///<Number of TRIM operations.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     SSD();
 
 /**
- * @brief Конструктор с указанием объема.
- * @param capacityGb Объем.
+ * @brief Constructor with capacity specified.
+ * @param capacityGb Capacity.
  */
     explicit SSD(int capacityGb);
 
 /**
- * @brief Выполняет команду TRIM.
- * @return Освобожденный объем в ГБ.
+ * @brief Executes the TRIM command.
+ * @return Freed space in GB.
  */ 
     int trim();
 
 /**
-* @brief Рассчитывает остаток ресурса.
-* @return Процент оставшейся жизни.
+* @brief Calculates the remaining resource.
+* @return Percentage of remaining life.
 */ 
     int lifeLeft() override;
 };

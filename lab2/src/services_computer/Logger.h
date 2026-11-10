@@ -1,6 +1,6 @@
 /**
  * @file Logger.h
- * @brief Объявление класса Logger.
+ * @brief Declaration of the Logger class.
  */
 #pragma once
 #include <string>
@@ -8,41 +8,41 @@
 
 /**
  * @class Logger
- * @brief Класс для ведения логов.
+ * @brief Class for logging.
  * 
- * Хранит сообщения с указанием уровня, ограничивает размер истории 
- * и позволяет выводить последние N записей.
+ * Stores messages with level indication, limits the history size,
+ * and allows outputting the last N entries.
  */
 class Logger{
 private:
-    std::string level;///<Уровень логирования.
-    std::vector<std::string> entries;///<Список сохраненных записей.
-    int maxEntries;///<Максимальное количество хранимых записей.
-    int dropped;///<Количество вытесненных старых записей.
+    std::string level;///<Logging level.
+    std::vector<std::string> entries;///<List of saved entries.
+    int maxEntries;///<Maximum number of stored entries.
+    int dropped;///<Number of evicted old entries.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Logger();
 
 /**
- * @brief Конструктор с параметрами.
- * @param level Уровень логирования.
- * @param maxEntries Максимальное количество записей.
+ * @brief Constructor with parameters.
+ * @param level Logging level.
+ * @param maxEntries Maximum number of entries.
  */
     Logger(const std::string& level,int maxEntries);
 
 /**
- * @brief Добавляет новое сообщение в лог.
- * @param message Текст сообщения.
+ * @brief Adds a new message to the log.
+ * @param message Message text.
  */
     void log(const std::string& message);
 
 /**
- * @brief Возвращает последние N записей в виде одной строки через разделитель.
- * @param count Количество запрашиваемых записей.
- * @return Строка с последними записями.
+ * @brief Returns the last N entries as a single string separated by a delimiter.
+ * @param count Number of requested entries.
+ * @return String with the last entries.
  */
     std::string tail(int count);
 };

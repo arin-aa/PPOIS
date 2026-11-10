@@ -1,36 +1,36 @@
 /**
  * @file Radiator.h
- * @brief Объявление класса Radiator.
+ * @brief Declaration of the Radiator class.
  */
 #pragma once
 #include "Cooler.h"
 
 /**
  * @class Radiator
- * @brief Класс радиатора для жидкостного охлаждения.
+ * @brief Radiator class for liquid cooling.
  */
 class Radiator:public Cooler{
 private:
-    int radiatorLengthMm;///<Длина радиатора в мм.
-    int coolantMl;///<Объем хладагента в мл.
+    int radiatorLengthMm;///<Radiator length in mm.
+    int coolantMl;///<Coolant volume in ml.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Radiator();
 
 /**
- * @brief Конструктор с параметрами.
- * @param radiatorLengthMm Длина.
- * @param maxTdpWatts Максимальный TDP.
+ * @brief Constructor with parameters.
+ * @param radiatorLengthMm Length.
+ * @param maxTdpWatts Maximum TDP.
  */
     Radiator(int radiatorLengthMm,int maxTdpWatts);
 
 /**
- * @brief Доливает хладагент.
- * @param milliliters Объем для добавления.
- * @return Итоговый объем, не должен превышать вместимость.
+ * @brief Tops up the coolant.
+ * @param milliliters Volume to add.
+ * @return Resulting volume, must not exceed capacity.
  */
     int refill(int milliliters);
 };

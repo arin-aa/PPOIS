@@ -1,6 +1,6 @@
 /**
  * @file Storage.h
- * @brief Объявление класса Storage.
+ * @brief Declaration of the Storage class.
  */
 #pragma once
 #include <string>
@@ -8,50 +8,50 @@
 
 /**
  * @class Storage
- * @brief Класс для всех накопителей.
+ * @brief Class for all storage devices.
  */
 class Storage:public Component{
 protected:
-    int capacityGb;///<Объем в ГБ.
-    int usedGb;///<Сколько ГБ занято.
-    int writeCount;///<Количество операций записи.
+    int capacityGb;///<Capacity in GB.
+    int usedGb;///<How many GB are occupied.
+    int writeCount;///<Number of write operations.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Storage();
 
 /**
- * @brief Конструктор с параметрами.
- * @param name Название накопителя.
- * @param capacityGb Объем.
+ * @brief Constructor with parameters.
+ * @param name Storage device name.
+ * @param capacityGb Capacity.
  */
     Storage(const std::string& name,int capacityGb);
 
 /**
- * @brief Записывает данные.
- * @param gb Объем.
- * @exception DiskFullException если места не хватает.
+ * @brief Writes data.
+ * @param gb Volume.
+ * @exception DiskFullException if there is not enough space.
  */
     void write(int gb);
 
 /**
- * @brief Стирает данные.
- * @param gb Объем для стирания.
- * @return Фактически стертый объем.
+ * @brief Erases data.
+ * @param gb Volume to erase.
+ * @return Actually erased volume.
  */
     int erase(int gb);
 
 /**
- * @brief Возвращает количество свободного место.
- * @return Свободно ГБ.
+ * @brief Returns the amount of free space.
+ * @return Free GB.
  */
     int freeSpace();
 
 /**
-* @brief Виртуальный метод расчета остатка жизни.
-* @return Процент.
+* @brief Virtual method for calculating the remaining life.
+* @return Percentage.
 */
     virtual int lifeLeft();
 };

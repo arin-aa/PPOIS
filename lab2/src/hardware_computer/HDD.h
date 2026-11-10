@@ -1,6 +1,6 @@
 /**
  * @file HDD.h
- * @brief Объявление класса HDD.
+ * @brief Declaration of the HDD class.
  */
 
 #pragma once
@@ -8,37 +8,37 @@
 
 /**
  * @class HDD
- * @brief Класс жесткого диска.
+ * @brief Hard disk drive class.
  */
 class HDD:public Storage{
 private:
-    int rpm;///<Скорость шпинделя
-    int badSectors;///<Количество блоков
-    int fragmentation;///<Уровень фрагментации
+    int rpm;///<Spindle speed
+    int badSectors;///<Number of bad blocks
+    int fragmentation;///<Fragmentation level
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     HDD();
 
 /**
- * @brief Конструктор с параметрами.
- * @param capacityGb Объем.
- * @param rpm Скорость.
- * @param fragmentation Фрагментация.
+ * @brief Constructor with parameters.
+ * @param capacityGb Capacity.
+ * @param rpm Speed.
+ * @param fragmentation Fragmentation.
  */
     HDD(int capacityGb,int rpm,int fragmentation);
 
 /**
- * @brief Выполняет дефрагментацию диска.
- * @return Затраченное время в минутах.
+ * @brief Performs disk defragmentation.
+ * @return Time spent in minutes.
  */
     int defragment();
 
 /**
- * @brief Рассчитывает остаток жизни диска.
- * @return Процент оставшегося ресурса.
+ * @brief Calculates the remaining disk life.
+ * @return Percentage of remaining resource.
  */
     int lifeLeft() override;
 };

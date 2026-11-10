@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @brief Консольный пользовательский интерфейс для системы учета компьютерной техники.
+ * @brief Console user interface for the computer hardware accounting system.
  */
 
 #include <iomanip>
@@ -43,18 +43,18 @@
 
 using namespace std;
 
-//Максимальное число символов, игнорируемых в потоке ввода при ошибке.
+//Maximum number of characters ignored in the input stream on error.
 const int MAX_IGNOR=100000;
-const int ACTION_WIDTH=50;///<Ширина колонки с названием действия.
-const int RESULT_WIDTH=44;///<Ширина колонки с результатом.
+const int ACTION_WIDTH=50;///<Width of the action name column.
+const int RESULT_WIDTH=44;///<Width of the result column.
 
 /**
- * @brief Запрашивает у пользователя целое число с проверкой корректности ввода.
- * @param line Текст, выводимый перед ожидаемым вводом числа.
- * @return choice Введённое пользователем число.
+ * @brief Requests an integer from the user with input validation.
+ * @param line Text displayed before the expected number input.
+ * @return choice The number entered by the user.
  * 
- * При некорректном вводе (например строки, букв, пробелов или других значений)
- * очищает поток ввода и повторяет запрос до получения правильного значения.
+ * On invalid input (e.g., string, letters, spaces, or other values),
+ * clears the input stream and repeats the request until a correct value is obtained.
  */
 int readChoice(const string& line){
     int choice;
@@ -70,9 +70,9 @@ int readChoice(const string& line){
 }
 
 /**
- * @brief Выводит заголовок сценария и шапку таблицы.
- * @param number Порядковый номер сценария.
- * @param name Название сценария.
+ * @brief Prints the scenario title and the table header.
+ * @param number Scenario sequence number.
+ * @param name Scenario name.
  */
 void title(int number,const string& name){
     cout<<"\n=== "<<number<<". "<<name<<" ===\n"<<left<<setw(ACTION_WIDTH)<<"Action"<<"Result\n";
@@ -80,20 +80,20 @@ void title(int number,const string& name){
 }
 
 /**
- * @brief Выводит одну строку таблицы с выравниванием.
- * @param action Описание действия.
- * @param result Результат выполнения.
+ * @brief Prints a single table row with alignment.
+ * @param action Description of the action.
+ * @param result Result of execution.
  */
 void row(const string& action,const string& result){
     cout<<left<<setw(ACTION_WIDTH)<<action<<result<<"\n";
 }
 
 /**
- * @brief Вывод числового или логического результата.
- * @tparam Value Тип передаваемого значения (int, double, bool).
- * @param action Описание действия.
- * @param value Само значение.
- * @param unit Единица измерения (по умолчанию пустая строка).
+ * @brief Outputs a numeric or boolean result.
+ * @tparam Value Type of the passed value (int, double, bool).
+ * @param action Description of the action.
+ * @param value The value itself.
+ * @param unit Unit of measurement (empty string by default).
  */
 template<typename Value>
 void report(const string& action,const Value& value,const string& unit=""){
@@ -103,10 +103,10 @@ void report(const string& action,const Value& value,const string& unit=""){
 }
 
 /**
- * @brief Выполняет действие и перехватывает возможные исключения.
- * @tparam Action Тип вызываемой лямбда-функции.
- * @param action Описание действия.
- * @param run Лямбда-функция с кодом для выполнения.
+ * @brief Executes an action and catches possible exceptions.
+ * @tparam Action Type of the called lambda function.
+ * @param action Description of the action.
+ * @param run Lambda function with the code to execute.
  */
 template<typename Action>
 void attempt(const string& action,Action run){
@@ -119,7 +119,7 @@ void attempt(const string& action,Action run){
 }
 
 /**
- * @brief Сценарий 1: Сборка ПК и проверка совместимости CPU с платой.
+ * @brief Scenario 1: Building a PC and checking CPU compatibility with the motherboard.
  */
 void scenarioBuild(){
     title(1,"Building a computer");
@@ -139,7 +139,7 @@ void scenarioBuild(){
 }
 
 /**
- * @brief Сценарий 2: Расчет мощности БП, работа кулеров и разъемов питания.
+ * @brief Scenario 2: Calculating PSU wattage, cooler operation, and power connectors.
  */
 void scenarioPower(){
     title(2,"Power and cooling");
@@ -162,7 +162,7 @@ void scenarioPower(){
 }
 
 /**
- * @brief Сценарий 3: Работа с накопителями и файловой системой.
+ * @brief Scenario 3: Working with storage devices and the file system.
  */
 void scenarioStorage(){
     title(3,"Storage devices and files");
@@ -179,7 +179,7 @@ void scenarioStorage(){
 }
 
 /**
- * @brief Сценарий 4: Установка ОС и управление процессами.
+ * @brief Scenario 4: Installing an OS and managing processes.
  */
 void scenarioSoftware(){
     title(4,"Operating system and programs");
@@ -201,7 +201,7 @@ void scenarioSoftware(){
 }
 
 /**
- * @brief Сценарий 5: Настройка сети и работа сервера.
+ * @brief Scenario 5: Network configuration and server operation.
  */
 void scenarioNetwork(){
     title(5,"Network and server");
@@ -220,7 +220,7 @@ void scenarioNetwork(){
 }
 
 /**
- * @brief Сценарий 6: Подключение периферии через порты и кабели.
+ * @brief Scenario 6: Connecting peripherals via ports and cables.
  */
 void scenarioPeripherals(){
     title(6,"Ports, cables and peripherals");
@@ -243,7 +243,7 @@ void scenarioPeripherals(){
 }
 
 /**
- * @brief Сценарий 7: Работа сервисного центра и аутентификация.
+ * @brief Scenario 7: Service center operation and authentication.
  */
 void scenarioRepair(){
     title(7,"Repairs and access");
@@ -262,11 +262,11 @@ void scenarioRepair(){
 }
 
 /**
- * @brief Точка входа в программу
- * @return Код завершения программы.
+ * @brief Program entry point
+ * @return Program exit code.
  * 
- * Выводит главное меню, предлагая пользователю выбрать один из 7 сценариев 
- * или выйти из программы. Обрабатывает некорректный ввод.
+ * Displays the main menu, prompting the user to choose one of 7 scenarios 
+ * or exit the program. Handles invalid input.
  */
 int main(){
     while(true){

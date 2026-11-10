@@ -1,6 +1,6 @@
 /**
  * @file CPU.h
- * @brief Объявление класса CPU.
+ * @brief Declaration of the CPU class.
  */
 #pragma once
 #include <string>
@@ -10,43 +10,43 @@ class Sensor;
 
 /**
  * @class CPU
- * @brief Класс процессора.
+ * @brief Processor class.
  */
 class CPU:public Component{
 private:
-    int cores;///<Количество ядер.
-    double frequencyGhz;///<Тактовая частота в ГГц.
-    int loadPercent;///<Текущая загрузка в процентах.
-    std::string socket;///<Сокет процессора.
-    Sensor* tempSensor;///<Указатель на датчик температуры.
+    int cores;///<Number of cores.
+    double frequencyGhz;///<Clock frequency in GHz.
+    int loadPercent;///<Current load in percent.
+    std::string socket;///<Processor socket.
+    Sensor* tempSensor;///<Pointer to the temperature sensor.
 
 public:
 /**
-* @brief Конструктор по умолчанию.
+* @brief Default constructor.
 */
     CPU();
 
 /**
- * @brief Конструктор с параметрами.
- * @param socket Сокет.
- * @param cores Количество ядер.
- * @param frequencyGhz Частота.
- * @param tempSensor Датчик температуры (по умолчанию nullptr).
+ * @brief Constructor with parameters.
+ * @param socket Socket.
+ * @param cores Number of cores.
+ * @param frequencyGhz Frequency.
+ * @param tempSensor Temperature sensor (default nullptr).
  */
     CPU(const std::string& socket,int cores,double frequencyGhz,Sensor* tempSensor=nullptr);
 
 /**
- * @brief Запускает нагрузку на процессор.
- * @param percent Процент нагрузки.
- * @exception InvalidConfigurationException если нагрузка вне диапазона от 0 до 100.
- * @exception OverheatingException при критической температуре.
+ * @brief Applies load to the processor.
+ * @param percent Load percentage.
+ * @exception InvalidConfigurationException if the load is outside the range from 0 to 100.
+ * @exception OverheatingException on critical temperature.
  */
     void runLoad(int percent);
 
 /**
- * @brief Проверяет совместимость сокета процессора с материнской платой.
- * @param boardSocket Сокет платы.
- * @exception IncompatibleSocketException при несовпадении.
+ * @brief Checks processor socket compatibility with the motherboard.
+ * @param boardSocket Motherboard socket.
+ * @exception IncompatibleSocketException on mismatch.
  */
     void checkSocket(const std::string& boardSocket);
 };

@@ -1,6 +1,6 @@
 /**
  * @file Inventory.h
- * @brief Объявление класса Inventory.
+ * @brief Declaration of the Inventory class.
  */
 #pragma once
 #include <string>
@@ -10,43 +10,43 @@ class Component;
 
 /**
  * @class Inventory
- * @brief Класс склада комплектующих.
+ * @brief Component warehouse class.
  * 
- * Позволяет добавлять компоненты на склад  
- * и забирать их по имени или производителю.
+ * Allows adding components to the warehouse 
+ * and taking them out by name or manufacturer.
  */
 class Inventory{
 private:
-    std::string warehouse;///<Название склада.
-    int capacity;///<Максимальная вместимость склада.
-    int takenCount;///<Количество выданных со склада предметов.
-    std::vector<Component*> items;///<Список хранимых компонентов.
+    std::string warehouse;///<Warehouse name.
+    int capacity;///<Maximum warehouse capacity.
+    int takenCount;///<Number of items issued from the warehouse.
+    std::vector<Component*> items;///<List of stored components.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Inventory();
 
 /**
- * @brief Конструктор с параметрами.
- * @param warehouse Название склада.
- * @param capacity Вместимость.
+ * @brief Constructor with parameters.
+ * @param warehouse Warehouse name.
+ * @param capacity Capacity.
  */
     Inventory(const std::string& warehouse,int capacity);
 
 /**
- * @brief Добавляет компонент на склад.
- * @param item Указатель на компонент.
- * @return Текущее количество предметов на складе.
- * @exception InventoryFullException если склад переполнен.
+ * @brief Adds a component to the warehouse.
+ * @param item Pointer to the component.
+ * @return Current number of items in the warehouse.
+ * @exception InventoryFullException if the warehouse is full.
  */
     int addItem(Component* item);
 
 /**
- * @brief Забирает компонент со склада по ключу (имени или производителю).
- * @param key Искомое значение.
- * @return Указатель на найденный компонент или nullptr, если не найден.
+ * @brief Takes a component from the warehouse by key (name or manufacturer).
+ * @param key The value to search for.
+ * @return Pointer to the found component or nullptr if not found.
  */
     Component* takeItem(const std::string& key);
 };

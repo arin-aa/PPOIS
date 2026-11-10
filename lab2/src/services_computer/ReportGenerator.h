@@ -1,6 +1,6 @@
 /**
  * @file ReportGenerator.h
- * @brief Объявление класса ReportGenerator.
+ * @brief Declaration of the ReportGenerator class.
  */
 #pragma once
 #include <string>
@@ -10,41 +10,41 @@ class File;
 
 /**
  * @class ReportGenerator
- * @brief Генератор отчетов о состоянии компьютера.
+ * @brief Computer state report generator.
  * 
- * Формирует строковое представление характеристик ПК и сохраняет его в файл.
+ * Generates a string representation of PC specifications and saves it to a file.
  */
 class ReportGenerator{
 private:
-    std::string format;///<Формат отчета.
-    std::string author;///<Автор отчета.
-    int reportsMade;///<Счетчик сгенерированных отчетов.
+    std::string format;///<Report format.
+    std::string author;///<Report author.
+    int reportsMade;///<Counter of generated reports.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     ReportGenerator();
 
 /**
- * @brief Конструктор с параметрами.
- * @param format Формат отчета.
- * @param author Автор.
+ * @brief Constructor with parameters.
+ * @param format Report format.
+ * @param author Author.
  */
     ReportGenerator(const std::string& format,const std::string& author);
 
 /**
- * @brief Генерирует текст отчета по данным компьютера.
- * @param computer Указатель на компьютер.
- * @return Строка с отчетом.
+ * @brief Generates report text based on computer data.
+ * @param computer Pointer to the computer.
+ * @return String with the report.
  */
     std::string generate(Computer* computer);
 
 /**
- * @brief Сохраняет готовый отчет в файл.
- * @param text Текст отчета.
- * @param file Указатель на файл для записи.
- * @exception UnauthorizedAccessException если файл доступен только для чтения.
+ * @brief Saves the finished report to a file.
+ * @param text Report text.
+ * @param file Pointer to the file for writing.
+ * @exception UnauthorizedAccessException if the file is read-only.
  */
     void save(const std::string& text,File* file);
 };

@@ -1,43 +1,43 @@
 /**
  * @file Monitor.h
- * @brief Объявление класса Monitor.
+ * @brief Declaration of the Monitor class.
  */
 #pragma once
 #include "Peripheral.h"
 
 /**
  * @class Monitor
- * @brief Класс монитора, наследуемый от Peripheral.
+ * @brief Monitor class, inheriting from Peripheral.
  */
 class Monitor:public Peripheral{
 private:
-    int widthPx;///<Ширина экрана в пикселях.
-    int heightPx;///<Высота экрана в пикселях.
-    int brightness; ///<Текущий уровень яркости.
+    int widthPx;///<Screen width in pixels.
+    int heightPx;///<Screen height in pixels.
+    int brightness; ///<Current brightness level.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Monitor();
 
 /**
- * @brief Конструктор с указанием разрешения экрана.
- * @param widthPx Ширина в пикселях.
- * @param heightPx Высота в пикселях.
+ * @brief Constructor with screen resolution specified.
+ * @param widthPx Width in pixels.
+ * @param heightPx Height in pixels.
  */
     Monitor(int widthPx,int heightPx);
 
 /**
- * @brief Изменяет уровень яркости.
- * @param delta Прирост или уменьшение яркости.
- * @return Итоговый уровень яркости в пределах от 0 до 100.
+ * @brief Changes the brightness level.
+ * @param delta Increase or decrease in brightness.
+ * @return Resulting brightness level within the range from 0 to 100.
  */
     int adjustBrightness(int delta);
 
 /**
- * @brief Вычисляет разрешение экрана в мегапикселях.
- * @return Количество мегапикселей.
+ * @brief Calculates the screen resolution in megapixels.
+ * @return Number of megapixels.
  */
     double megapixels();
 };

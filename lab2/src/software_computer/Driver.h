@@ -1,6 +1,6 @@
 /**
  * @file Driver.h
- * @brief Объявление класса Driver.
+ * @brief Declaration of the Driver class.
  */
 #pragma once
 #include "Software.h"
@@ -9,38 +9,38 @@ class Component;
 
 /**
  * @class Driver
- * @brief Класс драйвера устройства, наследуемый от Software.
+ * @brief Device driver class, inheriting from Software.
  */
 class Driver:public Software{
 private:
-    std::string deviceName;///<Имя устройства, для которого предназначен драйвер.
-    bool isSigned;///<Флаг наличия цифровой подписи.
-    int bindCount;///<Счетчик успешных привязок к устройствам.
+    std::string deviceName;///<Name of the device the driver is intended for.
+    bool isSigned;///<Digital signature presence flag.
+    int bindCount;///<Counter of successful bindings to devices.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Driver();
 
 /**
- * @brief Конструктор с параметрами.
- * @param name Название драйвера.
- * @param deviceName Имя устройства.
- * @param isSigned Наличие подписи.
+ * @brief Constructor with parameters.
+ * @param name Driver name.
+ * @param deviceName Device name.
+ * @param isSigned Signature presence.
  */
     Driver(const std::string& name,const std::string& deviceName,bool isSigned);
 
 /**
- * @brief Привязывает драйвер к компоненту.
- * @param part Указатель на компонент.
- * @exception DriverNotFoundException если драйвер не подходит к этому устройству.
+ * @brief Binds the driver to a component.
+ * @param part Pointer to the component.
+ * @exception DriverNotFoundException if the driver does not match this device.
  */
     void bind(Component* part);
 
 /**
- * @brief Загружает драйвер в систему.
- * @exception BootFailureException если драйвер не имеет цифровой подписи.
+ * @brief Loads the driver into the system.
+ * @exception BootFailureException if the driver does not have a digital signature.
  */
     void load();
 };

@@ -1,6 +1,6 @@
 /**
  * @file ComputerExceptions.h
- * @brief Иерархия пользовательских исключений для системы учета компьютерной техники.
+ * @brief Hierarchy of custom exceptions for the computer hardware accounting system.
  */
 #pragma once
 #include <stdexcept>
@@ -8,185 +8,185 @@
 
 /**
  * @class ComputerException
- * @brief Базовый класс для всех исключений предметной области.
+ * @brief Base class for all domain exceptions.
  * 
- * Наследуется от std::runtime_error, что позволяет перехватывать все
- * ошибки системы одним блоком catch (const ComputerException&).
+ * Inherits from std::runtime_error, which allows catching all
+ * system errors with a single catch block (const ComputerException&).
  */
 class ComputerException:public std::runtime_error{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit ComputerException(const std::string& message):std::runtime_error(message){}
 };
 
 /**
  * @class IncompatibleSocketException
- * @brief Исключение при несовместимости сокетов процессора и материнской платы.
+ * @brief Exception for incompatibility between the processor and motherboard sockets.
  */
 class IncompatibleSocketException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit IncompatibleSocketException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class InsufficientPowerException
- * @brief Исключение при недостаточной мощности блока питания.
+ * @brief Exception for insufficient power supply capacity.
  */
 class InsufficientPowerException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit InsufficientPowerException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class OverheatingException
- * @brief Исключение при критическом перегреве компонента.
+ * @brief Exception for critical overheating of a component.
  */
 class OverheatingException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit OverheatingException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class DriverNotFoundException
- * @brief Исключение, если драйвер не подходит к указанному устройству.
+ * @brief Exception if a driver does not match the specified device.
  */
 class DriverNotFoundException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit DriverNotFoundException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class MemoryOverflowException
- * @brief Исключение при нехватке оперативной или видеопамяти.
+ * @brief Exception for insufficient RAM or video memory.
  */
 class MemoryOverflowException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit MemoryOverflowException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class DiskFullException
- * @brief Исключение при переполнении дискового пространства.
+ * @brief Exception for disk space exhaustion.
  */
 class DiskFullException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit DiskFullException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class NetworkDisconnectedException
- * @brief Исключение при попытке передачи данных через отключенный сетевой интерфейс.
+ * @brief Exception when attempting to transfer data through a disconnected network interface.
  */
 class NetworkDisconnectedException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit NetworkDisconnectedException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class InvalidConfigurationException
- * @brief Исключение при некорректной конфигурации.
+ * @brief Exception for an invalid configuration.
  */
 class InvalidConfigurationException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit InvalidConfigurationException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class UnauthorizedAccessException
- * @brief Исключение при попытке несанкционированного доступа к компоненте.
+ * @brief Exception when attempting unauthorized access to a component.
  */
 class UnauthorizedAccessException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit UnauthorizedAccessException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class BootFailureException
- * @brief Исключение при невозможности загрузки системы или компонента.
+ * @brief Exception when the system or a component fails to boot.
  */
 class BootFailureException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit BootFailureException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class PeripheralNotRespondingException
- * @brief Исключение, если периферийное устройство не отвечает или отключено.
+ * @brief Exception if a peripheral device is not responding or is disconnected.
  */
 class PeripheralNotRespondingException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit PeripheralNotRespondingException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class InventoryFullException
- * @brief Исключение при попытке добавить предмет на переполненный склад.
+ * @brief Exception when attempting to add an item to a full warehouse.
  */
 class InventoryFullException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit InventoryFullException(const std::string& message):ComputerException(message){}
 };
 
 /**
  * @class InvalidAddressException
- * @brief Исключение при некорректном формате IP- или MAC-адреса.
+ * @brief Exception for an invalid IP or MAC address format.
  */
 class InvalidAddressException:public ComputerException{
 public:
 /**
- * @brief Конструктор с сообщением об ошибке.
- * @param message Текст ошибки.
+ * @brief Constructor with an error message.
+ * @param message Error text.
  */
     explicit InvalidAddressException(const std::string& message):ComputerException(message){}
 };

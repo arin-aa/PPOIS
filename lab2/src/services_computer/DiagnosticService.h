@@ -1,6 +1,6 @@
 /**
  * @file DiagnosticService.h
- * @brief Объявление класса DiagnosticService.
+ * @brief Declaration of the DiagnosticService class.
  */
 #pragma once
 
@@ -9,42 +9,42 @@ class Computer;
 
 /**
  * @class DiagnosticService
- * @brief Сервис диагностики компьютера.
+ * @brief Computer diagnostic service.
  * 
- * Проверяет состояние системы на наличие проблем с питанием и дисковым пространством, 
- * логирует их и вычисляет общий показатель состояния.
+ * Checks the system state for power and disk space issues, 
+ * logs them, and calculates an overall health score.
  */
 class DiagnosticService{
 private:
-    int issuesFound;///<Общее количество найденных проблем.
-    int lowReserveWatts;///<Порог низкого резерва мощности.
-    int lowDiskGb;///<Порог низкого свободного места.
-    Logger* logger;///<Указатель на объект логгера.
+    int issuesFound;///<Total number of issues found.
+    int lowReserveWatts;///<Low power reserve threshold.
+    int lowDiskGb;///<Low free space threshold.
+    Logger* logger;///<Pointer to the logger object.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     DiagnosticService();
 
 /**
- * @brief Конструктор с параметрами.
- * @param lowReserveWatts Порог резерва мощности.
- * @param lowDiskGb Порог свободного места.
- * @param logger Указатель на логгер.
+ * @brief Constructor with parameters.
+ * @param lowReserveWatts Power reserve threshold.
+ * @param lowDiskGb Free space threshold.
+ * @param logger Pointer to the logger.
  */
     DiagnosticService(int lowReserveWatts,int lowDiskGb,Logger* logger);
 
 /**
- * @brief Сканирует компьютер на наличие проблем.
- * @param computer Указатель на проверяемый компьютер.
- * @return Общее количество найденных проблем на текущий момент.
+ * @brief Scans the computer for issues.
+ * @param computer Pointer to the computer being checked.
+ * @return Total number of issues found so far.
  */
     int scan(Computer* computer);
 
 /**
- * @brief Вычисляет показатель состояния системы.
- * @return Оценка от 0 до 100 (каждая проблема снижает оценку на 25 баллов).
+ * @brief Calculates the system health score.
+ * @return Score from 0 to 100 (each issue reduces the score by 25 points).
  */ 
     int healthScore();
 };

@@ -1,53 +1,53 @@
 /**
  * @file Component.h
- * @brief Объявление базового класса Component.
+ * @brief Declaration of the base class Component.
  */
 #pragma once
 #include <string>
 
 /**
  * @class Component
- * @brief Базовый класс для всех комплектующих компьютера.
+ * @brief Base class for all computer components.
  * 
- * Содержит общие свойства (название, производитель, потребляемая мощность) 
- * и методы для идентификации и расчета нагрузки.
+ * Contains common properties (name, manufacturer, power consumption) 
+ * and methods for identification and load calculation.
  */
 class Component{
 protected:
-    std::string name;///<Название компонента.
-    std::string manufacturer;///<Производитель.
-    int powerWatts;///<Потребляемая мощность
+    std::string name;///<Component name.
+    std::string manufacturer;///<Manufacturer.
+    int powerWatts;///<Power consumption
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Component();
 
 /**
- * @brief Конструктор с параметрами.
- * @param name Название компонента.
- * @param manufacturer Производитель.
- * @param powerWatts Потребляемая мощность (в ваттах).
+ * @brief Constructor with parameters.
+ * @param name Component name.
+ * @param manufacturer Manufacturer.
+ * @param powerWatts Power consumption (in watts).
  */
     Component(const std::string& name,const std::string& manufacturer,int powerWatts);
 
 /**
- * @brief Виртуальный деструктор по умолчанию.
+ * @brief Virtual default destructor.
  */
     virtual ~Component()=default;
 
 /**
- * @brief Проверяет, совпадает ли переданная строка с именем или производителем.
- * @param key Искомая строка.
- * @return true, если совпадение найдено.
+ * @brief Checks whether the passed string matches the name or manufacturer.
+ * @param key The string to search for.
+ * @return true if a match is found.
  */
     bool isNamed(const std::string& key);
 
 /**
- * @brief Рассчитывает текущее энергопотребление с учетом нагрузки.
- * @param loadPercent Процент нагрузки.
- * @return Потребляемая мощность.
+ * @brief Calculates current power consumption taking load into account.
+ * @param loadPercent Load percentage.
+ * @return Power consumption.
  */
     int draw(int loadPercent);
 };

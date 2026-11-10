@@ -1,6 +1,6 @@
 /**
  * @file OperatingSystem.h
- * @brief Объявление класса OperatingSystem.
+ * @brief Declaration of the OperatingSystem class.
  */
 #pragma once
 #include <vector>
@@ -11,55 +11,55 @@ class Driver;
 
 /**
  * @class OperatingSystem
- * @brief Класс операционной системы, наследуемый от Software.
+ * @brief Operating system class, inheriting from Software.
  * 
- * Управляет загрузкой драйверов и жизненным циклом процессов.
+ * Manages driver loading and the process lifecycle.
  */
 class OperatingSystem:public Software{
 private:
-    bool isBooted;///<Флаг, указывающий, запущена ли ОС.
-    int nextPid;///<Следующий доступный идентификатор процесса.
-    std::vector<Process> processes;///<Список запущенных процессов.
-    std::vector<Driver*> drivers;///<Список установленных драйверов.
+    bool isBooted;///<Flag indicating whether the OS is booted.
+    int nextPid;///<Next available process identifier.
+    std::vector<Process> processes;///<List of running processes.
+    std::vector<Driver*> drivers;///<List of installed drivers.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     OperatingSystem();
 
 /**
- * @brief Конструктор с параметрами.
- * @param name Название ОС.
- * @param sizeMb Размер ОС в МБ.
+ * @brief Constructor with parameters.
+ * @param name OS name.
+ * @param sizeMb OS size in MB.
  */
     OperatingSystem(const std::string& name,int sizeMb);
 
 /**
- * @brief Загружает операционную систему.
- * @exception BootFailureException если ОС не установлена или содержит неподписанные драйверы.
+ * @brief Boots the operating system.
+ * @exception BootFailureException if the OS is not installed or contains unsigned drivers.
  */
     void boot();
 
 /**
- * @brief Добавляет драйвер в систему.
- * @param driver Указатель на драйвер.
+ * @brief Adds a driver to the system.
+ * @param driver Pointer to the driver.
  */
     void addDriver(Driver* driver);
 
 /**
- * @brief Запускает новый процесс.
- * @param process Указатель на процесс.
- * @param freeRamMb Доступная оперативная память.
- * @return Идентификатор запущенного процесса.
- * @exception BootFailureException если ОС еще не загружена.
+ * @brief Starts a new process.
+ * @param process Pointer to the process.
+ * @param freeRamMb Available RAM.
+ * @return Identifier of the started process.
+ * @exception BootFailureException if the OS is not booted yet.
  */
     int startProcess(Process* process,int freeRamMb);
 
 /**
- * @brief Завершает процесс по его идентификатору.
- * @param pid Идентификатор процесса.
- * @return Освобожденная память в МБ, или возвращает -1, если процесс не найден.
+ * @brief Terminates a process by its identifier.
+ * @param pid Process identifier.
+ * @return Freed memory in MB, or returns -1 if the process is not found.
  */
     int killProcess(int pid);
 };

@@ -1,42 +1,42 @@
 /**
  * @file Keyboard.h
- * @brief Объявление класса Keyboard.
+ * @brief Declaration of the Keyboard class.
  */
 #pragma once
 #include "Peripheral.h"
 
 /**
  * @class Keyboard
- * @brief Класс клавиатуры, наследуемый от Peripheral.
+ * @brief Keyboard class, inheriting from Peripheral.
  */
 class Keyboard:public Peripheral{
 private:
-    std::string layout;///<Текущая раскладка клавиатуры.
-    int keyPresses;///<Счетчик нажатий клавиш.
+    std::string layout;///<Current keyboard layout.
+    int keyPresses;///<Key press counter.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Keyboard();
 
 /**
- * @brief Конструктор с указанием раскладки.
- * @param layout Начальная раскладка.
+ * @brief Constructor with layout specified.
+ * @param layout Initial layout.
  */
     explicit Keyboard(const std::string& layout);
 
 /**
- * @brief Переключает раскладку клавиатуры.
- * @param newLayout Новая раскладка ("EN", "RU", "DE").
- * @exception InvalidConfigurationException если раскладка не поддерживается.
+ * @brief Switches the keyboard layout.
+ * @param newLayout New layout ("EN", "RU", "DE").
+ * @exception InvalidConfigurationException if the layout is not supported.
  */
     void switchLayout(const std::string& newLayout);
 
 /**
- * @brief Имитирует нажатие клавиш.
- * @param count Количество нажатий.
- * @return Общее количество нажатий за все время.
+ * @brief Simulates key presses.
+ * @param count Number of presses.
+ * @return Total number of presses over all time.
  */
     int press(int count);
 };

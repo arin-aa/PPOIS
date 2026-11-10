@@ -1,48 +1,48 @@
 /**
  * @file Application.h
- * @brief Объявление класса Application.
+ * @brief Declaration of the Application class.
  */
 #pragma once
 #include "Software.h"
 
 /**
  * @class Application
- * @brief Класс пользовательского приложения, наследуемый от Software.
+ * @brief User application class, inheriting from Software.
  */
 class Application:public Software{
 private:
-    int requiredRamMb;///<Требуемый объем оперативной памяти.
-    std::string licenseKey;//<Лицензионный ключ приложения.
-    int launches;///<Счетчик успешных запусков.
+    int requiredRamMb;///<Required amount of RAM.
+    std::string licenseKey;//<Application license key.
+    int launches;///<Counter of successful launches.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Application();
 
 /**
- * @brief Конструктор с параметрами.
- * @param name Название приложения.
- * @param sizeMb Размер в МБ.
- * @param requiredRamMb Требуемая оперативная память.
- * @param licenseKey Лицензионный ключ.
+ * @brief Constructor with parameters.
+ * @param name Application name.
+ * @param sizeMb Size in MB.
+ * @param requiredRamMb Required RAM.
+ * @param licenseKey License key.
  */
     Application(const std::string& name,int sizeMb,int requiredRamMb,const std::string& licenseKey);
 
 /**
- * @brief Проверяет правильность лицензионного ключа.
- * @param key Проверяемый ключ.
- * @return true, если ключ совпадает и не пуст.
+ * @brief Checks the validity of the license key.
+ * @param key The key to check.
+ * @return true if the key matches and is not empty.
  */
     bool checkLicense(const std::string& key);
 
 /**
- * @brief Запускает приложение.
- * @param freeRamMb Доступная свободная оперативная память.
- * @return Оставшаяся свободная память после запуска.
- * @exception InvalidConfigurationException если приложение не установлено.
- * @exception MemoryOverflowException если недостаточно оперативной памяти.
+ * @brief Launches the application.
+ * @param freeRamMb Available free RAM.
+ * @return Remaining free memory after launch.
+ * @exception InvalidConfigurationException if the application is not installed.
+ * @exception MemoryOverflowException if there is not enough RAM.
  */
     int launch(int freeRamMb);
 };

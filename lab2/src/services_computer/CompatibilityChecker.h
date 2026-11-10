@@ -1,41 +1,41 @@
 /**
  * @file CompatibilityChecker.h
- * @brief Объявление класса CompatibilityChecker.
+ * @brief Declaration of the CompatibilityChecker class.
  */
 #pragma once
 
 /**
  * @class CompatibilityChecker
- * @brief Класс для проверки совместимости блока питания и энергопотребления.
+ * @brief Class for checking power supply and power consumption compatibility.
  * 
- * Позволяет рассчитать резерв мощности и выбросить исключение, 
- * если резерв ниже минимально допустимого.
+ * Allows calculating the power reserve and throwing an exception 
+ * if the reserve is below the minimum allowed.
  */
 class CompatibilityChecker{
 private:
-    bool strictMode;///<Флаг строгого режима проверки.
-    int checksDone;///<Счетчик выполненных проверок.
-    int minReserveWatts;///<Минимально допустимый резерв мощности в ваттах.
+    bool strictMode;///<Strict checking mode flag.
+    int checksDone;///<Counter of performed checks.
+    int minReserveWatts;///<Minimum allowed power reserve in watts.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     CompatibilityChecker();
 
 /**
- * @brief Конструктор с параметрами.
- * @param strictMode Включить ли строгий режим.
- * @param minReserveWatts Минимальный резерв мощности.
+ * @brief Constructor with parameters.
+ * @param strictMode Whether to enable strict mode.
+ * @param minReserveWatts Minimum power reserve.
  */
     CompatibilityChecker(bool strictMode,int minReserveWatts);
 
 /**
- * @brief Проверяет достаточно ли мощности блока питания.
- * @param supplyWatts Мощность блока питания.
- * @param demandWatts Требуемая мощность.
- * @return Резерв мощности (разница между supplyWatts и demandWatts).
- * @exception InsufficientPowerException если в строгом режиме резерв меньше минимального.
+ * @brief Checks whether the power supply capacity is sufficient.
+ * @param supplyWatts Power supply wattage.
+ * @param demandWatts Required wattage.
+ * @return Power reserve (difference between supplyWatts and demandWatts).
+ * @exception InsufficientPowerException if in strict mode the reserve is less than the minimum.
  */
     int checkPower(int supplyWatts,int demandWatts);
 };

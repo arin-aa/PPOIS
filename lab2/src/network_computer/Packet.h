@@ -1,6 +1,6 @@
 /**
  * @file Packet.h
- * @brief Объявление класса Packet.
+ * @brief Declaration of the Packet class.
  */
 #pragma once
 #include <string>
@@ -9,43 +9,43 @@ class IpAddress;
 
 /**
  * @class Packet
- * @brief Класс сетевого пакета.
+ * @brief Network packet class.
  * 
- * Содержит информацию об отправителе, получателе, размере пакета 
- * и времени жизни (TTL).
+ * Contains information about the sender, recipient, packet size, 
+ * and time to live (TTL).
  */
 class Packet{
 private:
-    IpAddress* source;///<Указатель на IP-адрес отправителя.
-    std::string destination;///<IP-адрес получателя.
-    int sizeBytes;///<Размер пакета в байтах.
-    int ttl;///<Время жизни пакета.
+    IpAddress* source;///<Pointer to the sender's IP address.
+    std::string destination;///<Recipient's IP address.
+    int sizeBytes;///<Packet size in bytes.
+    int ttl;///<Packet time to live.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Packet();
 
 /**
- * @brief Конструктор с параметрами.
- * @param source Указатель на IP отправителя.
- * @param destination IP получателя.
- * @param sizeBytes Размер в байтах.
- * @param ttl Время жизни.
+ * @brief Constructor with parameters.
+ * @param source Pointer to the sender's IP.
+ * @param destination Recipient's IP.
+ * @param sizeBytes Size in bytes.
+ * @param ttl Time to live.
  */
     Packet(IpAddress* source,const std::string& destination,int sizeBytes,int ttl);
 
 /**
- * @brief Продвигает пакет по сети, то есть уменьшает TTL.
- * @return Размер пакета в битах.
- * @exception NetworkDisconnectedException если TTL истек.
+ * @brief Forwards the packet through the network, i.e., decrements the TTL.
+ * @return Packet size in bits.
+ * @exception NetworkDisconnectedException if the TTL has expired.
  */
     int forward();
 
 /**
- * @brief Проверяет, находится ли получатель в локальной подсети.
- * @return true, если отправитель и получатель в одной подсети.
+ * @brief Checks whether the recipient is in the local subnet.
+ * @return true if the sender and recipient are in the same subnet.
  */
     bool isLocal();
 };

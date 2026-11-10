@@ -1,6 +1,6 @@
 /**
  * @file Technician.h
- * @brief Объявление класса Technician.
+ * @brief Declaration of the Technician class.
  */
 #pragma once
 #include "User.h"
@@ -10,45 +10,45 @@ class Component;
 
 /**
  * @class Technician
- * @brief Класс техника, наследуемый от User.
+ * @brief Technician class, inheriting from User.
  * 
- * Представляет сотрудника сервисного центра, который может выполнять ремонт 
- * и заказывать детали со склада.
+ * Represents a service center employee who can perform repairs 
+ * and order parts from the warehouse.
  */
 class Technician:public User{
 private:
-    std::string specialization;///<Специализация техника.
-    int experienceYears;///<Стаж работы в годах.
-    int repairsDone;///<Количество выполненных ремонтов.
+    std::string specialization;///<Technician specialization.
+    int experienceYears;///<Work experience in years.
+    int repairsDone;///<Number of completed repairs.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Technician();
 
 /**
- * @brief Конструктор с параметрами.
- * @param login Логин.
- * @param password Пароль.
- * @param specialization Специализация.
- * @param experienceYears Стаж.
+ * @brief Constructor with parameters.
+ * @param login Login.
+ * @param password Password.
+ * @param specialization Specialization.
+ * @param experienceYears Experience.
  */
     Technician(const std::string& login,const std::string& password,const std::string& specialization,int experienceYears);
 
 /**
- * @brief Рассчитывает стоимость работы техника.
- * @param hours Количество затраченных часов.
- * @return Итоговая стоимость.
+ * @brief Calculates the cost of the technician's work.
+ * @param hours Number of hours spent.
+ * @return Total cost.
  */
     int estimate(int hours);
 
 /**
- * @brief Заказывает деталь со склада.
- * @param stock Указатель на склад.
- * @param key Искомый ключ (имя или производитель).
- * @return Указатель на полученную деталь.
- * @exception InvalidConfigurationException если детали нет на складе.
+ * @brief Orders a part from the warehouse.
+ * @param stock Pointer to the warehouse.
+ * @param key The search key (name or manufacturer).
+ * @return Pointer to the received part.
+ * @exception InvalidConfigurationException if the part is not in the warehouse.
  */
     Component* orderPart(Inventory* stock,const std::string& key);
 };
