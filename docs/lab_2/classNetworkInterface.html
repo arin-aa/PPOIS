@@ -92,7 +92,7 @@ $(function(){initNavTree('classNetworkInterface.html','','classNetworkInterface-
 </div><!--header-->
 <div class="contents">
 
-<p>Класс сетевого интерфейса (сетевой карты).  
+<p>Network interface (network card) class.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;NetworkInterface.h&gt;</code></p>
@@ -100,28 +100,28 @@ $(function(){initNavTree('classNetworkInterface.html','','classNetworkInterface-
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abf59552fdde86426011d5a6496efcad5" id="r_abf59552fdde86426011d5a6496efcad5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf59552fdde86426011d5a6496efcad5">NetworkInterface</a> ()</td></tr>
-<tr class="memdesc:abf59552fdde86426011d5a6496efcad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:abf59552fdde86426011d5a6496efcad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:aefdc4f2c6441695206eeb64616f9d9ba" id="r_aefdc4f2c6441695206eeb64616f9d9ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefdc4f2c6441695206eeb64616f9d9ba">NetworkInterface</a> (int <a class="el" href="#a56b7e997d120d503b9f621b54f2e9f01">speedMbps</a>)</td></tr>
-<tr class="memdesc:aefdc4f2c6441695206eeb64616f9d9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с указанием скорости.  <br /></td></tr>
+<tr class="memdesc:aefdc4f2c6441695206eeb64616f9d9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with speed specified.  <br /></td></tr>
 <tr class="memitem:a78ab5b86e7e173e7eaa62bf9843cf133" id="r_a78ab5b86e7e173e7eaa62bf9843cf133"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78ab5b86e7e173e7eaa62bf9843cf133">connect</a> (<a class="el" href="classIpAddress.html">IpAddress</a> *newIp)</td></tr>
-<tr class="memdesc:a78ab5b86e7e173e7eaa62bf9843cf133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Подключает IP-адрес к интерфейсу.  <br /></td></tr>
+<tr class="memdesc:a78ab5b86e7e173e7eaa62bf9843cf133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects an IP address to the interface.  <br /></td></tr>
 <tr class="memitem:a60fd8279d14811e77829e566587c82fa" id="r_a60fd8279d14811e77829e566587c82fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60fd8279d14811e77829e566587c82fa">transmitNs</a> (int bits)</td></tr>
-<tr class="memdesc:a60fd8279d14811e77829e566587c82fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Рассчитывает время передачи заданного количества бит.  <br /></td></tr>
+<tr class="memdesc:a60fd8279d14811e77829e566587c82fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the transmission time for a given number of bits.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a286d3a904fa23cd13dab1ee3a93aa9f9" id="r_a286d3a904fa23cd13dab1ee3a93aa9f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a286d3a904fa23cd13dab1ee3a93aa9f9">isUp</a></td></tr>
-<tr class="memdesc:a286d3a904fa23cd13dab1ee3a93aa9f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Флаг активности интерфейса.  <br /></td></tr>
+<tr class="memdesc:a286d3a904fa23cd13dab1ee3a93aa9f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface activity flag.  <br /></td></tr>
 <tr class="memitem:a56b7e997d120d503b9f621b54f2e9f01" id="r_a56b7e997d120d503b9f621b54f2e9f01"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56b7e997d120d503b9f621b54f2e9f01">speedMbps</a></td></tr>
-<tr class="memdesc:a56b7e997d120d503b9f621b54f2e9f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Пропускная способность.  <br /></td></tr>
+<tr class="memdesc:a56b7e997d120d503b9f621b54f2e9f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throughput.  <br /></td></tr>
 <tr class="memitem:a14d6556883d87ba912ab5700a23db169" id="r_a14d6556883d87ba912ab5700a23db169"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14d6556883d87ba912ab5700a23db169">bytesSent</a></td></tr>
-<tr class="memdesc:a14d6556883d87ba912ab5700a23db169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Счетчик отправленных байт.  <br /></td></tr>
+<tr class="memdesc:a14d6556883d87ba912ab5700a23db169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter of sent bytes.  <br /></td></tr>
 <tr class="memitem:ac375989c0adc58d475d4280d981ecc05" id="r_ac375989c0adc58d475d4280d981ecc05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIpAddress.html">IpAddress</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac375989c0adc58d475d4280d981ecc05">ip</a></td></tr>
-<tr class="memdesc:ac375989c0adc58d475d4280d981ecc05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на привязанный IP-адрес.  <br /></td></tr>
+<tr class="memdesc:ac375989c0adc58d475d4280d981ecc05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the bound IP address.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Класс сетевого интерфейса (сетевой карты). </p>
-<p>Управляет состоянием соединения, привязкой IP-адреса и передачей данных. </p>
+<div class="textblock"><p>Network interface (network card) class. </p>
+<p>Manages the connection state, IP address binding, and data transmission. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abf59552fdde86426011d5a6496efcad5" name="abf59552fdde86426011d5a6496efcad5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf59552fdde86426011d5a6496efcad5">&#9670;&#160;</a></span>NetworkInterface() <span class="overload">[1/2]</span></h2>
@@ -138,7 +138,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -165,10 +165,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Конструктор с указанием скорости. </p>
+<p>Constructor with speed specified. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">speedMbps</td><td>Скорость в Мбит/с. </td></tr>
+    <tr><td class="paramname">speedMbps</td><td>Speed in Mbps. </td></tr>
   </table>
   </dd>
 </dl>
@@ -191,16 +191,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Подключает IP-адрес к интерфейсу. </p>
+<p>Connects an IP address to the interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newIp</td><td>Указатель на объект IP-адреса. </td></tr>
+    <tr><td class="paramname">newIp</td><td>Pointer to the IP address object. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classInvalidAddressException.html" title="Исключение при некорректном формате IP- или MAC-адреса.">InvalidAddressException</a></td><td>если переданный IP некорректен. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classInvalidAddressException.html" title="Exception for an invalid IP or MAC address format.">InvalidAddressException</a></td><td>if the passed IP is invalid. </td></tr>
   </table>
   </dd>
 </dl>
@@ -222,17 +222,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Рассчитывает время передачи заданного количества бит. </p>
+<p>Calculates the transmission time for a given number of bits. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bits</td><td>Количество бит для передачи. </td></tr>
+    <tr><td class="paramname">bits</td><td>Number of bits to transmit. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Время передачи в наносекундах. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Transmission time in nanoseconds. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classNetworkDisconnectedException.html" title="Исключение при попытке передачи данных через отключенный сетевой интерфейс.">NetworkDisconnectedException</a></td><td>если интерфейс выключен или нет IP. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classNetworkDisconnectedException.html" title="Exception when attempting to transfer data through a disconnected network interface.">NetworkDisconnectedException</a></td><td>if the interface is down or there is no IP. </td></tr>
   </table>
   </dd>
 </dl>
@@ -260,7 +260,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Счетчик отправленных байт. </p>
+<p>Counter of sent bytes. </p>
 
 </div>
 </div>
@@ -284,7 +284,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Указатель на привязанный IP-адрес. </p>
+<p>Pointer to the bound IP address. </p>
 
 </div>
 </div>
@@ -308,7 +308,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Флаг активности интерфейса. </p>
+<p>Interface activity flag. </p>
 
 </div>
 </div>
@@ -332,7 +332,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Пропускная способность. </p>
+<p>Throughput. </p>
 
 </div>
 </div>

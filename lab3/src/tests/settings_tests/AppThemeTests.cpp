@@ -1,0 +1,20 @@
+#include <catch2/catch_test_macros.hpp>
+#include "AppTheme.h"
+
+TEST_CASE("AppTheme: Dark Mode Toggle") {
+    SECTION("Toggle from light to dark and back") {
+        AppTheme theme("Classic", false, "blue");
+        
+        // Изначально false, после тогла должно стать true
+        REQUIRE(theme.toggleDarkMode() == true);
+        // После второго тогла снова false
+        REQUIRE(theme.toggleDarkMode() == false);
+        REQUIRE(theme.toggleDarkMode() == true);
+    }
+
+    SECTION("Toggle starting from dark mode") {
+        AppTheme theme("Dark", true, "red");
+        // Изначально true, после тогла false
+        REQUIRE(theme.toggleDarkMode() == false);
+    }
+}

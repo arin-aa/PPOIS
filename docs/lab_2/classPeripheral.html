@@ -92,7 +92,7 @@ $(function(){initNavTree('classPeripheral.html','','classPeripheral-members'); }
 </div><!--header-->
 <div class="contents">
 
-<p>Базовый класс для всех периферийных устройств.  
+<p>Base class for all peripheral devices.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;Peripheral.h&gt;</code></p>
@@ -102,40 +102,40 @@ Inheritance diagram for Peripheral:</div>
  <div class="center">
   <img src="classPeripheral.png" usemap="#Peripheral_map" alt=""/>
   <map id="Peripheral_map" name="Peripheral_map">
-<area href="classKeyboard.html" title="Класс клавиатуры, наследуемый от Peripheral." alt="Keyboard" shape="rect" coords="0,56,71,80"/>
-<area href="classMonitor.html" title="Класс монитора, наследуемый от Peripheral." alt="Monitor" shape="rect" coords="81,56,152,80"/>
-<area href="classMouse.html" title="Класс компьютерной мыши, наследуемый от Peripheral." alt="Mouse" shape="rect" coords="162,56,233,80"/>
-<area href="classPrinter.html" title="Класс принтера, наследуемый от Peripheral." alt="Printer" shape="rect" coords="243,56,314,80"/>
-<area href="classScanner.html" title="Класс сканера, наследуемый от Peripheral." alt="Scanner" shape="rect" coords="324,56,395,80"/>
-<area href="classWebcam.html" title="Класс веб-камеры, наследуемый от Peripheral." alt="Webcam" shape="rect" coords="405,56,476,80"/>
+<area href="classKeyboard.html" title="Keyboard class, inheriting from Peripheral." alt="Keyboard" shape="rect" coords="0,56,71,80"/>
+<area href="classMonitor.html" title="Monitor class, inheriting from Peripheral." alt="Monitor" shape="rect" coords="81,56,152,80"/>
+<area href="classMouse.html" title="Computer mouse class, inheriting from Peripheral." alt="Mouse" shape="rect" coords="162,56,233,80"/>
+<area href="classPrinter.html" title="Printer class, inheriting from Peripheral." alt="Printer" shape="rect" coords="243,56,314,80"/>
+<area href="classScanner.html" title="Scanner class, inheriting from Peripheral." alt="Scanner" shape="rect" coords="324,56,395,80"/>
+<area href="classWebcam.html" title="Webcam class, inheriting from Peripheral." alt="Webcam" shape="rect" coords="405,56,476,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4708dda69e5c74d090aff63b7cd321fe" id="r_a4708dda69e5c74d090aff63b7cd321fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4708dda69e5c74d090aff63b7cd321fe">Peripheral</a> ()</td></tr>
-<tr class="memdesc:a4708dda69e5c74d090aff63b7cd321fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a4708dda69e5c74d090aff63b7cd321fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a2c611748b68348e8421320566fc3359b" id="r_a2c611748b68348e8421320566fc3359b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c611748b68348e8421320566fc3359b">Peripheral</a> (const std::string &amp;<a class="el" href="#a4400b59a5177e2bcbdeee836e1c43d16">name</a>)</td></tr>
-<tr class="memdesc:a2c611748b68348e8421320566fc3359b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с указанием имени устройства.  <br /></td></tr>
+<tr class="memdesc:a2c611748b68348e8421320566fc3359b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with device name specified.  <br /></td></tr>
 <tr class="memitem:a95bd72abaee85eef3f2c9ca3d5443e1d" id="r_a95bd72abaee85eef3f2c9ca3d5443e1d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95bd72abaee85eef3f2c9ca3d5443e1d">~Peripheral</a> ()=default</td></tr>
-<tr class="memdesc:a95bd72abaee85eef3f2c9ca3d5443e1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Виртуальный деструктор по умолчанию default.  <br /></td></tr>
+<tr class="memdesc:a95bd72abaee85eef3f2c9ca3d5443e1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual default destructor.  <br /></td></tr>
 <tr class="memitem:a758f0a9bf2073ee26f89a3c19fe99cb1" id="r_a758f0a9bf2073ee26f89a3c19fe99cb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a758f0a9bf2073ee26f89a3c19fe99cb1">connectTo</a> (<a class="el" href="classPort.html">Port</a> *targetPort)</td></tr>
-<tr class="memdesc:a758f0a9bf2073ee26f89a3c19fe99cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Подключает устройство к заданному порту.  <br /></td></tr>
+<tr class="memdesc:a758f0a9bf2073ee26f89a3c19fe99cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects the device to the specified port.  <br /></td></tr>
 <tr class="memitem:a4219442c91ce9c41d8cf1294dddcd5b5" id="r_a4219442c91ce9c41d8cf1294dddcd5b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4219442c91ce9c41d8cf1294dddcd5b5">ping</a> ()</td></tr>
-<tr class="memdesc:a4219442c91ce9c41d8cf1294dddcd5b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет отклик устройства.  <br /></td></tr>
+<tr class="memdesc:a4219442c91ce9c41d8cf1294dddcd5b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the device response.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a4400b59a5177e2bcbdeee836e1c43d16" id="r_a4400b59a5177e2bcbdeee836e1c43d16"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4400b59a5177e2bcbdeee836e1c43d16">name</a></td></tr>
-<tr class="memdesc:a4400b59a5177e2bcbdeee836e1c43d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Название периферийного устройства.  <br /></td></tr>
+<tr class="memdesc:a4400b59a5177e2bcbdeee836e1c43d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the peripheral device.  <br /></td></tr>
 <tr class="memitem:aa184d23a3ada95dc4f66eac4f93d0d77" id="r_aa184d23a3ada95dc4f66eac4f93d0d77"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa184d23a3ada95dc4f66eac4f93d0d77">isConnected</a></td></tr>
-<tr class="memdesc:aa184d23a3ada95dc4f66eac4f93d0d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Флаг, указывающий, подключено ли устройство.  <br /></td></tr>
+<tr class="memdesc:aa184d23a3ada95dc4f66eac4f93d0d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether the device is connected.  <br /></td></tr>
 <tr class="memitem:aa00d8bcb5416875346ac94d208f53d13" id="r_aa00d8bcb5416875346ac94d208f53d13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPort.html">Port</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa00d8bcb5416875346ac94d208f53d13">port</a></td></tr>
-<tr class="memdesc:aa00d8bcb5416875346ac94d208f53d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на порт, к которому подключено устройство.  <br /></td></tr>
+<tr class="memdesc:aa00d8bcb5416875346ac94d208f53d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the port to which the device is connected.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Базовый класс для всех периферийных устройств. </p>
-<p>Хранит общие свойства (название, статус подключения) и предоставляет базовые методы для работы с портами. </p>
+<div class="textblock"><p>Base class for all peripheral devices. </p>
+<p>Stores common properties (name, connection status) and provides basic methods for working with ports. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4708dda69e5c74d090aff63b7cd321fe" name="a4708dda69e5c74d090aff63b7cd321fe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4708dda69e5c74d090aff63b7cd321fe">&#9670;&#160;</a></span>Peripheral() <span class="overload">[1/2]</span></h2>
@@ -152,7 +152,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -179,10 +179,10 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Конструктор с указанием имени устройства. </p>
+<p>Constructor with device name specified. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Название устройства. </td></tr>
+    <tr><td class="paramname">name</td><td>Device name. </td></tr>
   </table>
   </dd>
 </dl>
@@ -212,7 +212,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Виртуальный деструктор по умолчанию default. </p>
+<p>Virtual default destructor. </p>
 
 </div>
 </div>
@@ -232,16 +232,16 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Подключает устройство к заданному порту. </p>
+<p>Connects the device to the specified port. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">targetPort</td><td>Указатель на порт. </td></tr>
+    <tr><td class="paramname">targetPort</td><td>Pointer to the port. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classPeripheralNotRespondingException.html" title="Исключение, если периферийное устройство не отвечает или отключено.">PeripheralNotRespondingException</a></td><td>если порт не отвечает. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classPeripheralNotRespondingException.html" title="Exception if a peripheral device is not responding or is disconnected.">PeripheralNotRespondingException</a></td><td>if the port does not respond. </td></tr>
   </table>
   </dd>
 </dl>
@@ -263,11 +263,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Проверяет отклик устройства. </p>
-<dl class="section return"><dt>Returns</dt><dd>Задержка отклика в наносекундах. </dd></dl>
+<p>Checks the device response. </p>
+<dl class="section return"><dt>Returns</dt><dd>Response latency in nanoseconds. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classPeripheralNotRespondingException.html" title="Исключение, если периферийное устройство не отвечает или отключено.">PeripheralNotRespondingException</a></td><td>если устройство не подключено или нет сигнала. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classPeripheralNotRespondingException.html" title="Exception if a peripheral device is not responding or is disconnected.">PeripheralNotRespondingException</a></td><td>if the device is not connected or there is no signal. </td></tr>
   </table>
   </dd>
 </dl>
@@ -295,7 +295,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Флаг, указывающий, подключено ли устройство. </p>
+<p>Flag indicating whether the device is connected. </p>
 
 </div>
 </div>
@@ -319,7 +319,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Название периферийного устройства. </p>
+<p>Name of the peripheral device. </p>
 
 </div>
 </div>
@@ -343,7 +343,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Указатель на порт, к которому подключено устройство. </p>
+<p>Pointer to the port to which the device is connected. </p>
 
 </div>
 </div>

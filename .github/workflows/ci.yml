@@ -162,7 +162,7 @@ jobs:
         run: |
           cd lab2
           g++ -std=c++17 --coverage \
-              src/tests/*.cpp \
+              $(find src/tests -name '*.cpp') \
               $(find src -name '*.cpp' ! -path 'src/tests/*' ! -name 'main.cpp') \
               -I src/exceptions -I src/core_computer -I src/hardware_computer \
               -I src/network_computer -I src/peripherals_computer -I src/services_computer \

@@ -92,7 +92,7 @@ $(function(){initNavTree('classCPU.html','','classCPU-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Класс процессора.  
+<p>Processor class.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;CPU.h&gt;</code></p>
@@ -102,57 +102,57 @@ Inheritance diagram for CPU:</div>
  <div class="center">
   <img src="classCPU.png" usemap="#CPU_map" alt=""/>
   <map id="CPU_map" name="CPU_map">
-<area href="classComponent.html" title="Базовый класс для всех комплектующих компьютера." alt="Component" shape="rect" coords="0,0,75,24"/>
+<area href="classComponent.html" title="Base class for all computer components." alt="Component" shape="rect" coords="0,0,75,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2fdd8153d0979ccad9ed8452897267f4" id="r_a2fdd8153d0979ccad9ed8452897267f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fdd8153d0979ccad9ed8452897267f4">CPU</a> ()</td></tr>
-<tr class="memdesc:a2fdd8153d0979ccad9ed8452897267f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a2fdd8153d0979ccad9ed8452897267f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a496c1435534f7200d02950e98ba782ca" id="r_a496c1435534f7200d02950e98ba782ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a496c1435534f7200d02950e98ba782ca">CPU</a> (const std::string &amp;<a class="el" href="#a33c0b478616692de0366a78b7654c189">socket</a>, int <a class="el" href="#a2e310df8c8c7044b4e46d3b4dd28b57e">cores</a>, double <a class="el" href="#a5c7cf03c4fbc352e05fb24f2bb1150a1">frequencyGhz</a>, <a class="el" href="classSensor.html">Sensor</a> *<a class="el" href="#a99d9f2a40aaab3ab99dbd0d348bfaab8">tempSensor</a>=nullptr)</td></tr>
-<tr class="memdesc:a496c1435534f7200d02950e98ba782ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:a496c1435534f7200d02950e98ba782ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:a35469ea67e6b734802fb5609e04954e1" id="r_a35469ea67e6b734802fb5609e04954e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35469ea67e6b734802fb5609e04954e1">runLoad</a> (int percent)</td></tr>
-<tr class="memdesc:a35469ea67e6b734802fb5609e04954e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запускает нагрузку на процессор.  <br /></td></tr>
+<tr class="memdesc:a35469ea67e6b734802fb5609e04954e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies load to the processor.  <br /></td></tr>
 <tr class="memitem:a45170033d48837eabcd491ee92a17cd6" id="r_a45170033d48837eabcd491ee92a17cd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45170033d48837eabcd491ee92a17cd6">checkSocket</a> (const std::string &amp;boardSocket)</td></tr>
-<tr class="memdesc:a45170033d48837eabcd491ee92a17cd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет совместимость сокета процессора с материнской платой.  <br /></td></tr>
+<tr class="memdesc:a45170033d48837eabcd491ee92a17cd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks processor socket compatibility with the motherboard.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classComponent"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classComponent')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a8775db6d1a2c1afc2e77cd3c8f39da6f inherit pub_methods_classComponent" id="r_a8775db6d1a2c1afc2e77cd3c8f39da6f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">Component</a> ()</td></tr>
-<tr class="memdesc:a8775db6d1a2c1afc2e77cd3c8f39da6f inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a8775db6d1a2c1afc2e77cd3c8f39da6f inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a48ecc7b3a4fe642d2d1e8cebd988c640 inherit pub_methods_classComponent" id="r_a48ecc7b3a4fe642d2d1e8cebd988c640"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a48ecc7b3a4fe642d2d1e8cebd988c640">Component</a> (const std::string &amp;<a class="el" href="classComponent.html#a46343549452bda5ee9752f7a9bc15efb">name</a>, const std::string &amp;<a class="el" href="classComponent.html#a102d09a3ec46b9a8eca3212ff1967f13">manufacturer</a>, int <a class="el" href="classComponent.html#a237f07f16d077c41346d539b3f40b70c">powerWatts</a>)</td></tr>
-<tr class="memdesc:a48ecc7b3a4fe642d2d1e8cebd988c640 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:a48ecc7b3a4fe642d2d1e8cebd988c640 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:ad82d7393e339c1b19cc17a0d55b5674d inherit pub_methods_classComponent" id="r_ad82d7393e339c1b19cc17a0d55b5674d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ad82d7393e339c1b19cc17a0d55b5674d">~Component</a> ()=default</td></tr>
-<tr class="memdesc:ad82d7393e339c1b19cc17a0d55b5674d inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Виртуальный деструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:ad82d7393e339c1b19cc17a0d55b5674d inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual default destructor.  <br /></td></tr>
 <tr class="memitem:a21adba2b4d705c0dd4b7d95ff2c5c513 inherit pub_methods_classComponent" id="r_a21adba2b4d705c0dd4b7d95ff2c5c513"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a21adba2b4d705c0dd4b7d95ff2c5c513">isNamed</a> (const std::string &amp;key)</td></tr>
-<tr class="memdesc:a21adba2b4d705c0dd4b7d95ff2c5c513 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет, совпадает ли переданная строка с именем или производителем.  <br /></td></tr>
+<tr class="memdesc:a21adba2b4d705c0dd4b7d95ff2c5c513 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the passed string matches the name or manufacturer.  <br /></td></tr>
 <tr class="memitem:ab4198145126fb7171b9ac2884e3fa959 inherit pub_methods_classComponent" id="r_ab4198145126fb7171b9ac2884e3fa959"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab4198145126fb7171b9ac2884e3fa959">draw</a> (int loadPercent)</td></tr>
-<tr class="memdesc:ab4198145126fb7171b9ac2884e3fa959 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Рассчитывает текущее энергопотребление с учетом нагрузки.  <br /></td></tr>
+<tr class="memdesc:ab4198145126fb7171b9ac2884e3fa959 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates current power consumption taking load into account.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a2e310df8c8c7044b4e46d3b4dd28b57e" id="r_a2e310df8c8c7044b4e46d3b4dd28b57e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e310df8c8c7044b4e46d3b4dd28b57e">cores</a></td></tr>
-<tr class="memdesc:a2e310df8c8c7044b4e46d3b4dd28b57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество ядер.  <br /></td></tr>
+<tr class="memdesc:a2e310df8c8c7044b4e46d3b4dd28b57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of cores.  <br /></td></tr>
 <tr class="memitem:a5c7cf03c4fbc352e05fb24f2bb1150a1" id="r_a5c7cf03c4fbc352e05fb24f2bb1150a1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c7cf03c4fbc352e05fb24f2bb1150a1">frequencyGhz</a></td></tr>
-<tr class="memdesc:a5c7cf03c4fbc352e05fb24f2bb1150a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Тактовая частота в ГГц.  <br /></td></tr>
+<tr class="memdesc:a5c7cf03c4fbc352e05fb24f2bb1150a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clock frequency in GHz.  <br /></td></tr>
 <tr class="memitem:ae92f370044e425439f0934d4c07c1b99" id="r_ae92f370044e425439f0934d4c07c1b99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae92f370044e425439f0934d4c07c1b99">loadPercent</a></td></tr>
-<tr class="memdesc:ae92f370044e425439f0934d4c07c1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Текущая загрузка в процентах.  <br /></td></tr>
+<tr class="memdesc:ae92f370044e425439f0934d4c07c1b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current load in percent.  <br /></td></tr>
 <tr class="memitem:a33c0b478616692de0366a78b7654c189" id="r_a33c0b478616692de0366a78b7654c189"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33c0b478616692de0366a78b7654c189">socket</a></td></tr>
-<tr class="memdesc:a33c0b478616692de0366a78b7654c189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сокет процессора.  <br /></td></tr>
+<tr class="memdesc:a33c0b478616692de0366a78b7654c189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processor socket.  <br /></td></tr>
 <tr class="memitem:a99d9f2a40aaab3ab99dbd0d348bfaab8" id="r_a99d9f2a40aaab3ab99dbd0d348bfaab8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensor.html">Sensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99d9f2a40aaab3ab99dbd0d348bfaab8">tempSensor</a></td></tr>
-<tr class="memdesc:a99d9f2a40aaab3ab99dbd0d348bfaab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на датчик температуры.  <br /></td></tr>
+<tr class="memdesc:a99d9f2a40aaab3ab99dbd0d348bfaab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the temperature sensor.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classComponent"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classComponent')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a46343549452bda5ee9752f7a9bc15efb inherit pro_attribs_classComponent" id="r_a46343549452bda5ee9752f7a9bc15efb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a46343549452bda5ee9752f7a9bc15efb">name</a></td></tr>
-<tr class="memdesc:a46343549452bda5ee9752f7a9bc15efb inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Название компонента.  <br /></td></tr>
+<tr class="memdesc:a46343549452bda5ee9752f7a9bc15efb inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classComponent.html" title="Base class for all computer components.">Component</a> name.  <br /></td></tr>
 <tr class="memitem:a102d09a3ec46b9a8eca3212ff1967f13 inherit pro_attribs_classComponent" id="r_a102d09a3ec46b9a8eca3212ff1967f13"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a102d09a3ec46b9a8eca3212ff1967f13">manufacturer</a></td></tr>
-<tr class="memdesc:a102d09a3ec46b9a8eca3212ff1967f13 inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Производитель.  <br /></td></tr>
+<tr class="memdesc:a102d09a3ec46b9a8eca3212ff1967f13 inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manufacturer.  <br /></td></tr>
 <tr class="memitem:a237f07f16d077c41346d539b3f40b70c inherit pro_attribs_classComponent" id="r_a237f07f16d077c41346d539b3f40b70c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a237f07f16d077c41346d539b3f40b70c">powerWatts</a></td></tr>
-<tr class="memdesc:a237f07f16d077c41346d539b3f40b70c inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Потребляемая мощность  <br /></td></tr>
+<tr class="memdesc:a237f07f16d077c41346d539b3f40b70c inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power consumption.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Класс процессора. </p>
+<div class="textblock"><p>Processor class. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2fdd8153d0979ccad9ed8452897267f4" name="a2fdd8153d0979ccad9ed8452897267f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2fdd8153d0979ccad9ed8452897267f4">&#9670;&#160;</a></span>CPU() <span class="overload">[1/2]</span></h2>
@@ -169,7 +169,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -202,13 +202,13 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор с параметрами. </p>
+<p>Constructor with parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">socket</td><td>Сокет. </td></tr>
-    <tr><td class="paramname">cores</td><td>Количество ядер. </td></tr>
-    <tr><td class="paramname">frequencyGhz</td><td>Частота. </td></tr>
-    <tr><td class="paramname">tempSensor</td><td>Датчик температуры (по умолчанию nullptr). </td></tr>
+    <tr><td class="paramname">socket</td><td>Socket. </td></tr>
+    <tr><td class="paramname">cores</td><td>Number of cores. </td></tr>
+    <tr><td class="paramname">frequencyGhz</td><td>Frequency. </td></tr>
+    <tr><td class="paramname">tempSensor</td><td>Temperature sensor (default nullptr). </td></tr>
   </table>
   </dd>
 </dl>
@@ -231,16 +231,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Проверяет совместимость сокета процессора с материнской платой. </p>
+<p>Checks processor socket compatibility with the motherboard. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">boardSocket</td><td>Сокет платы. </td></tr>
+    <tr><td class="paramname">boardSocket</td><td><a class="el" href="classMotherboard.html" title="Motherboard class.">Motherboard</a> socket. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classIncompatibleSocketException.html" title="Исключение при несовместимости сокетов процессора и материнской платы.">IncompatibleSocketException</a></td><td>при несовпадении. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classIncompatibleSocketException.html" title="Exception for incompatibility between the processor and motherboard sockets.">IncompatibleSocketException</a></td><td>on mismatch. </td></tr>
   </table>
   </dd>
 </dl>
@@ -262,17 +262,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Запускает нагрузку на процессор. </p>
+<p>Applies load to the processor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">percent</td><td>Процент нагрузки. </td></tr>
+    <tr><td class="paramname">percent</td><td>Load percentage. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classInvalidConfigurationException.html" title="Исключение при некорректной конфигурации.">InvalidConfigurationException</a></td><td>если нагрузка вне диапазона от 0 до 100. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classOverheatingException.html" title="Исключение при критическом перегреве компонента.">OverheatingException</a></td><td>при критической температуре. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classInvalidConfigurationException.html" title="Exception for an invalid configuration.">InvalidConfigurationException</a></td><td>if the load is outside the range from 0 to 100. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classOverheatingException.html" title="Exception for critical overheating of a component.">OverheatingException</a></td><td>on critical temperature. </td></tr>
   </table>
   </dd>
 </dl>
@@ -300,7 +300,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Количество ядер. </p>
+<p>Number of cores. </p>
 
 </div>
 </div>
@@ -324,7 +324,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Тактовая частота в ГГц. </p>
+<p>Clock frequency in GHz. </p>
 
 </div>
 </div>
@@ -348,7 +348,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Текущая загрузка в процентах. </p>
+<p>Current load in percent. </p>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Сокет процессора. </p>
+<p>Processor socket. </p>
 
 </div>
 </div>
@@ -396,7 +396,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Указатель на датчик температуры. </p>
+<p>Pointer to the temperature sensor. </p>
 
 </div>
 </div>
