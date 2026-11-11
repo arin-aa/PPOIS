@@ -44,10 +44,4 @@ public:
  * @return Pointer to the track.
  */
     Track* getTrack() const;
-
-/**
- * @brief Returns the listened time.
- * @return Time in milliseconds.
- */
-    int getListenedMs() const;
 };

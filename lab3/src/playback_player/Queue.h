@@ -5,6 +5,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "DefaultSettings.h"
 
 class Track;
 
@@ -25,7 +26,7 @@ public:
  * @brief Constructor that creates an empty queue.
  * @param repeatMode Repeat mode: "off", "one" or "all".
  */
-    explicit Queue(const std::string& repeatMode="off");
+    explicit Queue(const std::string& repeatMode=DEFAULT_REPEAT_MODE);
 
 /**
  * @brief Moves to the next track according to the repeat mode.

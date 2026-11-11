@@ -14,27 +14,12 @@ class SearchQuery;
  * @class SearchService
  * @brief Searches tracks, albums and artists of a catalog.
  *
- * Tracks are searched through the ContentCatalog (by title words),
+ * Tracks are searched through the ContentCatalog (by title),
  * albums and artists are searched by substring of their title or name.
  */
 class SearchService{
 private:
     ContentCatalog* catalog;///<Pointer to the catalog that is searched.
-    std::string lastQuery;///<Normalized text of the last successful search.
-
-/**
- * @brief Finds albums whose title contains a text.
- * @param text Normalized text to look for.
- * @return Albums that contain the text, in library order.
- */
-    std::vector<Album*> searchAlbums(const std::string& text) const;
-
-/**
- * @brief Finds artists whose name contains a text.
- * @param text Normalized text to look for.
- * @return Artists that contain the text, in library order.
- */
-    std::vector<Artist*> searchArtists(const std::string& text) const;
 
 public:
 /**
@@ -46,7 +31,7 @@ public:
 /**
  * @brief Runs a query.
  *
- * The filter "type" limits the result to tracks, albums or artists.
+ * The type filter of the query limits the result to tracks, albums or artists.
  * An empty filter searches all three collections.
  * @param query Query to run.
  * @return Found items, empty if the query has no words.

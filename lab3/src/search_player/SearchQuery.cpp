@@ -1,8 +1,7 @@
 #include "SearchQuery.h"
 #include <cctype>
 
-SearchQuery::SearchQuery(const std::string& text,const std::map<std::string,std::string>& filters):
-    text(text),filters(filters){}
+SearchQuery::SearchQuery(const std::string& text,const std::string& typeFilter):text(text),typeFilter(typeFilter){}
 
 std::string SearchQuery::normalize() const{
     std::string normalized;
@@ -25,7 +24,6 @@ bool SearchQuery::isEmpty() const{
     return normalize().empty();
 }
 
-std::string SearchQuery::getFilter(const std::string& name) const{
-    auto found=filters.find(name);
-    return found==filters.end()?"":found->second;
+bool SearchQuery::wantsType(const std::string& itemType) const{
+    return typeFilter.empty() || typeFilter==itemType;
 }

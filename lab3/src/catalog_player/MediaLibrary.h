@@ -45,6 +45,13 @@ public:
     bool addTrack(Track* track);
 
 /**
+ * @brief Finds a track by its identifier.
+ * @param trackId Identifier of the track.
+ * @return Pointer to the track, null if the library has no such track.
+ */
+    Track* findTrackById(int trackId) const;
+
+/**
  * @brief Finds all tracks of a genre.
  * @param genreId Identifier of the genre.
  * @return Tracks that belong to the genre.
@@ -59,6 +66,20 @@ public:
     std::vector<Track*> findByTitle(const std::string& query) const;
 
 /**
+ * @brief Finds all albums whose title contains a text.
+ * @param text Text to look for, letter case is important.
+ * @return Albums that contain the text, in library order.
+ */
+    std::vector<Album*> findAlbumsByTitle(const std::string& text) const;
+
+/**
+ * @brief Finds all artists whose name contains a text.
+ * @param text Text to look for, letter case is important.
+ * @return Artists that contain the text, in library order.
+ */
+    std::vector<Artist*> findArtistsByName(const std::string& text) const;
+
+/**
  * @brief Returns all tracks.
  * @return Tracks of the library.
  */
@@ -69,16 +90,4 @@ public:
  * @return Albums of the library.
  */
     const std::vector<Album*>& getAlbums() const;
-
-/**
- * @brief Returns all artists.
- * @return Artists of the library.
- */
-    const std::vector<Artist*>& getArtists() const;
-
-/**
- * @brief Returns all genres.
- * @return Genres of the library.
- */
-    const std::vector<Genre*>& getGenres() const;
 };

@@ -1,5 +1,4 @@
 #include "SyncConflict.h"
-#include <algorithm>
 #include "MusicPlayerExceptions.h"
 
 const std::string LOCAL_STRATEGY="local";
@@ -17,7 +16,7 @@ long long SyncConflict::applyResolution(const std::string& strategy) const{
         return remoteVersion;
     }
     if(strategy==NEWEST_STRATEGY){
-        return std::max(localVersion,remoteVersion);
+        return localVersion>remoteVersion?localVersion:remoteVersion;
     }
     throw SyncException("unknown conflict strategy: "+strategy,entityType);
 }

@@ -1,18 +1,23 @@
 #include "AudioFile.h"
-#include <algorithm>
 #include <vector>
 
 const std::vector<std::string> LOSSLESS_FORMATS={"flac","wav","alac"};
+const std::string EXTENSION_PREFIX=".";
 
 AudioFile::AudioFile(const std::string& uri,const std::string& format,int bitrate,long long sizeBytes):
     uri(uri),format(format),bitrate(bitrate),sizeBytes(sizeBytes){}
 
 bool AudioFile::isLossless() const{
-    return std::find(LOSSLESS_FORMATS.begin(),LOSSLESS_FORMATS.end(),format)!=LOSSLESS_FORMATS.end();
+    for(const std::string& losslessFormat:LOSSLESS_FORMATS){
+        if(format==losslessFormat){
+            return true;
+        }
+    }
+    return false;
 }
 
 std::string AudioFile::getExtension() const{
-    return "."+format;
+    return EXTENSION_PREFIX+format;
 }
 
 const std::string& AudioFile::getUri() const{
@@ -21,8 +26,4 @@ const std::string& AudioFile::getUri() const{
 
 int AudioFile::getBitrate() const{
     return bitrate;
-}
-
-long long AudioFile::getSizeBytes() const{
-    return sizeBytes;
 }

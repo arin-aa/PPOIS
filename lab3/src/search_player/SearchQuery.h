@@ -3,28 +3,26 @@
  * @brief Declaration of the SearchQuery class.
  */
 #pragma once
-#include <map>
 #include <string>
 
 /**
  * @class SearchQuery
  * @brief Text typed by the user together with optional filters.
  *
- * The search service understands the filter "type" with the values "track", "album" or "artist".
+ * The type filter can be "track", "album" or "artist", an empty filter means all types.
  */
 class SearchQuery{
 protected:
     std::string text;///<Raw text typed by the user.
-    std::map<std::string,std::string> filters;///<Filter values by filter name.
+    std::string typeFilter;///<Kind of items to search, empty for all kinds.
 
 public:
 /**
  * @brief Constructor with parameters.
  * @param text Raw text typed by the user.
- * @param filters Filter values by filter name.
+ * @param typeFilter Kind of items to search, empty for all kinds.
  */
-    explicit SearchQuery(const std::string& text,const std::map<std::string,std::string>& filters=
-                         std::map<std::string,std::string>());
+    explicit SearchQuery(const std::string& text,const std::string& typeFilter="");
 
 /**
  * @brief Converts the text to a canonical form: lower case words separated by single spaces.
@@ -39,9 +37,9 @@ public:
     bool isEmpty() const;
 
 /**
- * @brief Returns the value of a filter.
- * @param name Name of the filter.
- * @return Value of the filter, empty string if it is not set.
+ * @brief Checks whether items of a kind must be searched.
+ * @param itemType Kind of items: "track", "album" or "artist".
+ * @return true if the type filter is empty or equal to the kind.
  */
-    std::string getFilter(const std::string& name) const;
+    bool wantsType(const std::string& itemType) const;
 };

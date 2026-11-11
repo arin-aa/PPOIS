@@ -41,10 +41,4 @@ public:
  * @exception SubscriptionExpiredException if the plan has expired and auto renewal is off.
  */
     long long renew(long long now,long long periodMs);
-
-/**
- * @brief Returns the expiration time.
- * @return Moment when the plan expires (ms).
- */
-    long long getExpiresAt() const;
 };

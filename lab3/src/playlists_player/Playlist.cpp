@@ -1,5 +1,4 @@
 #include "Playlist.h"
-#include <algorithm>
 #include "MusicPlayerExceptions.h"
 #include "Track.h"
 
@@ -19,19 +18,17 @@ void Playlist::addTrack(Track* track){
 }
 
 void Playlist::removeTrack(int trackId){
-    auto matchesId=[trackId](const PlaylistItem& item){
-        const Track* track=item.getTrack();
-        int id=track->getId();
-        return id==trackId;
-    };
-    auto found=std::find_if(items.begin(),items.end(),matchesId);
-    if(found==items.end()){
-        throw TrackNotFoundException("track "+std::to_string(trackId)+" is not in the playlist "+title,trackId);
-    }
-    items.erase(found);
     for(size_t index=0;index<items.size();index++){
-        items[index].setPosition(static_cast<int>(index));
+        const Track* track=items[index].getTrack();
+        if(track->getId()==trackId){
+            items.erase(items.begin()+index);
+            for(size_t next=index;next<items.size();next++){
+                items[next].setPosition(static_cast<int>(next));
+            }
+            return;
+        }
     }
+    throw TrackNotFoundException("track "+std::to_string(trackId)+" is not in the playlist "+title,trackId);
 }
 
 long long Playlist::getTotalDuration() const{
@@ -45,16 +42,4 @@ long long Playlist::getTotalDuration() const{
 
 int Playlist::getId() const{
     return id;
-}
-
-const std::string& Playlist::getOwnerId() const{
-    return ownerId;
-}
-
-const std::string& Playlist::getTitle() const{
-    return title;
-}
-
-const std::vector<PlaylistItem>& Playlist::getItems() const{
-    return items;
 }

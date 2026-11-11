@@ -13,16 +13,15 @@
 class Equalizer{
 private:
     std::vector<int> bands;///<Gain of each band in decibels.
-    bool enabled;///<Whether the equalizer changes the sound.
 
 public:
 /**
- * @brief Default constructor. All bands are at zero and the equalizer is disabled.
+ * @brief Default constructor. All bands are at zero.
  */
     Equalizer();
 
 /**
- * @brief Applies a named preset and enables the equalizer.
+ * @brief Applies a named preset.
  * @param presetName "flat", "bass" or "treble".
  * @exception AudioEngineException if the preset is unknown.
  */
@@ -35,11 +34,4 @@ public:
  * @exception AudioEngineException if the index or the gain is outside the allowed range.
  */
     void setBandGain(int bandIndex,int gain);
-
-/**
- * @brief Returns the gain of one band.
- * @param bandIndex Index of the band.
- * @return Gain in decibels, zero if the index is outside the allowed range.
- */
-    int getGain(int bandIndex) const;
 };

@@ -9,16 +9,11 @@ Album::Album(int id,const std::string& title,int artistId,const std::vector<int>
 long long Album::getTotalDuration(const MediaLibrary* library) const{
     long long totalMs=0;
     for(int trackId:trackIds){
-        bool found=false;
-        for(const Track* track:library->getTracks()){
-            if(track->getId()==trackId){
-                totalMs+=track->getDurationMs();
-                found=true;
-            }
-        }
-        if(!found){
+        const Track* track=library->findTrackById(trackId);
+        if(!track){
             throw TrackNotFoundException("track "+std::to_string(trackId)+" of album "+title+" is not in the library",trackId);
         }
+        totalMs+=track->getDurationMs();
     }
     return totalMs;
 }

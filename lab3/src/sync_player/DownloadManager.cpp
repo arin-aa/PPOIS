@@ -1,5 +1,4 @@
 #include "DownloadManager.h"
-#include <algorithm>
 #include "MusicPlayerExceptions.h"
 
 DownloadManager::DownloadManager(int maxConcurrent):activeCount(0),maxConcurrent(maxConcurrent){}
@@ -17,25 +16,18 @@ bool DownloadManager::start(int trackId,const std::string& url){
 }
 
 void DownloadManager::cancel(int trackId){
-    auto waiting=std::find(queue.begin(),queue.end(),trackId);
-    if(waiting!=queue.end()){
-        queue.erase(waiting);
-        return;
+    for(size_t index=0;index<queue.size();index++){
+        if(queue[index]==trackId){
+            queue.erase(queue.begin()+index);
+            return;
+        }
     }
     if(activeCount==0){
         throw TrackNotFoundException("nothing to cancel for track "+std::to_string(trackId),trackId);
     }
-    activeCount--;
-    if(!queue.empty()){
+    if(queue.empty()){
+        activeCount--;
+    }else{
         queue.erase(queue.begin());
-        activeCount++;
     }
-}
-
-int DownloadManager::getQueueSize() const{
-    return static_cast<int>(queue.size());
-}
-
-int DownloadManager::getActiveCount() const{
-    return activeCount;
 }

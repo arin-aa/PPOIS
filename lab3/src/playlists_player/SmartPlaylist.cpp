@@ -1,5 +1,4 @@
 #include "SmartPlaylist.h"
-#include <algorithm>
 #include <stdexcept>
 #include "MediaLibrary.h"
 #include "Track.h"
@@ -11,30 +10,17 @@ const std::string MIN_DURATION_KEY="minDuration";
 const std::string MAX_DURATION_KEY="maxDuration";
 const std::string TITLE_KEY="title";
 
-namespace{
-bool matchesNumber(const Track* track,const std::string& key,int number){
-    if(key==GENRE_KEY){
-        const std::vector<int>& genreIds=track->getGenreIds();
-        return std::find(genreIds.begin(),genreIds.end(),number)!=genreIds.end();
-    }
-    if(key==ARTIST_KEY){
-        return track->getArtistId()==number;
-    }
-    if(key==MIN_DURATION_KEY){
-        return track->getDurationMs()>=number;
-    }
-    return key==MAX_DURATION_KEY && track->getDurationMs()<=number;
-}
-}
-
 SmartPlaylist::SmartPlaylist(const std::string& name,const std::vector<std::string>& rules):name(name),rules(rules){}
 
 std::vector<Track*> SmartPlaylist::evaluate(const MediaLibrary* library) const{
     std::vector<Track*> selected;
     for(Track* track:library->getTracks()){
-        bool matchesAll=std::all_of(rules.begin(),rules.end(),[&](const std::string& rule){
-            return matchesRule(track,rule);
-        });
+        bool matchesAll=true;
+        for(const std::string& rule:rules){
+            if(!matchesRule(track,rule)){
+                matchesAll=false;
+            }
+        }
         if(matchesAll){
             selected.push_back(track);
         }
@@ -57,4 +43,17 @@ bool SmartPlaylist::matchesRule(const Track* track,const std::string& rule) cons
     }catch(const std::logic_error&){
         return false;
     }
+}
+
+bool SmartPlaylist::matchesNumber(const Track* track,const std::string& key,int number) const{
+    if(key==GENRE_KEY){
+        return track->hasGenre(number);
+    }
+    if(key==ARTIST_KEY){
+        return track->getArtistId()==number;
+    }
+    if(key==MIN_DURATION_KEY){
+        return track->getDurationMs()>=number;
+    }
+    return key==MAX_DURATION_KEY && track->getDurationMs()<=number;
 }

@@ -1,5 +1,4 @@
 #include "Subscription.h"
-#include <algorithm>
 #include "MusicPlayerExceptions.h"
 
 Subscription::Subscription(const std::string& plan,long long expiresAt,bool autoRenew):plan(plan),expiresAt(expiresAt),autoRenew(autoRenew){}
@@ -13,11 +12,8 @@ long long Subscription::renew(long long now,long long periodMs){
         throw SubscriptionExpiredException(plan+" has expired and is not renewed automatically",expiresAt);
     }
     if(periodMs>0){
-        expiresAt=std::max(now,expiresAt)+periodMs;
+        long long startMs=expiresAt>now?expiresAt:now;
+        expiresAt=startMs+periodMs;
     }
-    return expiresAt;
-}
-
-long long Subscription::getExpiresAt() const{
     return expiresAt;
 }

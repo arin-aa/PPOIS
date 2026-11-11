@@ -60,10 +60,4 @@ public:
  * @return Position in milliseconds.
  */
     int getPositionMs() const;
-
-/**
- * @brief Tells whether the track is playing.
- * @return true while playing.
- */
-    bool getPlaying() const;
 };

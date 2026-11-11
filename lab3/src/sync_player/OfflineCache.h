@@ -3,8 +3,7 @@
  * @brief Declaration of the OfflineCache class.
  */
 #pragma once
-#include <map>
-#include <utility>
+#include <vector>
 
 /**
  * @class OfflineCache
@@ -14,9 +13,24 @@
  */
 class OfflineCache{
 private:
-    std::map<int,std::pair<long long,long long>> entries;///<Size in bytes and storing time (ms) by track identifier.
+    std::vector<int> trackIds;///<Identifiers of the stored tracks, from the oldest to the newest.
+    std::vector<long long> sizes;///<Size in bytes of each stored file.
+    std::vector<long long> storedTimes;///<Moment when each file was stored (ms).
     long long maxSize;///<Capacity of the cache in bytes.
     long long ttl;///<Time after which a stored file is not valid anymore (ms).
+
+/**
+ * @brief Finds the position of a track in the storage.
+ * @param trackId Identifier of the track.
+ * @return Position of the track, -1 if it is not stored.
+ */
+    int indexOf(int trackId) const;
+
+/**
+ * @brief Removes the file at a position.
+ * @param index Position of the file.
+ */
+    void removeAt(int index);
 
 public:
 /**

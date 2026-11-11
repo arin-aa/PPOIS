@@ -39,10 +39,4 @@ public:
  * @brief Signs the current user out.
  */
     void signOut();
-
-/**
- * @brief Returns the signed-in user.
- * @return Pointer to the current user, null if nobody is signed in.
- */
-    User* getCurrentUser() const;
 };

@@ -25,14 +25,6 @@ bool User::updateDisplayName(const std::string& newName){
     return true;
 }
 
-const std::string& User::getId() const{
-    return id;
-}
-
 const std::string& User::getEmail() const{
     return email;
-}
-
-const std::string& User::getDisplayName() const{
-    return displayName;
 }

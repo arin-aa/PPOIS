@@ -56,22 +56,4 @@ public:
  * @return Playlist identifier.
  */
     int getId() const;
-
-/**
- * @brief Returns the identifier of the owner.
- * @return Owner identifier.
- */
-    const std::string& getOwnerId() const;
-
-/**
- * @brief Returns the title.
- * @return Playlist title.
- */
-    const std::string& getTitle() const;
-
-/**
- * @brief Returns the items.
- * @return Items in playback order.
- */
-    const std::vector<PlaylistItem>& getItems() const;
 };

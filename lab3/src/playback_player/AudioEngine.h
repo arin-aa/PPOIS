@@ -46,22 +46,4 @@ public:
  * @param newPositionMs New position in milliseconds, a negative value is replaced by zero.
  */
     void setPosition(int newPositionMs);
-
-/**
- * @brief Returns the loaded file.
- * @return Pointer to the file, may be null.
- */
-    AudioFile* getCurrentFile() const;
-
-/**
- * @brief Returns the volume.
- * @return Volume level.
- */
-    int getVolume() const;
-
-/**
- * @brief Tells whether the sound is being produced.
- * @return true while playing.
- */
-    bool getPlaying() const;
 };

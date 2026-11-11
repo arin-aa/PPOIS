@@ -22,7 +22,3 @@ std::vector<PlaybackSession> PlaybackHistory::getRecent(int count) const{
 const std::vector<PlaybackSession>& PlaybackHistory::getSessions() const{
     return sessions;
 }
-
-const std::string& PlaybackHistory::getUserId() const{
-    return userId;
-}

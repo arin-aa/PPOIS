@@ -25,16 +25,4 @@ public:
  * @brief Turns all notifications off.
  */
     void muteAll();
-
-/**
- * @brief Tells whether notifications are enabled at all.
- * @return Value of the master switch.
- */
-    bool getEnabled() const;
-
-/**
- * @brief Tells whether notifications about new releases are wanted.
- * @return true if they are wanted.
- */
-    bool getNewReleases() const;
 };

@@ -5,10 +5,10 @@
 #pragma once
 
 class AudioEngine;
-class Equalizer;
 class PlaybackHistory;
 class PlaybackState;
 class Queue;
+class Track;
 
 /**
  * @class Player
@@ -20,19 +20,29 @@ private:
     Queue* queue;///<Pointer to the queue of tracks to play.
     PlaybackState* state;///<Pointer to the current state of the playback.
     PlaybackHistory* history;///<Pointer to the history that receives finished sessions.
-    Equalizer* equalizer;///<Pointer to the equalizer applied to the sound.
-    int volume;///<Volume level from 0 to 100.
+
+/**
+ * @brief Loads a track into the engine and starts it from the beginning.
+ * @param track Pointer to the track.
+ * @exception PlaybackException if the track cannot be played.
+ */
+    void startTrack(Track* track);
+
+/**
+ * @brief Adds the part of the current track that was played to the history.
+ * @param now Current time (ms).
+ */
+    void recordSession(long long now);
 
 public:
 /**
- * @brief Constructor with the components of the player. The volume is taken from the engine.
+ * @brief Constructor with the components of the player.
  * @param engine Pointer to the engine.
  * @param queue Pointer to the queue.
  * @param state Pointer to the state of the playback.
  * @param history Pointer to the history of listening.
- * @param equalizer Pointer to the equalizer.
  */
-    Player(AudioEngine* engine,Queue* queue,PlaybackState* state,PlaybackHistory* history,Equalizer* equalizer);
+    Player(AudioEngine* engine,Queue* queue,PlaybackState* state,PlaybackHistory* history);
 
 /**
  * @brief Plays the current track of the queue, or resumes it after a pause.
@@ -72,7 +82,3 @@ public:
  */
     void seek(int positionMs);
 };
-
-
-
-

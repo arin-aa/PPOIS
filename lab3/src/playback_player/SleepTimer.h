@@ -10,7 +10,6 @@
  */
 class SleepTimer{
 private:
-    int durationMs;///<Length of the countdown in milliseconds.
     int remainingMs;///<Time left in milliseconds.
 
 public:
@@ -25,10 +24,4 @@ public:
  * @exception PlaybackException if the length is not positive.
  */
     void start(int newDurationMs);
-
-/**
- * @brief Returns the time left.
- * @return Time left in milliseconds.
- */
-    int getRemainingMs() const;
 };

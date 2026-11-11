@@ -40,10 +40,4 @@ public:
  * @return Pointer to the track.
  */
     Track* getTrack() const;
-
-/**
- * @brief Returns the position.
- * @return Zero-based position.
- */
-    int getPosition() const;
 };

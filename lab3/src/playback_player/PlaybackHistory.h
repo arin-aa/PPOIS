@@ -41,10 +41,4 @@ public:
  * @return Sessions from the oldest to the newest.
  */
     const std::vector<PlaybackSession>& getSessions() const;
-
-/**
- * @brief Returns the owner.
- * @return Identifier of the owner.
- */
-    const std::string& getUserId() const;
 };

@@ -29,10 +29,4 @@ public:
  * @return true if the dark mode is on after the switch.
  */
     bool toggleDarkMode();
-
-/**
- * @brief Returns the accent color.
- * @return Color in the form "#RRGGBB".
- */
-    const std::string& getAccentColor() const;
 };

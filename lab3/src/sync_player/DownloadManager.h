@@ -43,16 +43,4 @@ public:
  * @exception TrackNotFoundException if nothing is waiting or running.
  */
     void cancel(int trackId);
-
-/**
- * @brief Counts the waiting tracks.
- * @return Length of the queue.
- */
-    int getQueueSize() const;
-
-/**
- * @brief Counts the running downloads.
- * @return Number of downloads in progress.
- */
-    int getActiveCount() const;
 };

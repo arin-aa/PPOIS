@@ -6,5 +6,5 @@ Comment::Comment(int id,const std::string& authorId,const std::string& targetId,
     id(id),authorId(authorId),targetId(targetId),text(text){}
 
 bool Comment::isReply() const{
-    return targetId.compare(0,COMMENT_TARGET_PREFIX.size(),COMMENT_TARGET_PREFIX)==0;
+    return targetId.rfind(COMMENT_TARGET_PREFIX,0)==0;
 }

@@ -1,19 +1,29 @@
 #include "FavoritesCollection.h"
-#include <algorithm>
 
 FavoritesCollection::FavoritesCollection(const std::string& userId):userId(userId),updatedAt(0){}
 
 bool FavoritesCollection::toggle(int trackId,long long now){
-    auto found=std::find(trackIds.begin(),trackIds.end(),trackId);
+    bool wasFavorite=contains(trackId);
     updatedAt=now;
-    if(found!=trackIds.end()){
-        trackIds.erase(found);
-        return false;
+    if(!wasFavorite){
+        trackIds.push_back(trackId);
+        return true;
     }
-    trackIds.push_back(trackId);
-    return true;
+    std::vector<int> remaining;
+    for(int favoriteId:trackIds){
+        if(favoriteId!=trackId){
+            remaining.push_back(favoriteId);
+        }
+    }
+    trackIds=remaining;
+    return false;
 }
 
 bool FavoritesCollection::contains(int trackId) const{
-    return std::find(trackIds.begin(),trackIds.end(),trackId)!=trackIds.end();
+    for(int favoriteId:trackIds){
+        if(favoriteId==trackId){
+            return true;
+        }
+    }
+    return false;
 }

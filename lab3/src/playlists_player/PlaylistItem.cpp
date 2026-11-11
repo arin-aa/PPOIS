@@ -14,7 +14,3 @@ void PlaylistItem::setPosition(int newPosition){
 Track* PlaylistItem::getTrack() const{
     return track;
 }
-
-int PlaylistItem::getPosition() const{
-    return position;
-}

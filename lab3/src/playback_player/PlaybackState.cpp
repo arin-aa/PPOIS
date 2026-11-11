@@ -1,17 +1,16 @@
 #include "PlaybackState.h"
-#include <algorithm>
 #include "MusicPlayerExceptions.h"
 #include "Track.h"
 
-PlaybackState::PlaybackState():currentTrack(nullptr),positionMs(0),playing(false),shuffle(false){}
+PlaybackState::PlaybackState():currentTrack(nullptr),positionMs(START_POSITION_MS),playing(false),shuffle(false){}
 
 int PlaybackState::updatePosition(int newPositionMs){
     if(newPositionMs<0){
         throw PlaybackException("position cannot be negative",newPositionMs);
     }
     positionMs=newPositionMs;
-    if(currentTrack){
-        positionMs=std::min(newPositionMs,currentTrack->getDurationMs());
+    if(currentTrack && positionMs>currentTrack->getDurationMs()){
+        positionMs=currentTrack->getDurationMs();
     }
     return positionMs;
 }
@@ -35,8 +34,4 @@ Track* PlaybackState::getCurrentTrack() const{
 
 int PlaybackState::getPositionMs() const{
     return positionMs;
-}
-
-bool PlaybackState::getPlaying() const{
-    return playing;
 }

@@ -17,7 +17,14 @@
 class TagEditor{
 protected:
     std::vector<std::string> supportedFormats;///<Formats whose tags can be edited.
-    std::string lastError;///<Text of the last error, empty if there was none.
+
+/**
+ * @brief Takes the format from a location and checks that it is supported.
+ * @param uri Location of the file.
+ * @return Format of the file, the extension without the dot.
+ * @exception MetadataException if the format is not supported.
+ */
+    std::string extractFormat(const std::string& uri) const;
 
 public:
 /**

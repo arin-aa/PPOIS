@@ -1,5 +1,4 @@
 #include "Artist.h"
-#include <algorithm>
 #include "Album.h"
 #include "MediaLibrary.h"
 
@@ -9,8 +8,11 @@ Artist::Artist(int id,const std::string& name,const std::vector<int>& albumIds,c
 int Artist::getTrackCount(const MediaLibrary* library) const{
     int trackCount=0;
     for(const Album* album:library->getAlbums()){
-        if(std::find(albumIds.begin(),albumIds.end(),album->getId())!=albumIds.end()){
-            trackCount+=album->getTrackCount();
+        for(int albumId:albumIds){
+            if(albumId==album->getId()){
+                trackCount+=album->getTrackCount();
+                break;
+            }
         }
     }
     return trackCount;
@@ -18,10 +20,6 @@ int Artist::getTrackCount(const MediaLibrary* library) const{
 
 bool Artist::hasAlbums() const{
     return !albumIds.empty();
-}
-
-int Artist::getId() const{
-    return id;
 }
 
 const std::string& Artist::getName() const{

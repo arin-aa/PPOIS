@@ -7,7 +7,3 @@ bool AppTheme::toggleDarkMode(){
     darkMode=!darkMode;
     return darkMode;
 }
-
-const std::string& AppTheme::getAccentColor() const{
-    return accentColor;
-}

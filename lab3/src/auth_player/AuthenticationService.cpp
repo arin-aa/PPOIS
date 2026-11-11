@@ -1,16 +1,10 @@
 #include "AuthenticationService.h"
-#include <algorithm>
-#include <cctype>
 #include "MusicPlayerExceptions.h"
 #include "User.h"
 
 const int MAX_ATTEMPTS=5;
 const size_t MIN_PASSWORD_LENGTH=8;
-
-static bool isAcceptable(const std::string& password){
-    return password.size() >= MIN_PASSWORD_LENGTH
-        && password.find_first_of("0123456789") != std::string::npos;
-}
+const std::string DIGITS="0123456789";
 
 AuthenticationService::AuthenticationService():currentUser(nullptr),attempts(0){}
 
@@ -21,7 +15,9 @@ User* AuthenticationService::signIn(User* user,const std::string& password){
     if(attempts>=MAX_ATTEMPTS){
         throw InvalidPasswordException("too many failed attempts for "+user->getEmail(),LOCKOUT_REASON);
     }
-    if(!isAcceptable(password)){
+    bool isLongEnough=password.size()>=MIN_PASSWORD_LENGTH;
+    bool hasDigit=password.find_first_of(DIGITS)!=std::string::npos;
+    if(!isLongEnough || !hasDigit){
         attempts++;
         throw AuthenticationException("wrong password for "+user->getEmail(),attempts);
     }
@@ -32,8 +28,4 @@ User* AuthenticationService::signIn(User* user,const std::string& password){
 
 void AuthenticationService::signOut(){
     currentUser=nullptr;
-}
-
-User* AuthenticationService::getCurrentUser() const{
-    return currentUser;
 }

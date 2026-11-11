@@ -16,7 +16,7 @@ Track* Queue::next(){
     }else if(repeatMode==REPEAT_ALL){
         currentIndex=0;
     }else{
-        throw PlaybackException("the end of the queue is reached",0);
+        throw PlaybackException("the end of the queue is reached",START_POSITION_MS);
     }
     return getCurrent();
 }
@@ -40,7 +40,7 @@ void Queue::add(Track* track){
 
 Track* Queue::getCurrent() const{
     if(items.empty()){
-        throw PlaybackException("the queue is empty",0);
+        throw PlaybackException("the queue is empty",START_POSITION_MS);
     }
     return items[static_cast<size_t>(currentIndex)];
 }

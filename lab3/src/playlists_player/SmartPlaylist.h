@@ -21,6 +21,15 @@ private:
     std::string name;///<Name of the playlist.
     std::vector<std::string> rules;///<Rules that every track must satisfy.
 
+/**
+ * @brief Checks one track against a rule with a numeric value.
+ * @param track Track to check.
+ * @param key Key of the rule: genre, artist, minDuration or maxDuration.
+ * @param number Value of the rule.
+ * @return true if the track satisfies the rule, false if it does not or the key is unknown.
+ */
+    bool matchesNumber(const Track* track,const std::string& key,int number) const;
+
 public:
 /**
  * @brief Constructor with parameters.

@@ -5,6 +5,8 @@
 #pragma once
 #include <string>
 
+const long long NEVER_SYNCED=0;///<Version of the cloud that has received nothing yet.
+
 /**
  * @class CloudStorage
  * @brief Model of the cloud service that keeps the version of the user data.
@@ -16,7 +18,7 @@ class CloudStorage{
 private:
     std::string apiUrl;///<Address of the service.
     std::string token;///<Access token, empty if the user is not authorized.
-    long long lastSyncAt;///<Version of the last upload (ms), zero if nothing was uploaded.
+    long long lastSyncAt;///<Version of the last upload (ms), NEVER_SYNCED if nothing was uploaded.
 
 public:
 /**

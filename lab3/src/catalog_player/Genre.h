@@ -28,16 +28,4 @@ public:
  * @return true if the name starts with the parent name followed by "/".
  */
     bool isSubgenreOf(const Genre& parent) const;
-
-/**
- * @brief Returns the identifier.
- * @return Genre identifier.
- */
-    int getId() const;
-
-/**
- * @brief Returns the name.
- * @return Genre name.
- */
-    const std::string& getName() const;
 };

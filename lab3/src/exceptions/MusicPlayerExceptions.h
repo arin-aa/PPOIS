@@ -8,6 +8,7 @@
 
 const int CAPTCHA_ATTEMPTS=3;///<Number of failed attempts after which a captcha is required.
 const int FATAL_ENGINE_CODE=500;///<Engine error codes from this value are fatal.
+const int START_POSITION_MS=0;///<Position of the beginning of a track (ms).
 const int LOCAL_TRACK_ID_START=1000000;///<Identifiers from this value belong to local files.
 const long long RENEWAL_GRACE_MS=2592000000LL;///<Thirty days during which a subscription can be renewed.
 

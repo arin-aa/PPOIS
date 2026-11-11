@@ -28,27 +28,8 @@ public:
  * @brief Loads values from text. Keys that are absent keep their value.
  *
  * Supported keys: volume, language, repeatMode, theme, crossfadeMs.
- * If any value is invalid nothing is changed.
  * @param values Text values by key.
- * @return true if all values were accepted.
+ * @exception std::invalid_argument if a numeric value is not a number.
  */
-    bool load(const std::map<std::string,std::string>& values);
-
-/**
- * @brief Returns the volume.
- * @return Default volume.
- */
-    int getVolume() const;
-
-/**
- * @brief Returns the language.
- * @return Language code.
- */
-    const std::string& getLanguage() const;
-
-/**
- * @brief Returns the repeat mode.
- * @return Default repeat mode.
- */
-    const std::string& getRepeatMode() const;
+    void load(const std::map<std::string,std::string>& values);
 };

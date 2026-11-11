@@ -1,13 +1,13 @@
 #include "CloudStorage.h"
 #include "MusicPlayerExceptions.h"
 
-CloudStorage::CloudStorage(const std::string& apiUrl,const std::string& token):apiUrl(apiUrl),token(token),lastSyncAt(0){}
+CloudStorage::CloudStorage(const std::string& apiUrl,const std::string& token):apiUrl(apiUrl),token(token),lastSyncAt(NEVER_SYNCED){}
 
 long long CloudStorage::download(const std::string& entityType) const{
     if(token.empty()){
         throw SyncException("not authorized for "+apiUrl,entityType);
     }
-    if(lastSyncAt==0){
+    if(lastSyncAt==NEVER_SYNCED){
         throw SyncException("nothing is stored for "+entityType,entityType);
     }
     return lastSyncAt;

@@ -39,10 +39,4 @@ public:
  * @exception UserNotFoundException if the user is not a collaborator.
  */
     void removeCollaborator(const std::string& userId);
-
-/**
- * @brief Returns the identifiers of the collaborators.
- * @return Identifiers without the owner.
- */
-    const std::vector<std::string>& getCollaboratorIds() const;
 };

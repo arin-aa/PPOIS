@@ -43,11 +43,27 @@ public:
     bool isPlayable() const;
 
 /**
- * @brief Checks whether the title contains a text, ignoring letter case.
+ * @brief Checks whether the title contains a text.
+ *
+ * Both texts are normalized first: letter case and punctuation are ignored.
  * @param query Text to look for.
- * @return true if the title contains the text.
+ * @return true if the title contains the text, false if it does not or the text has no letters and digits.
  */
     bool matchesQuery(const std::string& query) const;
+
+/**
+ * @brief Checks whether the track belongs to a genre.
+ * @param genreId Identifier of the genre.
+ * @return true if the genre is in the list of genres of the track.
+ */
+    bool hasGenre(int genreId) const;
+
+/**
+ * @brief Checks whether the track has at least one genre from a list.
+ * @param otherGenreIds Identifiers of the genres to look for.
+ * @return true if some genre of the list belongs to the track.
+ */
+    bool hasAnyGenre(const std::vector<int>& otherGenreIds) const;
 
 /**
  * @brief Returns the identifier.

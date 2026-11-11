@@ -43,12 +43,6 @@ public:
     bool hasAlbums() const;
 
 /**
- * @brief Returns the identifier.
- * @return Artist identifier.
- */
-    int getId() const;
-
-/**
  * @brief Returns the name.
  * @return Artist name.
  */

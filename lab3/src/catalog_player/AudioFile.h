@@ -49,10 +49,4 @@ public:
  * @return Bitrate in kilobits per second.
  */
     int getBitrate() const;
-
-/**
- * @brief Returns the file size.
- * @return Size in bytes.
- */
-    long long getSizeBytes() const;
 };

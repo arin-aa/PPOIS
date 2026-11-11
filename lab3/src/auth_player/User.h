@@ -43,20 +43,8 @@ public:
     bool updateDisplayName(const std::string& newName);
 
 /**
- * @brief Returns the identifier.
- * @return User identifier.
- */
-    const std::string& getId() const;
-
-/**
  * @brief Returns the email address.
  * @return Email address.
  */
     const std::string& getEmail() const;
-
-/**
- * @brief Returns the display name.
- * @return Display name.
- */
-    const std::string& getDisplayName() const;
 };

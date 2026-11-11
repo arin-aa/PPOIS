@@ -1,15 +1,6 @@
 #include "Track.h"
-#include <algorithm>
-#include <cctype>
 #include "AudioFile.h"
-
-static std::string toLower(std::string text){
-    std::transform(text.begin(),text.end(),text.begin(),[](unsigned char symbol){
-        return static_cast<char>(std::tolower(symbol));
-    });
-    return text;
-}
-
+#include "SearchQuery.h"
 
 Track::Track(int id,const std::string& title,int artistId,int albumId,int durationMs,AudioFile* audioFile,
              const std::vector<int>& genreIds):
@@ -20,12 +11,30 @@ bool Track::isPlayable() const{
 }
 
 bool Track::matchesQuery(const std::string& query) const{
-    if (query.empty()) {
+    std::string normalizedQuery=SearchQuery(query).normalize();
+    if(normalizedQuery.empty()){
         return false;
     }
-    std::string lowerTitle = toLower(title);
-    std::string lowerQuery = toLower(query);
-    return lowerTitle.find(lowerQuery) != std::string::npos;
+    std::string normalizedTitle=SearchQuery(title).normalize();
+    return normalizedTitle.find(normalizedQuery)!=std::string::npos;
+}
+
+bool Track::hasGenre(int genreId) const{
+    for(int trackGenreId:genreIds){
+        if(trackGenreId==genreId){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Track::hasAnyGenre(const std::vector<int>& otherGenreIds) const{
+    for(int genreId:otherGenreIds){
+        if(hasGenre(genreId)){
+            return true;
+        }
+    }
+    return false;
 }
 
 int Track::getId() const{

@@ -1,49 +1,54 @@
 #include "OfflineCache.h"
 #include "MusicPlayerExceptions.h"
 
-static long long usedSize(const std::map<int,std::pair<long long,long long>>& entries){
-    long long usedBytes=0;
-    for(const auto& entry:entries){
-        usedBytes+=entry.second.first;
-    }
-    return usedBytes;
-}
-
-static void evictOldest(std::map<int,std::pair<long long,long long>>& entries){
-    auto oldest=entries.begin();
-    for(auto entry=entries.begin();entry!=entries.end();++entry){
-        long long entryTime=entry->second.second;
-        long long oldestTime=oldest->second.second;
-        if(entryTime<oldestTime){
-            oldest=entry;
-        }
-    }
-    entries.erase(oldest);
-}
+const int NOT_CACHED=-1;
 
 OfflineCache::OfflineCache(long long maxSize,long long ttl):maxSize(maxSize),ttl(ttl){}
+
+int OfflineCache::indexOf(int trackId) const{
+    for(size_t index=0;index<trackIds.size();index++){
+        if(trackIds[index]==trackId){
+            return static_cast<int>(index);
+        }
+    }
+    return NOT_CACHED;
+}
+
+void OfflineCache::removeAt(int index){
+    trackIds.erase(trackIds.begin()+index);
+    sizes.erase(sizes.begin()+index);
+    storedTimes.erase(storedTimes.begin()+index);
+}
 
 void OfflineCache::put(int trackId,long long sizeBytes,long long now){
     if(sizeBytes>maxSize){
         throw DownloadException("file is larger than the offline cache","track "+std::to_string(trackId));
     }
-    entries.erase(trackId);
-    while(usedSize(entries)+sizeBytes>maxSize){
-        evictOldest(entries);
+    int existing=indexOf(trackId);
+    if(existing!=NOT_CACHED){
+        removeAt(existing);
     }
-    entries[trackId]=std::make_pair(sizeBytes,now);
+    long long usedBytes=0;
+    for(long long size:sizes){
+        usedBytes+=size;
+    }
+    while(usedBytes+sizeBytes>maxSize){
+        usedBytes-=sizes.front();
+        removeAt(0);
+    }
+    trackIds.push_back(trackId);
+    sizes.push_back(sizeBytes);
+    storedTimes.push_back(now);
 }
 
 long long OfflineCache::get(int trackId,long long now){
-    auto found=entries.find(trackId);
-    if(found==entries.end()){
+    int index=indexOf(trackId);
+    if(index==NOT_CACHED){
         throw TrackNotFoundException("track is not cached: "+std::to_string(trackId),trackId);
     }
-    long long timestamp=found->second.second;
-    long long age=now-timestamp;
-    if(age>ttl){
-        entries.erase(found);
+    if(now-storedTimes[index]>ttl){
+        removeAt(index);
         throw TrackNotFoundException("cached track expired: "+std::to_string(trackId),trackId);
     }
-    return found->second.first;
+    return sizes[index];
 }

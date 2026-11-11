@@ -6,7 +6,6 @@
 #include <string>
 
 class CloudStorage;
-class SyncConflict;
 
 /**
  * @class SyncService
@@ -35,13 +34,4 @@ public:
  * @exception SyncException if the cloud rejects the request or the strategy is unknown.
  */
     long long sync(const std::string& entityType,long long localVersion,const std::string& strategy);
-
-/**
- * @brief Chooses the winning version of a conflict.
- * @param conflict Conflict to resolve.
- * @param strategy "local", "remote" or "newest".
- * @return Version that wins.
- * @exception SyncException if the strategy is unknown.
- */
-    long long resolveConflict(const SyncConflict& conflict,const std::string& strategy) const;
 };
