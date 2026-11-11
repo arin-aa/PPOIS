@@ -17,7 +17,7 @@ TEST_CASE("CloudStorage: Upload and Download") {
     }
 
     SECTION("Upload updates lastSyncAt and allows download") {
-        REQUIRE(cloud.getLastSyncAt() == 0); // NEVER_SYNCED
+        REQUIRE(cloud.getLastSyncAt() == 0); 
         
         cloud.upload("playlists", 500);
         REQUIRE(cloud.getLastSyncAt() == 500);

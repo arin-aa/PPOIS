@@ -22,18 +22,15 @@ TEST_CASE("RadioStation: TuneIn validation") {
 }
 
 TEST_CASE("RadioStation: Classify Genre") {
-    // SearchQuery нормализует строки (убирает пунктуацию, приводит к нижнему регистру)
     RadioStation station("Classic Rock & Roll FM", "http://r.fm");
     
     SECTION("Finds genre inside station name") {
         std::vector<std::string> genres = {"jazz", "rock", "pop"};
-        // Слово "rock" есть в "Classic Rock & Roll FM"
         REQUIRE(station.classifyGenre(genres) == "rock");
     }
 
     SECTION("Ignores case and punctuation") {
         RadioStation lofi("LOFI beats", "http://r.fm");
-        // "lofi" превратится в "lofi", "lo fi" тоже
         REQUIRE(lofi.classifyGenre({"lofi"}) == "lofi");
         REQUIRE(lofi.classifyGenre({"lofi beats"}) == "lofi beats");
     }

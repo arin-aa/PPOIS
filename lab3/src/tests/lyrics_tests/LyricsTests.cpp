@@ -33,7 +33,6 @@ TEST_CASE("Lyrics: Constructor validation") {
 }
 
 TEST_CASE("Lyrics: getLineAt logic") {
-    // Интервалы: [1000, 3000) -> "A", [3000, LAST_LINE_END) -> "B"
     std::vector<TimedLyric> lines = {
         TimedLyric(1000, "A"),
         TimedLyric(3000, "B")
@@ -59,12 +58,10 @@ TEST_CASE("Lyrics: getLineAt logic") {
     }
 
     SECTION("Exactly at start of next line returns the next one") {
-        // Граница 3000: endMs первой строки равен 3000, поэтому она уже неактивна
         REQUIRE(lyrics.getLineAt(3000) == "B");
     }
 
     SECTION("After the last line starts returns the last one") {
-        // Для последней строки endMs = LAST_LINE_END (INT_MAX)
         REQUIRE(lyrics.getLineAt(999999) == "B");
     }
 }

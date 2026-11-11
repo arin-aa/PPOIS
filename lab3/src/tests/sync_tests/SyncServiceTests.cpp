@@ -7,17 +7,14 @@ TEST_CASE("SyncService: Integration with CloudStorage") {
     SyncService service(&cloud);
 
     SECTION("First sync uploads local version") {
-        // До этого облако пустое (NEVER_SYNCED)
         long long result = service.sync("playlists", 100, "newest");
         
         REQUIRE(result == 100);
-        REQUIRE(cloud.getLastSyncAt() == 100); // Загрузилось
+        REQUIRE(cloud.getLastSyncAt() == 100); 
     }
 
     SECTION("Sync without conflict updates nothing") {
-        service.sync("playlists", 100, "newest"); // Первая загрузка
-        
-        // Синхронизируем ту же версию
+        service.sync("playlists", 100, "newest"); 
         long long result = service.sync("playlists", 100, "newest");
         
         REQUIRE(result == 100);
@@ -25,22 +22,20 @@ TEST_CASE("SyncService: Integration with CloudStorage") {
     }
 
     SECTION("Sync with conflict resolves and uploads if local is newer") {
-        service.sync("playlists", 100, "newest"); // Облако: 100
+        service.sync("playlists", 100, "newest"); 
         
-        // Локальная версия 200, облако 100. По стратегии newest выбираем 200.
         long long result = service.sync("playlists", 200, "newest");
         
         REQUIRE(result == 200);
-        REQUIRE(cloud.getLastSyncAt() == 200); // Обновилось
+        REQUIRE(cloud.getLastSyncAt() == 200); 
     }
 
     SECTION("Sync with conflict resolves but does not upload if remote is newer") {
-        service.sync("playlists", 500, "newest"); // Облако: 500
+        service.sync("playlists", 500, "newest"); 
         
-        // Локальная версия 100, облако 500. По стратегии newest выбираем 500.
         long long result = service.sync("playlists", 100, "newest");
         
         REQUIRE(result == 500);
-        REQUIRE(cloud.getLastSyncAt() == 500); // Осталось 500, ничего не загружали
+        REQUIRE(cloud.getLastSyncAt() == 500); 
     }
 }

@@ -24,12 +24,12 @@ TEST_CASE("ContentCatalog: Indexing and Searching") {
         catalog.rebuildIndex();
         
         auto res = catalog.searchByTitle("hello");
-        REQUIRE(res.size() == 2); // t1 and t3
+        REQUIRE(res.size() == 2); 
         REQUIRE(res[0] == &t1);
         REQUIRE(res[1] == &t3);
 
         auto res2 = catalog.searchByTitle("goodbye");
-        REQUIRE(res2.size() == 1); // t2
+        REQUIRE(res2.size() == 1); 
         REQUIRE(res2[0] == &t2);
     }
 

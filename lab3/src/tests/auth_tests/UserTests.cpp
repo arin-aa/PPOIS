@@ -45,7 +45,5 @@ TEST_CASE("User: Display Name Update") {
 
     SECTION("Surrounding spaces are trimmed") {
         REQUIRE(user.updateDisplayName("  Alice  ") == true);
-        // Если в классе есть getDisplayName(), можно проверить:
-        // REQUIRE(user.getDisplayName() == "Alice");
     }
 }

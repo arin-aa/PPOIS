@@ -6,12 +6,12 @@
 
 TEST_CASE("MediaLibrary: Add and Find Tracks") {
     MediaLibrary lib;
-    Track t1(1, "Rock Song", 1, 1, 1000, nullptr, {1}); // genre 1
-    Track t2(2, "Pop Song", 2, 2, 1000, nullptr, {2});  // genre 2
+    Track t1(1, "Rock Song", 1, 1, 1000, nullptr, {1}); 
+    Track t2(2, "Pop Song", 2, 2, 1000, nullptr, {2});  
 
     SECTION("addTrack checks for duplicates") {
         REQUIRE(lib.addTrack(&t1) == true);
-        REQUIRE(lib.addTrack(&t1) == false); // duplicate id
+        REQUIRE(lib.addTrack(&t1) == false); 
         REQUIRE(lib.getTracks().size() == 1);
     }
 

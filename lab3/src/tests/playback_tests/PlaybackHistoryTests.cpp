@@ -22,7 +22,6 @@ TEST_CASE("PlaybackHistory: Add and Recent") {
     }
 
     SECTION("History overflow evicts the oldest") {
-        // MAX_HISTORY_SIZE = 500. Добавляем 501 сессию.
         for(int i=0; i<=500; ++i) {
             history.add(session);
         }

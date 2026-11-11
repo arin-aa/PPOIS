@@ -24,7 +24,6 @@ TEST_CASE("Album: Getters and Duration") {
 
     SECTION("getTotalDuration throws if track is missing") {
         Track t1(1, "Song 1", 10, 1, 1000, nullptr);
-        // Track 2 is missing in the library
         MediaLibrary lib({&t1});
 
         REQUIRE_THROWS_AS(album.getTotalDuration(&lib), TrackNotFoundException);

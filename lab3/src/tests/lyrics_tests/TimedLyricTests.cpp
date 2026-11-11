@@ -10,12 +10,11 @@ TEST_CASE("TimedLyric: Active state and Getters") {
     }
 
     SECTION("isActiveAt checks boundaries correctly") {
-        // Интервал: [1000, 2000)
-        REQUIRE(lyric.isActiveAt(999, 2000) == false);  // до начала
-        REQUIRE(lyric.isActiveAt(1000, 2000) == true);  // ровно в начале (включительно)
-        REQUIRE(lyric.isActiveAt(1500, 2000) == true);  // в середине
-        REQUIRE(lyric.isActiveAt(1999, 2000) == true);  // за миг до конца
-        REQUIRE(lyric.isActiveAt(2000, 2000) == false); // ровно в конце (не включительно)
-        REQUIRE(lyric.isActiveAt(2001, 2000) == false); // после конца
+        REQUIRE(lyric.isActiveAt(999, 2000) == false);  
+        REQUIRE(lyric.isActiveAt(1000, 2000) == true);  
+        REQUIRE(lyric.isActiveAt(1500, 2000) == true);  
+        REQUIRE(lyric.isActiveAt(1999, 2000) == true);  
+        REQUIRE(lyric.isActiveAt(2000, 2000) == false);
+        REQUIRE(lyric.isActiveAt(2001, 2000) == false); 
     }
 }

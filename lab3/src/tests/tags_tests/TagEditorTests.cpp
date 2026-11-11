@@ -12,7 +12,7 @@ TEST_CASE("TagEditor: Reading tags") {
         
         REQUIRE(tags["title"] == "song");
         REQUIRE(tags["format"] == "mp3");
-        REQUIRE(tags.find("artist") == tags.end()); // Артиста нет
+        REQUIRE(tags.find("artist") == tags.end()); 
     }
 
     SECTION("Read file with artist separated by ' - '") {
@@ -50,7 +50,6 @@ TEST_CASE("TagEditor: Writing tags") {
         };
         
         std::string newUri = editor.writeTags(originalUri, tags);
-        // Ожидаем: music/New Artist - New Song.mp3
         REQUIRE(newUri == "music/New Artist - New Song.mp3");
     }
 
@@ -60,7 +59,6 @@ TEST_CASE("TagEditor: Writing tags") {
         };
         
         std::string newUri = editor.writeTags(originalUri, tags);
-        // Ожидаем: music/Solo Track.mp3
         REQUIRE(newUri == "music/Solo Track.mp3");
     }
 
@@ -82,7 +80,6 @@ TEST_CASE("TagEditor: Writing tags") {
         std::map<std::string, std::string> tags = {
             {"title", "Valid Title"}
         };
-        // Пытаемся записать теги в файл .txt
         REQUIRE_THROWS_AS(editor.writeTags("music/text.txt", tags), MetadataException);
     }
 }

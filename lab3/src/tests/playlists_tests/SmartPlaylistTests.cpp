@@ -18,33 +18,33 @@ TEST_CASE("SmartPlaylist: Rule Evaluation") {
     SECTION("Filter by title") {
         SmartPlaylist playlist("Rock", {"title:rock"});
         auto res = playlist.evaluate(&lib);
-        REQUIRE(res.size() == 2); // t1 and t3
+        REQUIRE(res.size() == 2); 
     }
 
     SECTION("Filter by genre") {
         SmartPlaylist playlist("Rock Genre", {"genre:1"});
         auto res = playlist.evaluate(&lib);
-        REQUIRE(res.size() == 2); // t1 and t3
+        REQUIRE(res.size() == 2); 
     }
 
     SECTION("Filter by artist") {
         SmartPlaylist playlist("Artist 1", {"artist:1"});
         auto res = playlist.evaluate(&lib);
-        REQUIRE(res.size() == 2); // t1 and t3
+        REQUIRE(res.size() == 2); 
     }
 
     SECTION("Filter by duration (min/max)") {
         SmartPlaylist playlist("Long", {"minDuration:2000"});
-        REQUIRE(playlist.evaluate(&lib).size() == 2); // t2 and t3
+        REQUIRE(playlist.evaluate(&lib).size() == 2); 
         
         SmartPlaylist playlistShort("Short", {"maxDuration:1000"});
-        REQUIRE(playlistShort.evaluate(&lib).size() == 1); // only t1
+        REQUIRE(playlistShort.evaluate(&lib).size() == 1); 
     }
 
     SECTION("Multiple rules use AND logic") {
         SmartPlaylist playlist("Rock and Short", {"genre:1", "maxDuration:1000"});
         auto res = playlist.evaluate(&lib);
-        REQUIRE(res.size() == 1); // only t1 matches both
+        REQUIRE(res.size() == 1); 
     }
 
     SECTION("Invalid rules are ignored") {

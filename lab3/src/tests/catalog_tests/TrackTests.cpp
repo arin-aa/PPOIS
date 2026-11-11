@@ -23,7 +23,7 @@ TEST_CASE("Track: Playable state and Genres") {
 
         REQUIRE(t.hasAnyGenre({3, 4}) == false);
         REQUIRE(t.hasAnyGenre({3, 2}) == true);
-        REQUIRE(t.hasAnyGenre({}) == false); // empty list
+        REQUIRE(t.hasAnyGenre({}) == false); 
     }
 
     SECTION("matchesQuery handles empty query") {

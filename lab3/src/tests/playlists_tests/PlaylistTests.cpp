@@ -27,7 +27,6 @@ TEST_CASE("Playlist: Add, Remove and Duration") {
     }
 
     SECTION("addTrack throws when playlist is full") {
-        // MAX_PLAYLIST_SIZE = 1000. Заполняем до предела.
         for(int i=0; i<1000; ++i) {
             playlist.addTrack(&t1);
         }
@@ -38,11 +37,8 @@ TEST_CASE("Playlist: Add, Remove and Duration") {
         playlist.addTrack(&t1);
         playlist.addTrack(&t2);
         
-        // Удаляем первый трек. Второй должен сдвинуться на позицию 0.
         REQUIRE_NOTHROW(playlist.removeTrack(1));
-        REQUIRE(playlist.getTotalDuration() == 2000); // Остался только t2
-
-        // Удаляем несуществующий
+        REQUIRE(playlist.getTotalDuration() == 2000);
         REQUIRE_THROWS_AS(playlist.removeTrack(99), TrackNotFoundException);
     }
 }

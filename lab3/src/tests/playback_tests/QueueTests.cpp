@@ -21,12 +21,10 @@ TEST_CASE("Queue: Navigation and Modes") {
         REQUIRE(q.getCurrent() == &t1);
         REQUIRE(q.next() == &t2);
         
-        // Конец очереди, повтор выключен
         REQUIRE_THROWS_AS(q.next(), PlaybackException); 
         
-        // Возврат в начало
         REQUIRE(q.previous() == &t1);
-        REQUIRE(q.previous() == &t1); // Уже в начале, не падает, остается на t1
+        REQUIRE(q.previous() == &t1); 
     }
 
     SECTION("Repeat One stays on the same track") {
@@ -40,9 +38,9 @@ TEST_CASE("Queue: Navigation and Modes") {
         Queue q("all");
         q.add(&t1); q.add(&t2);
         
-        q.next(); // Теперь на t2
-        REQUIRE(q.next() == &t1); // Завернулись в начало
+        q.next(); 
+        REQUIRE(q.next() == &t1); 
         
-        REQUIRE(q.previous() == &t2); // Завернулись в конец
+        REQUIRE(q.previous() == &t2); 
     }
 }

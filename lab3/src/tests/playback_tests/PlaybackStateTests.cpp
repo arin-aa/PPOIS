@@ -14,7 +14,7 @@ TEST_CASE("PlaybackState: Position and Flags") {
 
     SECTION("updatePosition clamps to track duration") {
         state.setTrack(&track);
-        REQUIRE(state.updatePosition(1500) == 1000); // Ограничилось длительностью
+        REQUIRE(state.updatePosition(1500) == 1000); 
     }
 
     SECTION("toggleShuffle switches state") {

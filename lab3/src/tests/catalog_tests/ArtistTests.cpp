@@ -4,9 +4,9 @@
 #include "MediaLibrary.h"
 
 TEST_CASE("Artist: Getters and Track Count") {
-    Album album1(1, "Album 1", 10, {1, 2}); // 2 tracks
-    Album album2(2, "Album 2", 10, {3});    // 1 track
-    Album album3(3, "Album 3", 10, {4, 5, 6}); // 3 tracks
+    Album album1(1, "Album 1", 10, {1, 2}); 
+    Album album2(2, "Album 2", 10, {3});    
+    Album album3(3, "Album 3", 10, {4, 5, 6}); 
 
     MediaLibrary lib({}, {&album1, &album2, &album3});
 
@@ -24,10 +24,8 @@ TEST_CASE("Artist: Getters and Track Count") {
     }
 
     SECTION("getTrackCount sums tracks of known albums") {
-        // Artist has albums 1 and 3. Library also has album 2, but it should be ignored.
         Artist artist(10, "The Band", {1, 3}, "url");
         
-        // Album 1 has 2 tracks, Album 3 has 3 tracks. Total = 5.
         REQUIRE(artist.getTrackCount(&lib) == 5);
     }
 

@@ -25,7 +25,6 @@ TEST_CASE("AudioEngine: Load, Play and Position") {
     }
 
     SECTION("setPosition clamps negative values to 0") {
-        // Просто проверяем, что не падает и не бросает
         REQUIRE_NOTHROW(engine.setPosition(-100));
         REQUIRE_NOTHROW(engine.setPosition(100));
     }

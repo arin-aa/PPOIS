@@ -18,11 +18,10 @@ TEST_CASE("Player: Playback and Seeking") {
 
     AudioFile file("a.mp3", "mp3", 320, 100);
     Track playable(1, "Song", 1, 1, 1000, &file);
-    Track broken(2, "Broken", 1, 1, 1000, nullptr); // Нет файла
+    Track broken(2, "Broken", 1, 1, 1000, nullptr); 
 
     SECTION("play throws if track is not playable") {
         queue.add(&broken);
-        // Внутри play() вызовется startTrack(), который бросит исключение
         REQUIRE_THROWS_AS(player.play(), PlaybackException);
     }
 
@@ -31,15 +30,12 @@ TEST_CASE("Player: Playback and Seeking") {
         REQUIRE_NOTHROW(player.play());
         REQUIRE(state.getCurrentTrack() == &playable);
         
-        // Повторный вызов play (трек уже загружен, плеер просто продолжит)
         REQUIRE_NOTHROW(player.play());
     }
 
     SECTION("seek throws without track or out of bounds") {
-        // 1. Без трека
         REQUIRE_THROWS_AS(player.seek(100), PlaybackException);
         
-        // 2. Загружаем трек через play() и проверяем границы
         queue.add(&playable);
         player.play();
         
@@ -62,15 +58,12 @@ TEST_CASE("Player: Playback and Seeking") {
         queue.add(&playable);
         queue.add(&second);
 
-        player.play(); // Загрузили первый трек
-        state.updatePosition(500); // Эмулируем, что мы что-то послушали
+        player.play(); 
+        state.updatePosition(500); 
         
-        // Переключаем на следующий
         REQUIRE_NOTHROW(player.next(1000));
         REQUIRE(state.getCurrentTrack() == &second);
-        REQUIRE(history.getSessions().size() == 1); // Сессия записалась
-
-        // Возвращаемся назад
+        REQUIRE(history.getSessions().size() == 1); 
         REQUIRE_NOTHROW(player.previous(2000));
         REQUIRE(state.getCurrentTrack() == &playable);
     }

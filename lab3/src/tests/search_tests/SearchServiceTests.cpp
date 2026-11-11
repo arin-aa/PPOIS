@@ -15,7 +15,7 @@ TEST_CASE("SearchService: Full Search") {
     
     MediaLibrary library({&t1}, {&a1}, {&ar1});
     ContentCatalog catalog(&library);
-    catalog.rebuildIndex(); // Важно для поиска треков
+    catalog.rebuildIndex(); 
     SearchService service(&catalog);
 
     SECTION("Empty query returns empty result") {
@@ -24,7 +24,7 @@ TEST_CASE("SearchService: Full Search") {
     }
 
     SECTION("Search without type filter finds everything") {
-        SearchQuery q("rock"); // typeFilter по умолчанию пустой
+        SearchQuery q("rock"); 
         SearchResult res = service.search(q);
         
         REQUIRE(res.getTotalCount() == 3);
@@ -47,7 +47,6 @@ TEST_CASE("SearchService: Full Search") {
 }
 
 TEST_CASE("SearchService: Suggestions") {
-    // Создаем 6 треков, чтобы проверить ограничение в 5 штук
     Track t1(1, "Apple", 1, 1, 1000, nullptr);
     Track t2(2, "Apricot", 1, 1, 1000, nullptr);
     Track t3(3, "Avocado", 1, 1, 1000, nullptr);
@@ -61,7 +60,7 @@ TEST_CASE("SearchService: Suggestions") {
 
     SECTION("Empty prefix returns up to 5 tracks") {
         auto res = service.suggest("");
-        REQUIRE(res.size() == 5); // MAX_SUGGESTIONS = 5
+        REQUIRE(res.size() == 5); 
     }
 
     SECTION("Prefix 'A' returns matching tracks limited to 5") {

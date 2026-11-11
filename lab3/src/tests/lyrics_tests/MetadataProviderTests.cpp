@@ -19,7 +19,7 @@ TEST_CASE("MetadataProvider: Fetch and Errors") {
         auto meta = provider.fetchMetadata("music/queen_radio_ga_ga.mp3");
         
         REQUIRE(meta.size() == 3);
-        REQUIRE(meta["title"] == "queen radio ga ga"); // подчеркивания заменены на пробелы
+        REQUIRE(meta["title"] == "queen radio ga ga"); 
         REQUIRE(meta["format"] == "mp3");
         REQUIRE(meta["source"] == "http://api");
     }
