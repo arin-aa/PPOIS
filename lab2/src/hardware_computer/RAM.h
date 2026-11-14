@@ -1,44 +1,44 @@
 /**
  * @file RAM.h
- * @brief Объявление класса RAM.
+ * @brief Declaration of the RAM class.
  */
 #pragma once
 #include "Component.h"
 
 /**
  * @class RAM
- * @brief Класс оперативной памяти.
+ * @brief Random access memory class.
  */
 class RAM:public Component{
 private:
-    int capacityGb;///<Объем в ГБ.
-    int usedGb;///<Сколько использовано ГБ.
-    int speedMhz;///<Частота.
+    int capacityGb;///<Capacity in GB.
+    int usedGb;///<How many GB are used.
+    int speedMhz;///<Clock speed.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     RAM();
 
 /**
- * @brief Конструктор с параметрами.
- * @param capacityGb Объем.
- * @param speedMhz Частота.
+ * @brief Constructor with parameters.
+ * @param capacityGb Capacity.
+ * @param speedMhz Clock speed.
  */ 
     RAM(int capacityGb,int speedMhz);
 
 /**
- * @brief Выделяет память под процесс.
- * @param gb Запрашиваемый объем.
- * @return Время выделения в мс.
- * @exception MemoryOverflowException если не хватает памяти.
+ * @brief Allocates memory for a process.
+ * @param gb Requested amount.
+ * @return Allocation time in ms.
+ * @exception MemoryOverflowException if there is not enough memory.
  */    
     int allocate(int gb);
 
 /**
- * @brief Возвращает свободный объем.
- * @return Свободно ГБ.
+ * @brief Returns the free amount.
+ * @return Free GB.
  */
     int freeGb();
 };

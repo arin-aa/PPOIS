@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [lab1, lab1_2, lab2, main]
+    branches: [lab1, lab1_2, lab2, lab3, main]
   pull_request:
     branches: [main]
 
@@ -162,7 +162,7 @@ jobs:
         run: |
           cd lab2
           g++ -std=c++17 --coverage \
-              src/tests/*.cpp \
+              $(find src/tests -name '*.cpp') \
               $(find src -name '*.cpp' ! -path 'src/tests/*' ! -name 'main.cpp') \
               -I src/exceptions -I src/core_computer -I src/hardware_computer \
               -I src/network_computer -I src/peripherals_computer -I src/services_computer \
@@ -210,9 +210,81 @@ jobs:
           path: lab2/lab2
 
 
+  lab3-build-test:
+    name: Lab3 (Music Player) — build, test, coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cppcheck lcov catch2 bc
+
+      - name: Build CLI
+        run: |
+          cd lab3
+          g++ -std=c++17 -O2 \
+              main.cpp \
+              $(find src -name '*.cpp' ! -path 'src/tests/*') \
+              $(find src -type d -printf "-I%p ") \
+              -o lab3
+
+      - name: Build tests with coverage
+        run: |
+          cd lab3
+          g++ -std=c++17 --coverage \
+              $(find src/tests -name '*.cpp') \
+              $(find src -name '*.cpp' ! -path 'src/tests/*' ! -name 'main.cpp') \
+              $(find src -type d -printf "-I%p ") \
+              -lCatch2Main -lCatch2 \
+              -o run_tests
+
+      - name: Run tests
+        run: |
+          cd lab3
+          ./run_tests
+
+      - name: Generate coverage report and check >= 90%
+        run: |
+          cd lab3
+          lcov --capture --directory . --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' '*/src/tests/*' --output-file coverage_filtered.info
+          lcov --list coverage_filtered.info
+          COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
+          echo "Coverage: $COVERAGE%"
+          
+          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+            echo "FAIL: Coverage below 90%"
+            exit 1
+          fi
+          echo "PASS: Coverage >= 90%"
+
+      - name: Run linter (cppcheck)
+        run: |
+          cd lab3
+          cppcheck --enable=warning,performance,portability \
+                   --error-exitcode=1 \
+                   --suppress=missingIncludeSystem \
+                   main.cpp src/
+
+      - name: Test CLI
+        run: |
+          cd lab3
+          echo "0" | ./lab3
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab3-linux
+          path: lab3/lab3
+
+
   release:
     name: Create Release
-    needs: [set-build-test, tictactoe-build-test, lab2-build-test]
+    needs: [set-build-test, tictactoe-build-test, lab2-build-test, lab3-build-test]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
@@ -241,6 +313,15 @@ jobs:
               -I src/software_computer -I src/users_computer -I src \
               -o lab2_computer
 
+      - name: Build Lab3 binary
+        run: |
+          cd lab3
+          g++ -std=c++17 -O2 \
+              main.cpp \
+              $(find src -name '*.cpp' ! -path 'src/tests/*') \
+              $(find src -type d -printf "-I%p ") \
+              -o lab3_music_player
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -250,6 +331,7 @@ jobs:
             lab1/set/cantorset
             lab1/tictactoe/tictactoe
             lab2/lab2_computer
+            lab3/lab3_music_player
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

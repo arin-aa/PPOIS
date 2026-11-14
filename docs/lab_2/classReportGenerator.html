@@ -92,7 +92,7 @@ $(function(){initNavTree('classReportGenerator.html','','classReportGenerator-me
 </div><!--header-->
 <div class="contents">
 
-<p>Генератор отчетов о состоянии компьютера.  
+<p><a class="el" href="classComputer.html" title="Class representing a personal computer.">Computer</a> state report generator.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;ReportGenerator.h&gt;</code></p>
@@ -100,26 +100,26 @@ $(function(){initNavTree('classReportGenerator.html','','classReportGenerator-me
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a20409bcc687680a3723a9d614eb3b96e" id="r_a20409bcc687680a3723a9d614eb3b96e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20409bcc687680a3723a9d614eb3b96e">ReportGenerator</a> ()</td></tr>
-<tr class="memdesc:a20409bcc687680a3723a9d614eb3b96e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a20409bcc687680a3723a9d614eb3b96e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:afca2e37c58b4ad31685214bd6c467596" id="r_afca2e37c58b4ad31685214bd6c467596"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afca2e37c58b4ad31685214bd6c467596">ReportGenerator</a> (const std::string &amp;<a class="el" href="#a775ea6963318e9a251f47b085c912091">format</a>, const std::string &amp;<a class="el" href="#a7f4fad01c17d4e958140185a37d946e6">author</a>)</td></tr>
-<tr class="memdesc:afca2e37c58b4ad31685214bd6c467596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:afca2e37c58b4ad31685214bd6c467596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:aa9891cebc96364d2086e819d6eae92a8" id="r_aa9891cebc96364d2086e819d6eae92a8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9891cebc96364d2086e819d6eae92a8">generate</a> (<a class="el" href="classComputer.html">Computer</a> *computer)</td></tr>
-<tr class="memdesc:aa9891cebc96364d2086e819d6eae92a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерирует текст отчета по данным компьютера.  <br /></td></tr>
+<tr class="memdesc:aa9891cebc96364d2086e819d6eae92a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates report text based on computer data.  <br /></td></tr>
 <tr class="memitem:a267baaf5211fdc2faf148cf73f1f7311" id="r_a267baaf5211fdc2faf148cf73f1f7311"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a267baaf5211fdc2faf148cf73f1f7311">save</a> (const std::string &amp;text, <a class="el" href="classFile.html">File</a> *file)</td></tr>
-<tr class="memdesc:a267baaf5211fdc2faf148cf73f1f7311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сохраняет готовый отчет в файл.  <br /></td></tr>
+<tr class="memdesc:a267baaf5211fdc2faf148cf73f1f7311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the finished report to a file.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a775ea6963318e9a251f47b085c912091" id="r_a775ea6963318e9a251f47b085c912091"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a775ea6963318e9a251f47b085c912091">format</a></td></tr>
-<tr class="memdesc:a775ea6963318e9a251f47b085c912091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Формат отчета.  <br /></td></tr>
+<tr class="memdesc:a775ea6963318e9a251f47b085c912091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report format.  <br /></td></tr>
 <tr class="memitem:a7f4fad01c17d4e958140185a37d946e6" id="r_a7f4fad01c17d4e958140185a37d946e6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f4fad01c17d4e958140185a37d946e6">author</a></td></tr>
-<tr class="memdesc:a7f4fad01c17d4e958140185a37d946e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Автор отчета.  <br /></td></tr>
+<tr class="memdesc:a7f4fad01c17d4e958140185a37d946e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report author.  <br /></td></tr>
 <tr class="memitem:a3a39ff836b3426fced158593883663d1" id="r_a3a39ff836b3426fced158593883663d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a39ff836b3426fced158593883663d1">reportsMade</a></td></tr>
-<tr class="memdesc:a3a39ff836b3426fced158593883663d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Счетчик сгенерированных отчетов.  <br /></td></tr>
+<tr class="memdesc:a3a39ff836b3426fced158593883663d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter of generated reports.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Генератор отчетов о состоянии компьютера. </p>
-<p>Формирует строковое представление характеристик ПК и сохраняет его в файл. </p>
+<div class="textblock"><p><a class="el" href="classComputer.html" title="Class representing a personal computer.">Computer</a> state report generator. </p>
+<p>Generates a string representation of PC specifications and saves it to a file. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a20409bcc687680a3723a9d614eb3b96e" name="a20409bcc687680a3723a9d614eb3b96e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a20409bcc687680a3723a9d614eb3b96e">&#9670;&#160;</a></span>ReportGenerator() <span class="overload">[1/2]</span></h2>
@@ -136,7 +136,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -159,11 +159,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор с параметрами. </p>
+<p>Constructor with parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">format</td><td>Формат отчета. </td></tr>
-    <tr><td class="paramname">author</td><td>Автор. </td></tr>
+    <tr><td class="paramname">format</td><td>Report format. </td></tr>
+    <tr><td class="paramname">author</td><td>Author. </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,14 +186,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Генерирует текст отчета по данным компьютера. </p>
+<p>Generates report text based on computer data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">computer</td><td>Указатель на компьютер. </td></tr>
+    <tr><td class="paramname">computer</td><td>Pointer to the computer. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Строка с отчетом. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>String with the report. </dd></dl>
 
 </div>
 </div>
@@ -216,17 +216,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Сохраняет готовый отчет в файл. </p>
+<p>Saves the finished report to a file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">text</td><td>Текст отчета. </td></tr>
-    <tr><td class="paramname">file</td><td>Указатель на файл для записи. </td></tr>
+    <tr><td class="paramname">text</td><td>Report text. </td></tr>
+    <tr><td class="paramname">file</td><td>Pointer to the file for writing. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classUnauthorizedAccessException.html" title="Исключение при попытке несанкционированного доступа к компоненте.">UnauthorizedAccessException</a></td><td>если файл доступен только для чтения. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classUnauthorizedAccessException.html" title="Exception when attempting unauthorized access to a component.">UnauthorizedAccessException</a></td><td>if the file is read-only. </td></tr>
   </table>
   </dd>
 </dl>
@@ -254,7 +254,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Автор отчета. </p>
+<p>Report author. </p>
 
 </div>
 </div>
@@ -278,7 +278,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Формат отчета. </p>
+<p>Report format. </p>
 
 </div>
 </div>
@@ -302,7 +302,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Счетчик сгенерированных отчетов. </p>
+<p>Counter of generated reports. </p>
 
 </div>
 </div>

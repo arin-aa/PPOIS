@@ -92,7 +92,7 @@ $(function(){initNavTree('classCooler.html','','classCooler-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Класс для систем охлаждения.  
+<p>Class for cooling systems.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;Cooler.h&gt;</code></p>
@@ -102,45 +102,45 @@ Inheritance diagram for Cooler:</div>
  <div class="center">
   <img src="classCooler.png" usemap="#Cooler_map" alt=""/>
   <map id="Cooler_map" name="Cooler_map">
-<area href="classComponent.html" title="Базовый класс для всех комплектующих компьютера." alt="Component" shape="rect" coords="0,0,75,24"/>
-<area href="classRadiator.html" title="Класс радиатора для жидкостного охлаждения." alt="Radiator" shape="rect" coords="0,112,75,136"/>
+<area href="classComponent.html" title="Base class for all computer components." alt="Component" shape="rect" coords="0,0,75,24"/>
+<area href="classRadiator.html" title="Radiator class for liquid cooling." alt="Radiator" shape="rect" coords="0,112,75,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:acd82dda7be4425fdfd972b5e34eee6b5" id="r_acd82dda7be4425fdfd972b5e34eee6b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd82dda7be4425fdfd972b5e34eee6b5">Cooler</a> ()</td></tr>
-<tr class="memdesc:acd82dda7be4425fdfd972b5e34eee6b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:acd82dda7be4425fdfd972b5e34eee6b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:ab6c0244f564674ea06116da3aa01a588" id="r_ab6c0244f564674ea06116da3aa01a588"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6c0244f564674ea06116da3aa01a588">Cooler</a> (const std::string &amp;<a class="el" href="classComponent.html#a46343549452bda5ee9752f7a9bc15efb">name</a>, int <a class="el" href="#a87acd647bb71dc946eee1a388e4a1283">maxTdpWatts</a>)</td></tr>
-<tr class="memdesc:ab6c0244f564674ea06116da3aa01a588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:ab6c0244f564674ea06116da3aa01a588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:a5bd563ca28194df694024e26c9052d38" id="r_a5bd563ca28194df694024e26c9052d38"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bd563ca28194df694024e26c9052d38">headroom</a> (int tdp)</td></tr>
-<tr class="memdesc:a5bd563ca28194df694024e26c9052d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет запас охлаждения.  <br /></td></tr>
+<tr class="memdesc:a5bd563ca28194df694024e26c9052d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates cooling headroom.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classComponent"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classComponent')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a8775db6d1a2c1afc2e77cd3c8f39da6f inherit pub_methods_classComponent" id="r_a8775db6d1a2c1afc2e77cd3c8f39da6f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">Component</a> ()</td></tr>
-<tr class="memdesc:a8775db6d1a2c1afc2e77cd3c8f39da6f inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a8775db6d1a2c1afc2e77cd3c8f39da6f inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a48ecc7b3a4fe642d2d1e8cebd988c640 inherit pub_methods_classComponent" id="r_a48ecc7b3a4fe642d2d1e8cebd988c640"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a48ecc7b3a4fe642d2d1e8cebd988c640">Component</a> (const std::string &amp;<a class="el" href="classComponent.html#a46343549452bda5ee9752f7a9bc15efb">name</a>, const std::string &amp;<a class="el" href="classComponent.html#a102d09a3ec46b9a8eca3212ff1967f13">manufacturer</a>, int <a class="el" href="classComponent.html#a237f07f16d077c41346d539b3f40b70c">powerWatts</a>)</td></tr>
-<tr class="memdesc:a48ecc7b3a4fe642d2d1e8cebd988c640 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:a48ecc7b3a4fe642d2d1e8cebd988c640 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:ad82d7393e339c1b19cc17a0d55b5674d inherit pub_methods_classComponent" id="r_ad82d7393e339c1b19cc17a0d55b5674d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ad82d7393e339c1b19cc17a0d55b5674d">~Component</a> ()=default</td></tr>
-<tr class="memdesc:ad82d7393e339c1b19cc17a0d55b5674d inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Виртуальный деструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:ad82d7393e339c1b19cc17a0d55b5674d inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual default destructor.  <br /></td></tr>
 <tr class="memitem:a21adba2b4d705c0dd4b7d95ff2c5c513 inherit pub_methods_classComponent" id="r_a21adba2b4d705c0dd4b7d95ff2c5c513"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a21adba2b4d705c0dd4b7d95ff2c5c513">isNamed</a> (const std::string &amp;key)</td></tr>
-<tr class="memdesc:a21adba2b4d705c0dd4b7d95ff2c5c513 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет, совпадает ли переданная строка с именем или производителем.  <br /></td></tr>
+<tr class="memdesc:a21adba2b4d705c0dd4b7d95ff2c5c513 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the passed string matches the name or manufacturer.  <br /></td></tr>
 <tr class="memitem:ab4198145126fb7171b9ac2884e3fa959 inherit pub_methods_classComponent" id="r_ab4198145126fb7171b9ac2884e3fa959"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab4198145126fb7171b9ac2884e3fa959">draw</a> (int loadPercent)</td></tr>
-<tr class="memdesc:ab4198145126fb7171b9ac2884e3fa959 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Рассчитывает текущее энергопотребление с учетом нагрузки.  <br /></td></tr>
+<tr class="memdesc:ab4198145126fb7171b9ac2884e3fa959 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates current power consumption taking load into account.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a87acd647bb71dc946eee1a388e4a1283" id="r_a87acd647bb71dc946eee1a388e4a1283"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87acd647bb71dc946eee1a388e4a1283">maxTdpWatts</a></td></tr>
-<tr class="memdesc:a87acd647bb71dc946eee1a388e4a1283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Максимальный отводимый теплопакет  <br /></td></tr>
+<tr class="memdesc:a87acd647bb71dc946eee1a388e4a1283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum heat dissipation capacity.  <br /></td></tr>
 <tr class="inherit_header pro_attribs_classComponent"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classComponent')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a46343549452bda5ee9752f7a9bc15efb inherit pro_attribs_classComponent" id="r_a46343549452bda5ee9752f7a9bc15efb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a46343549452bda5ee9752f7a9bc15efb">name</a></td></tr>
-<tr class="memdesc:a46343549452bda5ee9752f7a9bc15efb inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Название компонента.  <br /></td></tr>
+<tr class="memdesc:a46343549452bda5ee9752f7a9bc15efb inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classComponent.html" title="Base class for all computer components.">Component</a> name.  <br /></td></tr>
 <tr class="memitem:a102d09a3ec46b9a8eca3212ff1967f13 inherit pro_attribs_classComponent" id="r_a102d09a3ec46b9a8eca3212ff1967f13"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a102d09a3ec46b9a8eca3212ff1967f13">manufacturer</a></td></tr>
-<tr class="memdesc:a102d09a3ec46b9a8eca3212ff1967f13 inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Производитель.  <br /></td></tr>
+<tr class="memdesc:a102d09a3ec46b9a8eca3212ff1967f13 inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manufacturer.  <br /></td></tr>
 <tr class="memitem:a237f07f16d077c41346d539b3f40b70c inherit pro_attribs_classComponent" id="r_a237f07f16d077c41346d539b3f40b70c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a237f07f16d077c41346d539b3f40b70c">powerWatts</a></td></tr>
-<tr class="memdesc:a237f07f16d077c41346d539b3f40b70c inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Потребляемая мощность  <br /></td></tr>
+<tr class="memdesc:a237f07f16d077c41346d539b3f40b70c inherit pro_attribs_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power consumption.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Класс для систем охлаждения. </p>
+<div class="textblock"><p>Class for cooling systems. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acd82dda7be4425fdfd972b5e34eee6b5" name="acd82dda7be4425fdfd972b5e34eee6b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd82dda7be4425fdfd972b5e34eee6b5">&#9670;&#160;</a></span>Cooler() <span class="overload">[1/2]</span></h2>
@@ -157,7 +157,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -180,11 +180,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор с параметрами. </p>
+<p>Constructor with parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Название кулера. </td></tr>
-    <tr><td class="paramname">maxTdpWatts</td><td>Максимальный TDP. </td></tr>
+    <tr><td class="paramname">name</td><td><a class="el" href="classCooler.html" title="Class for cooling systems.">Cooler</a> name. </td></tr>
+    <tr><td class="paramname">maxTdpWatts</td><td>Maximum TDP. </td></tr>
   </table>
   </dd>
 </dl>
@@ -207,14 +207,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Вычисляет запас охлаждения. </p>
+<p>Calculates cooling headroom. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tdp</td><td>Текущий теплопакет процессора. </td></tr>
+    <tr><td class="paramname">tdp</td><td>Current processor heat dissipation. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Разница между максимальным и текущим TDP. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Difference between maximum and current TDP. </dd></dl>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Максимальный отводимый теплопакет </p>
+<p>Maximum heat dissipation capacity. </p>
 
 </div>
 </div>

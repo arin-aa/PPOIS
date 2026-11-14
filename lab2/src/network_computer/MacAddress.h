@@ -1,41 +1,41 @@
 /**
  * @file MacAddress.h
- * @brief Объявление класса MacAddress.
+ * @brief Declaration of the MacAddress class.
  */
 #pragma once
 #include <string>
 
 /**
  * @class MacAddress
- * @brief Класс, представляющий MAC-адрес.
+ * @brief Class representing a MAC address.
  * 
- * Хранит значение адреса и имя производителя, позволяет проверять 
- * корректность записи MAC-адреса.
+ * Stores the address value and the manufacturer name, allows checking 
+ * the correctness of the MAC address notation.
  */
 class MacAddress{
 private:
-    std::string value;///<Строковое значение MAC-адреса.
-    std::string vendor;///<Название производителя.
+    std::string value;///<String value of the MAC address.
+    std::string vendor;///<Manufacturer name.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     MacAddress();
 
 /**
- * @brief Конструктор с параметрами.
- * @param value Строковое значение MAC-адреса.
- * @param vendor Производитель.
+ * @brief Constructor with parameters.
+ * @param value String value of the MAC address.
+ * @param vendor Manufacturer.
  */
     MacAddress(const std::string& value,const std::string& vendor);
 
 /**
- * @brief Проверяет корректность MAC-адреса.
+ * @brief Checks the correctness of the MAC address.
  * 
- * Проверяет длину строки (должна быть 17 символов) и наличие 
- * разделителей ':' в нужных позициях.
- * @exception InvalidAddressException если формат неверен.
+ * Checks the string length (must be 17 characters) and the presence of 
+ * ':' separators in the required positions.
+ * @exception InvalidAddressException if the format is incorrect.
  */
     void verify();
 };

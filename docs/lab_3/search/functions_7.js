@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['hasactivesubscription_0',['hasActiveSubscription',['../classUser.html#ad37ddd5878eff79581fb6ad7fe4c33a8',1,'User']]],
+  ['hasalbums_1',['hasAlbums',['../classArtist.html#a9be9a9f1adf697ee79e9ee931457894c',1,'Artist']]],
+  ['hasanygenre_2',['hasAnyGenre',['../classTrack.html#ab78d5192de06439cb892c23cab02a4d9',1,'Track']]],
+  ['hasgenre_3',['hasGenre',['../classTrack.html#a34a6481742b97fafbcf9254f419a76bd',1,'Track']]]
+];

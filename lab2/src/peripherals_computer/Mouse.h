@@ -1,42 +1,42 @@
 /**
  * @file Mouse.h
- * @brief Объявление класса Mouse.
+ * @brief Declaration of the Mouse class.
  */
 #pragma once
 #include "Peripheral.h"
 
 /**
  * @class Mouse
- * @brief Класс компьютерной мыши, наследуемый от Peripheral.
+ * @brief Computer mouse class, inheriting from Peripheral.
  */
 class Mouse:public Peripheral{
 private:
-    int dpi;///<Текущая чувствительность мыши.
-    int clicks;///<Счетчик кликов.
+    int dpi;///<Current mouse sensitivity.
+    int clicks;///<Click counter.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Mouse();
 
 /**
- * @brief Конструктор с указанием чувствительности.
- * @param dpi Начальное значение DPI.
+ * @brief Constructor with sensitivity specified.
+ * @param dpi Initial DPI value.
  */
     explicit Mouse(int dpi);
      
 /** 
- * @brief Изменяет чувствительность мыши.
- * @param newDpi Новое значение DPI.
- * @return Установленное значение DPI.
- * @exception InvalidConfigurationException если DPI вне допустимого диапазона.
+ * @brief Changes the mouse sensitivity.
+ * @param newDpi New DPI value.
+ * @return The set DPI value.
+ * @exception InvalidConfigurationException if the DPI is outside the allowed range.
  */
     int changeDpi(int newDpi);
 
 /**
- * @brief Имитирует клик мышью.
- * @return Общее количество кликов за все время.
+ * @brief Simulates a mouse click.
+ * @return Total number of clicks over all time.
  */
     int click();
 };

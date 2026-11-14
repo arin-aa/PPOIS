@@ -1,6 +1,6 @@
 /**
  * @file Port.h
- * @brief Объявление класса Port.
+ * @brief Declaration of the Port class.
  */
 
 #pragma once
@@ -10,37 +10,37 @@ class Cable;
 
 /**
  * @class Port
- * @brief Класс порта ввода-вывода.
+ * @brief Input/output port class.
  */
 class Port{
 private:
-    std::string type;///<Тип порта.
-    int speedMbps;///<Пропускная способность порта.
-    Cable* cable;///<Подключенный кабель.
+    std::string type;///<Port type.
+    int speedMbps;///<Port throughput.
+    Cable* cable;///<Connected cable.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Port();
 
 /**
- * @brief Конструктор с параметрами.
- * @param type Тип порта.
- * @param speedMbps Скорость.
+ * @brief Constructor with parameters.
+ * @param type Port type.
+ * @param speedMbps Speed.
  */
     Port(const std::string& type,int speedMbps);
 
 /**
- * @brief Подключает кабель к порту.
- * @param newCable Указатель на кабель.
+ * @brief Connects a cable to the port.
+ * @param newCable Pointer to the cable.
  */
     void plug(Cable* newCable);
 
 /**
- * @brief Вычисляет реальную пропускную способность.
- * @return Скорость в Мбит/с.
- * @exception PeripheralNotRespondingException если нет кабеля.
+ * @brief Calculates the actual throughput.
+ * @return Speed in Mbps.
+ * @exception PeripheralNotRespondingException if there is no cable.
  */
     int throughput();
 };

@@ -1,44 +1,44 @@
 /**
  * @file Cable.h
- * @brief Объявление класса Cable.
+ * @brief Declaration of the Cable class.
  */
 #pragma once
 #include <string>
 
 /**
  * @class Cable
- * @brief Класс, представляющий соединительный кабель.
+ * @brief Class representing a connection cable.
  */
 class Cable{
 private:
-    std::string type;///<Тип кабеля
-    double lengthMeters;///<Длина кабеля в метрах.
-    int maxMbps;///<Максимальная пропускная способность.
+    std::string type;///<Cable type
+    double lengthMeters;///<Cable length in meters.
+    int maxMbps;///<Maximum throughput.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Cable();
 
 /**
- * @brief Конструктор с параметрами.
- * @param type Тип кабеля.
- * @param lengthMeters Длина.
- * @param maxMbps Максимальная скорость.
+ * @brief Constructor with parameters.
+ * @param type Cable type.
+ * @param lengthMeters Length.
+ * @param maxMbps Maximum speed.
  */
     Cable(const std::string& type,double lengthMeters,int maxMbps);
 
 /**
- * @brief Проверяет совместимость кабеля с портом.
- * @param portType Тип порта.
- * @exception InvalidConfigurationException если типы не совпадают.
+ * @brief Checks cable compatibility with the port.
+ * @param portType Port type.
+ * @exception InvalidConfigurationException if the types do not match.
  */ 
     void match(const std::string& portType);
 
 /**
- * @brief Вычисляет реальную пропускную способность с учетом затухания.
- * @return Эффективная скорость в Мбит/с.
+ * @brief Calculates the actual throughput taking into account attenuation.
+ * @return Effective speed in Mbps.
  */
     int effectiveMbps();
 };

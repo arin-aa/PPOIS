@@ -1,6 +1,6 @@
 /**
  * @file Case.h
- * @brief Объявление класса Case.
+ * @brief Declaration of the Case class.
  */
 #pragma once
 #include <vector>
@@ -10,36 +10,36 @@ class Fan;
 
 /**
  * @class Case
- * @brief Класс корпуса компьютера, наследуемый от Component.
+ * @brief Class representing a computer case, inheriting from Component.
  */
 class Case:public Component{
 private:
-    int maxFans;///<Максимальное количество вентиляторов.
-    int dustLevel;///<Уровень запыленности.
-    std::vector<Fan*> fans;///<Установленные вентиляторы.
+    int maxFans;///<Maximum number of fans.
+    int dustLevel;///<Dust level.
+    std::vector<Fan*> fans;///<Installed fans.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Case();
 
 /**
- * @brief Конструктор с указанием максимального количества вентиляторов.
- * @param maxFans Максимум вентиляторов.
+ * @brief Constructor with maximum number of fans specified.
+ * @param maxFans Maximum number of fans.
  */ 
     explicit Case(int maxFans);
 
 /**
- * @brief Устанавливает вентилятор в корпус.
- * @param fan Указатель на вентилятор.
- * @exception InvalidConfigurationException если все места заняты.
+ * @brief Installs a fan into the case.
+ * @param fan Pointer to the fan.
+ * @exception InvalidConfigurationException if all slots are occupied.
  */
     void addFan(Fan* fan);
 
 /**
- * @brief Рассчитывает общий воздушный поток с учетом запыленности.
- * @return Суммарный поток.
+ * @brief Calculates total airflow taking dust level into account.
+ * @return Total airflow.
  */
     int totalAirflow();
 };

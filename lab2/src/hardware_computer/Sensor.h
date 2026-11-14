@@ -1,40 +1,40 @@
 /**
  * @file Sensor.h
- * @brief Объявление класса Sensor.
+ * @brief Declaration of the Sensor class.
  */
 #pragma once
 
 /**
  * @class Sensor
- * @brief Класс датчика.
+ * @brief Sensor class.
  */
 class Sensor{
 private:
-    double value;///<Текущее показание.
-    double threshold;///<Пороговое значение.
-    int readings;///<Количество замеров.
+    double value;///<Current reading.
+    double threshold;///<Threshold value.
+    int readings;///<Number of measurements.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Sensor();
 
 /**
- * @brief Конструктор с порогом.
- * @param threshold Пороговое значение.
+ * @brief Constructor with threshold.
+ * @param threshold Threshold value.
  */
     explicit Sensor(double threshold);
 
 /**
- * @brief Добавляет новое показание и вычисляет среднее.
- * @param reading Новое значение.
+ * @brief Adds a new reading and calculates the average.
+ * @param reading New value.
  */    
     void measure(double reading);
 
 /**
- * @brief Вычисляет запас до порога.
- * @return Разница между порогом и текущим значением.
+ * @brief Calculates the margin to the threshold.
+ * @return Difference between the threshold and the current value.
  */
     double margin();
 };

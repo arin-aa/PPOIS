@@ -1,42 +1,42 @@
 /**
  * @file Fan.h
- * @brief Объявление класса Fan.
+ * @brief Declaration of the Fan class.
  */
 #pragma once
 #include "Component.h"
 
 /**
  * @class Fan
- * @brief Класс вентилятора.
+ * @brief Fan class.
  */
 class Fan:public Component{
 private:
-    int rpm;///<Скорость вращения.
-    int sizeMm;///<Размер вентилятора в мм.
+    int rpm;///<Rotation speed.
+    int sizeMm;///<Fan size in mm.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Fan();
 
 /**
- * @brief Конструктор с параметрами.
- * @param sizeMm Размер.
- * @param rpm Начальная скорость.
+ * @brief Constructor with parameters.
+ * @param sizeMm Size.
+ * @param rpm Initial speed.
  */
     Fan(int sizeMm,int rpm);
 
 /**
- * @brief Изменяет скорость вращения.
- * @param delta Прирост/уменьшение оборотов.
- * @return Итоговая скорость.
+ * @brief Changes the rotation speed.
+ * @param delta Increase/decrease in RPM.
+ * @return Resulting speed.
  */
     int accelerate(int delta);
 
 /**
- * @brief Вычисляет воздушный поток.
- * @return Поток.
+ * @brief Calculates the airflow.
+ * @return Airflow.
  */
     int airflow();
 };

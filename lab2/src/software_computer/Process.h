@@ -1,6 +1,6 @@
 /**
  * @file Process.h
- * @brief Объявление класса Process.
+ * @brief Declaration of the Process class.
  */
 #pragma once
 #include <string>
@@ -9,38 +9,38 @@ class Application;
 
 /**
  * @class Process
- * @brief Класс, представляющий запущенный процесс приложения.
+ * @brief Class representing a running application process.
  */
 class Process{
 private:
-    int ramUsageMb;///<Объем используемой оперативной памяти.
-    std::string state;///<Текущее состояние процесса ("new", "running", "stopped").
-    Application* app;///<Указатель на запущенное приложение.
+    int ramUsageMb;///<Amount of RAM used.
+    std::string state;///<Current process state ("new", "running", "stopped").
+    Application* app;///<Pointer to the running application.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Process();
 
 /**
- * @brief Конструктор с указанием приложения.
- * @param app Указатель на приложение.
+ * @brief Constructor with application specified.
+ * @param app Pointer to the application.
  */
     explicit Process(Application* app);
 
 
 /**
- * @brief Запускает процесс.
- * @param freeRamMb Доступная оперативная память.
- * @return Объем памяти, занятый процессом.
- * @exception MemoryOverflowException если приложению не хватает памяти.
+ * @brief Starts the process.
+ * @param freeRamMb Available RAM.
+ * @return Amount of memory occupied by the process.
+ * @exception MemoryOverflowException if the application does not have enough memory.
  */
     int start(int freeRamMb);
 
 /**
- * @brief Завершает процесс.
- * @return Освобожденный объем оперативной памяти.
+ * @brief Terminates the process.
+ * @return Amount of freed RAM.
  */
     int terminate();
 };

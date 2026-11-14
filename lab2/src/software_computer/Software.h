@@ -1,46 +1,46 @@
 /**
  * @file Software.h
- * @brief Объявление базового класса Software.
+ * @brief Declaration of the base class Software.
  */
 #pragma once
 #include <string>
 
 /**
  * @class Software
- * @brief Базовый класс для всего программного обеспечения.
+ * @brief Base class for all software.
  * 
- * Содержит общие свойства (название, размер, статус установки) 
- * и логику установки на диск.
+ * Contains common properties (name, size, installation status) 
+ * and disk installation logic.
  */
 class Software{
 protected:
-    std::string name;///<Название программного обеспечения.
-    int sizeMb;///<Размер программы в мегабайтах.
-    bool isInstalled;///<Флаг, указывающий, установлена ли программа.
+    std::string name;///<Software name.
+    int sizeMb;///<Program size in megabytes.
+    bool isInstalled;///<Flag indicating whether the program is installed.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Software();
 
 /**
- * @brief Конструктор с параметрами.
- * @param name Название программы.
- * @param sizeMb Размер программы в МБ.
+ * @brief Constructor with parameters.
+ * @param name Program name.
+ * @param sizeMb Program size in MB.
  */
     Software(const std::string& name,int sizeMb);
 
 /**
- * @brief Виртуальный деструктор по умолчанию.
+ * @brief Virtual default destructor.
  */
     virtual ~Software()=default;
 
 /**
- * @brief Устанавливает программу на диск.
- * @param freeGb Доступное свободное место в гигабайтах.
- * @return Необходимое для установки количество гигабайт.
- * @exception DiskFullException если свободного места недостаточно.
+ * @brief Installs the program to disk.
+ * @param freeGb Available free space in gigabytes.
+ * @return Number of gigabytes required for installation.
+ * @exception DiskFullException if there is not enough free space.
  */
     int install(int freeGb);
 };

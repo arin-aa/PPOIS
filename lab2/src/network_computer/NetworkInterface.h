@@ -1,6 +1,6 @@
 /**
  * @file NetworkInterface.h
- * @brief Объявление класса NetworkInterface.
+ * @brief Declaration of the NetworkInterface class.
  */
 #pragma once
 
@@ -8,42 +8,42 @@ class IpAddress;
 
 /**
  * @class NetworkInterface
- * @brief Класс сетевого интерфейса (сетевой карты).
+ * @brief Network interface (network card) class.
  * 
- * Управляет состоянием соединения, привязкой IP-адреса 
- * и передачей данных.
+ * Manages the connection state, IP address binding, 
+ * and data transmission.
  */
 class NetworkInterface{
 private:
-    bool isUp;///<Флаг активности интерфейса.
-    int speedMbps;///<Пропускная способность.
-    int bytesSent;///<Счетчик отправленных байт.
-    IpAddress* ip;///<Указатель на привязанный IP-адрес.
+    bool isUp;///<Interface activity flag.
+    int speedMbps;///<Throughput.
+    int bytesSent;///<Counter of sent bytes.
+    IpAddress* ip;///<Pointer to the bound IP address.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     NetworkInterface();
 
 /**
- * @brief Конструктор с указанием скорости.
- * @param speedMbps Скорость в Мбит/с.
+ * @brief Constructor with speed specified.
+ * @param speedMbps Speed in Mbps.
  */
     explicit NetworkInterface(int speedMbps);
 
 /**
- * @brief Подключает IP-адрес к интерфейсу.
- * @param newIp Указатель на объект IP-адреса.
- * @exception InvalidAddressException если переданный IP некорректен.
+ * @brief Connects an IP address to the interface.
+ * @param newIp Pointer to the IP address object.
+ * @exception InvalidAddressException if the passed IP is invalid.
  */
     void connect(IpAddress* newIp);
 
 /**
- * @brief Рассчитывает время передачи заданного количества бит.
- * @param bits Количество бит для передачи.
- * @return Время передачи в наносекундах.
- * @exception NetworkDisconnectedException если интерфейс выключен или нет IP.
+ * @brief Calculates the transmission time for a given number of bits.
+ * @param bits Number of bits to transmit.
+ * @return Transmission time in nanoseconds.
+ * @exception NetworkDisconnectedException if the interface is down or there is no IP.
  */
     int transmitNs(int bits);
 };

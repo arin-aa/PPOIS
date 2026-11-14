@@ -1,6 +1,6 @@
 /**
  * @file RepairTicket.h
- * @brief Объявление класса RepairTicket.
+ * @brief Declaration of the RepairTicket class.
  */
 #pragma once
 #include <string>
@@ -10,50 +10,50 @@ class Technician;
 
 /**
  * @class RepairTicket
- * @brief Класс заявки на ремонт.
+ * @brief Repair ticket class.
  * 
- * Отслеживает жизненный цикл заявки: от создания до назначения техника 
- * и закрытия с расчетом итоговой стоимости.
+ * Tracks the ticket lifecycle: from creation to technician assignment 
+ * and closure with final cost calculation.
  */
 class RepairTicket{
 private:
-    std::string description;///<Описание проблемы.
-    std::string status;///<Текущий статус ("open", "assigned", "closed").
-    int hoursSpent;///<Количество затраченных часов.
-    Computer* computer;///<Указатель на ремонтируемый компьютер.
-    Technician* technician;///<Указатель на назначенного техника.
+    std::string description;///<Problem description.
+    std::string status;///<Current status ("open", "assigned", "closed").
+    int hoursSpent;///<Number of hours spent.
+    Computer* computer;///<Pointer to the computer being repaired.
+    Technician* technician;///<Pointer to the assigned technician.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     RepairTicket();
 
 /**
- * @brief Конструктор с параметрами.
- * @param description Описание проблемы.
- * @param computer Указатель на компьютер.
+ * @brief Constructor with parameters.
+ * @param description Problem description.
+ * @param computer Pointer to the computer.
  */
     RepairTicket(const std::string& description,Computer* computer);
 
 /**
- * @brief Назначает техника на выполнение заявки.
- * @param worker Указатель на техника.
- * @exception InvalidConfigurationException если заявка уже назначена или закрыта.
+ * @brief Assigns a technician to the ticket.
+ * @param worker Pointer to the technician.
+ * @exception InvalidConfigurationException if the ticket is already assigned or closed.
  */
     void assign(Technician* worker);
 
 /**
- * @brief Проводит диагностику компьютера.
- * @return Оставшийся резерв мощности блока питания.
+ * @brief Performs computer diagnostics.
+ * @return Remaining power supply reserve.
  */
     int diagnose();
 
 /**
- * @brief Закрывает заявку и рассчитывает стоимость.
- * @param hours Количество затраченных часов.
- * @return Итоговая стоимость ремонта.
- * @exception UnauthorizedAccessException если на заявку не назначен техник.
+ * @brief Closes the ticket and calculates the cost.
+ * @param hours Number of hours spent.
+ * @return Total repair cost.
+ * @exception UnauthorizedAccessException if no technician is assigned to the ticket.
  */
     int close(int hours);
 };

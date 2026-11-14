@@ -92,7 +92,7 @@ $(function(){initNavTree('classComputerException.html','','classComputerExceptio
 </div><!--header-->
 <div class="contents">
 
-<p>Базовый класс для всех исключений предметной области.  
+<p>Base class for all domain exceptions.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;ComputerExceptions.h&gt;</code></p>
@@ -102,30 +102,30 @@ Inheritance diagram for ComputerException:</div>
  <div class="center">
   <img src="classComputerException.png" usemap="#ComputerException_map" alt=""/>
   <map id="ComputerException_map" name="ComputerException_map">
-<area href="classBootFailureException.html" title="Исключение при невозможности загрузки системы или компонента." alt="BootFailureException" shape="rect" coords="221,112,432,136"/>
-<area href="classDiskFullException.html" title="Исключение при переполнении дискового пространства." alt="DiskFullException" shape="rect" coords="221,168,432,192"/>
-<area href="classDriverNotFoundException.html" title="Исключение, если драйвер не подходит к указанному устройству." alt="DriverNotFoundException" shape="rect" coords="221,224,432,248"/>
-<area href="classIncompatibleSocketException.html" title="Исключение при несовместимости сокетов процессора и материнской платы." alt="IncompatibleSocketException" shape="rect" coords="221,280,432,304"/>
-<area href="classInsufficientPowerException.html" title="Исключение при недостаточной мощности блока питания." alt="InsufficientPowerException" shape="rect" coords="221,336,432,360"/>
-<area href="classInvalidAddressException.html" title="Исключение при некорректном формате IP- или MAC-адреса." alt="InvalidAddressException" shape="rect" coords="221,392,432,416"/>
-<area href="classInvalidConfigurationException.html" title="Исключение при некорректной конфигурации." alt="InvalidConfigurationException" shape="rect" coords="221,448,432,472"/>
-<area href="classInventoryFullException.html" title="Исключение при попытке добавить предмет на переполненный склад." alt="InventoryFullException" shape="rect" coords="221,504,432,528"/>
-<area href="classMemoryOverflowException.html" title="Исключение при нехватке оперативной или видеопамяти." alt="MemoryOverflowException" shape="rect" coords="221,560,432,584"/>
-<area href="classNetworkDisconnectedException.html" title="Исключение при попытке передачи данных через отключенный сетевой интерфейс." alt="NetworkDisconnectedException" shape="rect" coords="221,616,432,640"/>
-<area href="classOverheatingException.html" title="Исключение при критическом перегреве компонента." alt="OverheatingException" shape="rect" coords="221,672,432,696"/>
-<area href="classPeripheralNotRespondingException.html" title="Исключение, если периферийное устройство не отвечает или отключено." alt="PeripheralNotRespondingException" shape="rect" coords="221,728,432,752"/>
-<area href="classUnauthorizedAccessException.html" title="Исключение при попытке несанкционированного доступа к компоненте." alt="UnauthorizedAccessException" shape="rect" coords="221,784,432,808"/>
+<area href="classBootFailureException.html" title="Exception when the system or a component fails to boot." alt="BootFailureException" shape="rect" coords="221,112,432,136"/>
+<area href="classDiskFullException.html" title="Exception for disk space exhaustion." alt="DiskFullException" shape="rect" coords="221,168,432,192"/>
+<area href="classDriverNotFoundException.html" title="Exception if a driver does not match the specified device." alt="DriverNotFoundException" shape="rect" coords="221,224,432,248"/>
+<area href="classIncompatibleSocketException.html" title="Exception for incompatibility between the processor and motherboard sockets." alt="IncompatibleSocketException" shape="rect" coords="221,280,432,304"/>
+<area href="classInsufficientPowerException.html" title="Exception for insufficient power supply capacity." alt="InsufficientPowerException" shape="rect" coords="221,336,432,360"/>
+<area href="classInvalidAddressException.html" title="Exception for an invalid IP or MAC address format." alt="InvalidAddressException" shape="rect" coords="221,392,432,416"/>
+<area href="classInvalidConfigurationException.html" title="Exception for an invalid configuration." alt="InvalidConfigurationException" shape="rect" coords="221,448,432,472"/>
+<area href="classInventoryFullException.html" title="Exception when attempting to add an item to a full warehouse." alt="InventoryFullException" shape="rect" coords="221,504,432,528"/>
+<area href="classMemoryOverflowException.html" title="Exception for insufficient RAM or video memory." alt="MemoryOverflowException" shape="rect" coords="221,560,432,584"/>
+<area href="classNetworkDisconnectedException.html" title="Exception when attempting to transfer data through a disconnected network interface." alt="NetworkDisconnectedException" shape="rect" coords="221,616,432,640"/>
+<area href="classOverheatingException.html" title="Exception for critical overheating of a component." alt="OverheatingException" shape="rect" coords="221,672,432,696"/>
+<area href="classPeripheralNotRespondingException.html" title="Exception if a peripheral device is not responding or is disconnected." alt="PeripheralNotRespondingException" shape="rect" coords="221,728,432,752"/>
+<area href="classUnauthorizedAccessException.html" title="Exception when attempting unauthorized access to a component." alt="UnauthorizedAccessException" shape="rect" coords="221,784,432,808"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7466d25d1edb768a87442b7e326f7986" id="r_a7466d25d1edb768a87442b7e326f7986"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7466d25d1edb768a87442b7e326f7986">ComputerException</a> (const std::string &amp;message)</td></tr>
-<tr class="memdesc:a7466d25d1edb768a87442b7e326f7986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с сообщением об ошибке.  <br /></td></tr>
+<tr class="memdesc:a7466d25d1edb768a87442b7e326f7986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with an error message.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Базовый класс для всех исключений предметной области. </p>
-<p>Наследуется от std::runtime_error, что позволяет перехватывать все ошибки системы одним блоком catch (const <a class="el" href="classComputerException.html" title="Базовый класс для всех исключений предметной области.">ComputerException</a>&amp;). </p>
+<div class="textblock"><p>Base class for all domain exceptions. </p>
+<p>Inherits from std::runtime_error, which allows catching all system errors with a single catch block (const <a class="el" href="classComputerException.html" title="Base class for all domain exceptions.">ComputerException</a>&amp;). </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7466d25d1edb768a87442b7e326f7986" name="a7466d25d1edb768a87442b7e326f7986"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7466d25d1edb768a87442b7e326f7986">&#9670;&#160;</a></span>ComputerException()</h2>
@@ -150,10 +150,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Конструктор с сообщением об ошибке. </p>
+<p>Constructor with an error message. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>Текст ошибки. </td></tr>
+    <tr><td class="paramname">message</td><td>Error text. </td></tr>
   </table>
   </dd>
 </dl>

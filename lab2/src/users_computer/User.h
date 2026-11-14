@@ -1,57 +1,57 @@
 /**
  * @file User.h
- * @brief Объявление базового класса User.
+ * @brief Declaration of the base class User.
  */
 #pragma once
 #include <string>
 
 /**
  * @class User
- * @brief Базовый класс пользователя системы.
+ * @brief Base class of the system user.
  * 
- * Содержит логин, пароль и логику аутентификации с защитой от подбора пароля.
+ * Contains login, password, and authentication logic with protection against password guessing.
  */
 class User{
 protected:
-    std::string login;///<Логин пользователя.
-    std::string password;///<Пароль пользователя.
-    bool isBlocked;///<Флаг блокировки аккаунта.
-    int failedAttempts;///<Счетчик неудачных попыток входа.
+    std::string login;///<User login.
+    std::string password;///<User password.
+    bool isBlocked;///<Account blocking flag.
+    int failedAttempts;///<Counter of failed login attempts.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     User();
 
 /**
- * @brief Конструктор с параметрами.
- * @param login Логин.
- * @param password Пароль.
+ * @brief Constructor with parameters.
+ * @param login Login.
+ * @param password Password.
  */
     User(const std::string& login,const std::string& password);
 
 /**
- * @brief Виртуальный деструктор по умолчанию.
+ * @brief Virtual default destructor.
  */
     virtual ~User()=default;
 
 /**
- * @brief Аутентифицирует пользователя.
+ * @brief Authenticates the user.
  * 
- * При 3-х неудачных попытках подряд аккаунт блокируется.
- * @param candidate Введенный пароль.
- * @return true, если пароль верный.
- * @exception UnauthorizedAccessException если аккаунт заблокирован.
+ * After 3 consecutive failed attempts, the account is blocked.
+ * @param candidate Entered password.
+ * @return true if the password is correct.
+ * @exception UnauthorizedAccessException if the account is blocked.
  */
     bool authenticate(const std::string& candidate);
 
 /**
- * @brief Изменяет пароль пользователя.
- * @param oldPassword Старый пароль.
- * @param newPassword Новый пароль.
- * @exception UnauthorizedAccessException если старый пароль неверен или аккаунт заблокирован.
- * @exception InvalidConfigurationException если новый пароль слишком короткий.
+ * @brief Changes the user password.
+ * @param oldPassword Old password.
+ * @param newPassword New password.
+ * @exception UnauthorizedAccessException if the old password is incorrect or the account is blocked.
+ * @exception InvalidConfigurationException if the new password is too short.
  */
     void changePassword(const std::string& oldPassword,const std::string& newPassword);
 };

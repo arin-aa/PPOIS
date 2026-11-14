@@ -1,6 +1,6 @@
 /**
  * @file Motherboard.h
- * @brief Объявление класса Motherboard.
+ * @brief Declaration of the Motherboard class.
  */
 #pragma once
 #include <string>
@@ -12,44 +12,44 @@ class RAM;
 
 /**
  * @class Motherboard
- * @brief Класс материнской платы.
+ * @brief Motherboard class.
  */
 class Motherboard:public Component{
 private:
-    std::string socket;///<Тип сокета.
-    int ramSlots;///<Количество слотов ОЗУ.
-    CPU* cpu;///<Установленный процессор.
-    std::vector<RAM*> ramModules;///<Установленные модули ОЗУ.
+    std::string socket;///<Socket type.
+    int ramSlots;///<Number of RAM slots.
+    CPU* cpu;///<Installed processor.
+    std::vector<RAM*> ramModules;///<Installed RAM modules.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Motherboard();
 
 /**
- * @brief Конструктор с параметрами.
- * @param socket Сокет.
- * @param ramSlots Количество слотов.
+ * @brief Constructor with parameters.
+ * @param socket Socket.
+ * @param ramSlots Number of slots.
  */
     Motherboard(const std::string& socket,int ramSlots);
 
 /**
- * @brief Устанавливает процессор.
- * @param newCpu Указатель на процессор.
+ * @brief Installs the processor.
+ * @param newCpu Pointer to the processor.
  */ 
     void installCpu(CPU* newCpu);
 
 /**
- * @brief Устанавливает модуль оперативной памяти.
- * @param ram Указатель на модуль.
- * @exception InvalidConfigurationException если нет свободных слотов.
+ * @brief Installs a RAM module.
+ * @param ram Pointer to the module.
+ * @exception InvalidConfigurationException if there are no free slots.
  */
     void installRam(RAM* ram);
 
 /**
- * @brief Возвращает суммарный объем свободной ОЗУ.
- * @return Объем в ГБ.
+ * @brief Returns the total amount of free RAM.
+ * @return Amount in GB.
  */ 
     int freeRamGb();
 };

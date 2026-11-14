@@ -92,7 +92,7 @@ $(function(){initNavTree('classSoftware.html','','classSoftware-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Базовый класс для всего программного обеспечения.  
+<p>Base class for all software.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;Software.h&gt;</code></p>
@@ -102,35 +102,35 @@ Inheritance diagram for Software:</div>
  <div class="center">
   <img src="classSoftware.png" usemap="#Software_map" alt=""/>
   <map id="Software_map" name="Software_map">
-<area href="classApplication.html" title="Класс пользовательского приложения, наследуемый от Software." alt="Application" shape="rect" coords="0,56,108,80"/>
-<area href="classDriver.html" title="Класс драйвера устройства, наследуемый от Software." alt="Driver" shape="rect" coords="118,56,226,80"/>
-<area href="classOperatingSystem.html" title="Класс операционной системы, наследуемый от Software." alt="OperatingSystem" shape="rect" coords="236,56,344,80"/>
+<area href="classApplication.html" title="User application class, inheriting from Software." alt="Application" shape="rect" coords="0,56,108,80"/>
+<area href="classDriver.html" title="Device driver class, inheriting from Software." alt="Driver" shape="rect" coords="118,56,226,80"/>
+<area href="classOperatingSystem.html" title="Operating system class, inheriting from Software." alt="OperatingSystem" shape="rect" coords="236,56,344,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a13ed619ee20df49a292c9670fe368460" id="r_a13ed619ee20df49a292c9670fe368460"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13ed619ee20df49a292c9670fe368460">Software</a> ()</td></tr>
-<tr class="memdesc:a13ed619ee20df49a292c9670fe368460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a13ed619ee20df49a292c9670fe368460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a5921d46060385b46e2aa3829cf79af7f" id="r_a5921d46060385b46e2aa3829cf79af7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5921d46060385b46e2aa3829cf79af7f">Software</a> (const std::string &amp;<a class="el" href="#ad80f47ea72f52101e9bf8d7aa8d42c81">name</a>, int <a class="el" href="#a020cde0a95f4c3866c23e5df5f9ad656">sizeMb</a>)</td></tr>
-<tr class="memdesc:a5921d46060385b46e2aa3829cf79af7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:a5921d46060385b46e2aa3829cf79af7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:afdfda151831141ffdbfc9e7ce14380f5" id="r_afdfda151831141ffdbfc9e7ce14380f5"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdfda151831141ffdbfc9e7ce14380f5">~Software</a> ()=default</td></tr>
-<tr class="memdesc:afdfda151831141ffdbfc9e7ce14380f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Виртуальный деструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:afdfda151831141ffdbfc9e7ce14380f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual default destructor.  <br /></td></tr>
 <tr class="memitem:a9b00961096a166166937a2151c1b3cd8" id="r_a9b00961096a166166937a2151c1b3cd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b00961096a166166937a2151c1b3cd8">install</a> (int freeGb)</td></tr>
-<tr class="memdesc:a9b00961096a166166937a2151c1b3cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Устанавливает программу на диск.  <br /></td></tr>
+<tr class="memdesc:a9b00961096a166166937a2151c1b3cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Installs the program to disk.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ad80f47ea72f52101e9bf8d7aa8d42c81" id="r_ad80f47ea72f52101e9bf8d7aa8d42c81"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad80f47ea72f52101e9bf8d7aa8d42c81">name</a></td></tr>
-<tr class="memdesc:ad80f47ea72f52101e9bf8d7aa8d42c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Название программного обеспечения.  <br /></td></tr>
+<tr class="memdesc:ad80f47ea72f52101e9bf8d7aa8d42c81"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSoftware.html" title="Base class for all software.">Software</a> name.  <br /></td></tr>
 <tr class="memitem:a020cde0a95f4c3866c23e5df5f9ad656" id="r_a020cde0a95f4c3866c23e5df5f9ad656"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a020cde0a95f4c3866c23e5df5f9ad656">sizeMb</a></td></tr>
-<tr class="memdesc:a020cde0a95f4c3866c23e5df5f9ad656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер программы в мегабайтах.  <br /></td></tr>
+<tr class="memdesc:a020cde0a95f4c3866c23e5df5f9ad656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Program size in megabytes.  <br /></td></tr>
 <tr class="memitem:a975d0fe684bc91e8d0babd002cc8a370" id="r_a975d0fe684bc91e8d0babd002cc8a370"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a975d0fe684bc91e8d0babd002cc8a370">isInstalled</a></td></tr>
-<tr class="memdesc:a975d0fe684bc91e8d0babd002cc8a370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Флаг, указывающий, установлена ли программа.  <br /></td></tr>
+<tr class="memdesc:a975d0fe684bc91e8d0babd002cc8a370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether the program is installed.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Базовый класс для всего программного обеспечения. </p>
-<p>Содержит общие свойства (название, размер, статус установки) и логику установки на диск. </p>
+<div class="textblock"><p>Base class for all software. </p>
+<p>Contains common properties (name, size, installation status) and disk installation logic. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a13ed619ee20df49a292c9670fe368460" name="a13ed619ee20df49a292c9670fe368460"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13ed619ee20df49a292c9670fe368460">&#9670;&#160;</a></span>Software() <span class="overload">[1/2]</span></h2>
@@ -147,7 +147,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -170,11 +170,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор с параметрами. </p>
+<p>Constructor with parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Название программы. </td></tr>
-    <tr><td class="paramname">sizeMb</td><td>Размер программы в МБ. </td></tr>
+    <tr><td class="paramname">name</td><td>Program name. </td></tr>
+    <tr><td class="paramname">sizeMb</td><td>Program size in MB. </td></tr>
   </table>
   </dd>
 </dl>
@@ -204,7 +204,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Виртуальный деструктор по умолчанию. </p>
+<p>Virtual default destructor. </p>
 
 </div>
 </div>
@@ -224,17 +224,17 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Устанавливает программу на диск. </p>
+<p>Installs the program to disk. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">freeGb</td><td>Доступное свободное место в гигабайтах. </td></tr>
+    <tr><td class="paramname">freeGb</td><td>Available free space in gigabytes. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Необходимое для установки количество гигабайт. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of gigabytes required for installation. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classDiskFullException.html" title="Исключение при переполнении дискового пространства.">DiskFullException</a></td><td>если свободного места недостаточно. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classDiskFullException.html" title="Exception for disk space exhaustion.">DiskFullException</a></td><td>if there is not enough free space. </td></tr>
   </table>
   </dd>
 </dl>
@@ -262,7 +262,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Флаг, указывающий, установлена ли программа. </p>
+<p>Flag indicating whether the program is installed. </p>
 
 </div>
 </div>
@@ -286,7 +286,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Название программного обеспечения. </p>
+<p><a class="el" href="classSoftware.html" title="Base class for all software.">Software</a> name. </p>
 
 </div>
 </div>
@@ -310,7 +310,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Размер программы в мегабайтах. </p>
+<p>Program size in megabytes. </p>
 
 </div>
 </div>

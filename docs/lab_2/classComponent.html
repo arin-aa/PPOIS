@@ -92,7 +92,7 @@ $(function(){initNavTree('classComponent.html','','classComponent-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Базовый класс для всех комплектующих компьютера.  
+<p>Base class for all computer components.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;Component.h&gt;</code></p>
@@ -102,43 +102,43 @@ Inheritance diagram for Component:</div>
  <div class="center">
   <img src="classComponent.png" usemap="#Component_map" alt=""/>
   <map id="Component_map" name="Component_map">
-<area href="classCPU.html" title="Класс процессора." alt="CPU" shape="rect" coords="95,56,180,80"/>
-<area href="classCase.html" title="Класс корпуса компьютера, наследуемый от Component." alt="Case" shape="rect" coords="95,112,180,136"/>
-<area href="classCooler.html" title="Класс для систем охлаждения." alt="Cooler" shape="rect" coords="95,168,180,192"/>
-<area href="classFan.html" title="Класс вентилятора." alt="Fan" shape="rect" coords="95,224,180,248"/>
-<area href="classGPU.html" title="Класс видеокарты." alt="GPU" shape="rect" coords="95,280,180,304"/>
-<area href="classMotherboard.html" title="Класс материнской платы." alt="Motherboard" shape="rect" coords="95,336,180,360"/>
-<area href="classPSU.html" title="Класс блока питания." alt="PSU" shape="rect" coords="95,392,180,416"/>
-<area href="classRAM.html" title="Класс оперативной памяти." alt="RAM" shape="rect" coords="95,448,180,472"/>
-<area href="classStorage.html" title="Класс для всех накопителей." alt="Storage" shape="rect" coords="95,504,180,528"/>
+<area href="classCPU.html" title="Processor class." alt="CPU" shape="rect" coords="95,56,180,80"/>
+<area href="classCase.html" title="Class representing a computer case, inheriting from Component." alt="Case" shape="rect" coords="95,112,180,136"/>
+<area href="classCooler.html" title="Class for cooling systems." alt="Cooler" shape="rect" coords="95,168,180,192"/>
+<area href="classFan.html" title="Fan class." alt="Fan" shape="rect" coords="95,224,180,248"/>
+<area href="classGPU.html" title="Graphics card class." alt="GPU" shape="rect" coords="95,280,180,304"/>
+<area href="classMotherboard.html" title="Motherboard class." alt="Motherboard" shape="rect" coords="95,336,180,360"/>
+<area href="classPSU.html" title="Power supply unit class." alt="PSU" shape="rect" coords="95,392,180,416"/>
+<area href="classRAM.html" title="Random access memory class." alt="RAM" shape="rect" coords="95,448,180,472"/>
+<area href="classStorage.html" title="Class for all storage devices." alt="Storage" shape="rect" coords="95,504,180,528"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8775db6d1a2c1afc2e77cd3c8f39da6f" id="r_a8775db6d1a2c1afc2e77cd3c8f39da6f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8775db6d1a2c1afc2e77cd3c8f39da6f">Component</a> ()</td></tr>
-<tr class="memdesc:a8775db6d1a2c1afc2e77cd3c8f39da6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a8775db6d1a2c1afc2e77cd3c8f39da6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a48ecc7b3a4fe642d2d1e8cebd988c640" id="r_a48ecc7b3a4fe642d2d1e8cebd988c640"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48ecc7b3a4fe642d2d1e8cebd988c640">Component</a> (const std::string &amp;<a class="el" href="#a46343549452bda5ee9752f7a9bc15efb">name</a>, const std::string &amp;<a class="el" href="#a102d09a3ec46b9a8eca3212ff1967f13">manufacturer</a>, int <a class="el" href="#a237f07f16d077c41346d539b3f40b70c">powerWatts</a>)</td></tr>
-<tr class="memdesc:a48ecc7b3a4fe642d2d1e8cebd988c640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:a48ecc7b3a4fe642d2d1e8cebd988c640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:ad82d7393e339c1b19cc17a0d55b5674d" id="r_ad82d7393e339c1b19cc17a0d55b5674d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad82d7393e339c1b19cc17a0d55b5674d">~Component</a> ()=default</td></tr>
-<tr class="memdesc:ad82d7393e339c1b19cc17a0d55b5674d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Виртуальный деструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:ad82d7393e339c1b19cc17a0d55b5674d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual default destructor.  <br /></td></tr>
 <tr class="memitem:a21adba2b4d705c0dd4b7d95ff2c5c513" id="r_a21adba2b4d705c0dd4b7d95ff2c5c513"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21adba2b4d705c0dd4b7d95ff2c5c513">isNamed</a> (const std::string &amp;key)</td></tr>
-<tr class="memdesc:a21adba2b4d705c0dd4b7d95ff2c5c513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет, совпадает ли переданная строка с именем или производителем.  <br /></td></tr>
+<tr class="memdesc:a21adba2b4d705c0dd4b7d95ff2c5c513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the passed string matches the name or manufacturer.  <br /></td></tr>
 <tr class="memitem:ab4198145126fb7171b9ac2884e3fa959" id="r_ab4198145126fb7171b9ac2884e3fa959"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4198145126fb7171b9ac2884e3fa959">draw</a> (int loadPercent)</td></tr>
-<tr class="memdesc:ab4198145126fb7171b9ac2884e3fa959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Рассчитывает текущее энергопотребление с учетом нагрузки.  <br /></td></tr>
+<tr class="memdesc:ab4198145126fb7171b9ac2884e3fa959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates current power consumption taking load into account.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a46343549452bda5ee9752f7a9bc15efb" id="r_a46343549452bda5ee9752f7a9bc15efb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46343549452bda5ee9752f7a9bc15efb">name</a></td></tr>
-<tr class="memdesc:a46343549452bda5ee9752f7a9bc15efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Название компонента.  <br /></td></tr>
+<tr class="memdesc:a46343549452bda5ee9752f7a9bc15efb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classComponent.html" title="Base class for all computer components.">Component</a> name.  <br /></td></tr>
 <tr class="memitem:a102d09a3ec46b9a8eca3212ff1967f13" id="r_a102d09a3ec46b9a8eca3212ff1967f13"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a102d09a3ec46b9a8eca3212ff1967f13">manufacturer</a></td></tr>
-<tr class="memdesc:a102d09a3ec46b9a8eca3212ff1967f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Производитель.  <br /></td></tr>
+<tr class="memdesc:a102d09a3ec46b9a8eca3212ff1967f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manufacturer.  <br /></td></tr>
 <tr class="memitem:a237f07f16d077c41346d539b3f40b70c" id="r_a237f07f16d077c41346d539b3f40b70c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a237f07f16d077c41346d539b3f40b70c">powerWatts</a></td></tr>
-<tr class="memdesc:a237f07f16d077c41346d539b3f40b70c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Потребляемая мощность  <br /></td></tr>
+<tr class="memdesc:a237f07f16d077c41346d539b3f40b70c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power consumption.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Базовый класс для всех комплектующих компьютера. </p>
-<p>Содержит общие свойства (название, производитель, потребляемая мощность) и методы для идентификации и расчета нагрузки. </p>
+<div class="textblock"><p>Base class for all computer components. </p>
+<p>Contains common properties (name, manufacturer, power consumption) and methods for identification and load calculation. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8775db6d1a2c1afc2e77cd3c8f39da6f" name="a8775db6d1a2c1afc2e77cd3c8f39da6f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8775db6d1a2c1afc2e77cd3c8f39da6f">&#9670;&#160;</a></span>Component() <span class="overload">[1/2]</span></h2>
@@ -155,7 +155,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -183,12 +183,12 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор с параметрами. </p>
+<p>Constructor with parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Название компонента. </td></tr>
-    <tr><td class="paramname">manufacturer</td><td>Производитель. </td></tr>
-    <tr><td class="paramname">powerWatts</td><td>Потребляемая мощность (в ваттах). </td></tr>
+    <tr><td class="paramname">name</td><td><a class="el" href="classComponent.html" title="Base class for all computer components.">Component</a> name. </td></tr>
+    <tr><td class="paramname">manufacturer</td><td>Manufacturer. </td></tr>
+    <tr><td class="paramname">powerWatts</td><td>Power consumption (in watts). </td></tr>
   </table>
   </dd>
 </dl>
@@ -218,7 +218,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Виртуальный деструктор по умолчанию. </p>
+<p>Virtual default destructor. </p>
 
 </div>
 </div>
@@ -238,14 +238,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Рассчитывает текущее энергопотребление с учетом нагрузки. </p>
+<p>Calculates current power consumption taking load into account. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">loadPercent</td><td>Процент нагрузки. </td></tr>
+    <tr><td class="paramname">loadPercent</td><td>Load percentage. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Потребляемая мощность. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Power consumption. </dd></dl>
 
 </div>
 </div>
@@ -264,14 +264,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Проверяет, совпадает ли переданная строка с именем или производителем. </p>
+<p>Checks whether the passed string matches the name or manufacturer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>Искомая строка. </td></tr>
+    <tr><td class="paramname">key</td><td>The string to search for. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true, если совпадение найдено. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if a match is found. </dd></dl>
 
 </div>
 </div>
@@ -296,7 +296,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Производитель. </p>
+<p>Manufacturer. </p>
 
 </div>
 </div>
@@ -320,7 +320,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Название компонента. </p>
+<p><a class="el" href="classComponent.html" title="Base class for all computer components.">Component</a> name. </p>
 
 </div>
 </div>
@@ -344,7 +344,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Потребляемая мощность </p>
+<p>Power consumption. </p>
 
 </div>
 </div>

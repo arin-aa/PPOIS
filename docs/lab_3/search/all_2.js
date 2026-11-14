@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['cancel_0',['cancel',['../classDownloadManager.html#a06431cd8bb9dd96fcf73b484531a87e2',1,'DownloadManager']]],
+  ['canresume_1',['canResume',['../classPlaybackException.html#a32f86bb906ed4df05be1e7f15d975033',1,'PlaybackException']]],
+  ['catalog_2',['catalog',['../classSearchService.html#af12a6f376f0bc9afe1f66164cd80784d',1,'SearchService']]],
+  ['classifygenre_3',['classifyGenre',['../classRadioStation.html#a02c8d51b8cedd8165210e8052a26c0e6',1,'RadioStation']]],
+  ['cloud_4',['cloud',['../classSyncService.html#a40a289182150f50365b27eaa0fad3013',1,'SyncService']]],
+  ['cloudstorage_5',['CloudStorage',['../classCloudStorage.html',1,'CloudStorage'],['../classCloudStorage.html#aa33ba441b90f5b7d9c30a63ad5e4ac62',1,'CloudStorage::CloudStorage()']]],
+  ['collaboratorids_6',['collaboratorIds',['../classSharedPlaylist.html#af5a25bb6e724c287b92bde8953c6c860',1,'SharedPlaylist']]],
+  ['comment_7',['Comment',['../classComment.html',1,'Comment'],['../classComment.html#a1b7d07b900a601ace1fa5c84530da8d7',1,'Comment::Comment()']]],
+  ['contains_8',['contains',['../classFavoritesCollection.html#a982d7db5f9d7c4865f5a62bf26fbb328',1,'FavoritesCollection']]],
+  ['contentcatalog_9',['ContentCatalog',['../classContentCatalog.html',1,'ContentCatalog'],['../classContentCatalog.html#a52ef300f0112d70f5275dc8360687346',1,'ContentCatalog::ContentCatalog()']]],
+  ['country_10',['country',['../classUserProfile.html#a8b196466137fe085efd63ec663abc00b',1,'UserProfile']]],
+  ['createdat_11',['createdAt',['../classFollow.html#ad8fff03b0f6d870e0fe0c6c63078f65e',1,'Follow']]],
+  ['crossfadems_12',['crossfadeMs',['../classAppSettings.html#a9848967a18df2f2b01bd07c1c44943fa',1,'AppSettings']]],
+  ['crossfadesettings_13',['CrossfadeSettings',['../classCrossfadeSettings.html',1,'CrossfadeSettings'],['../classCrossfadeSettings.html#af0df9453c0f4765c66a87a8ba05fa45c',1,'CrossfadeSettings::CrossfadeSettings()']]],
+  ['currentfile_14',['currentFile',['../classAudioEngine.html#ac8d9aaf5e79f16511a701c36e9498f62',1,'AudioEngine']]],
+  ['currentindex_15',['currentIndex',['../classQueue.html#a9d41500b3eec86117aa7d33882e78580',1,'Queue']]],
+  ['currenttrack_16',['currentTrack',['../classPlaybackState.html#a8e29caaf1a863c3cd0a6bf084d765cf6',1,'PlaybackState']]],
+  ['currentuser_17',['currentUser',['../classAuthenticationService.html#a7d65acfe35e4d65c82e491c8a6837d59',1,'AuthenticationService']]]
+];

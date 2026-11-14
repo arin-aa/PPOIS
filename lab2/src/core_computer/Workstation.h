@@ -1,6 +1,6 @@
 /**
  * @file Workstation.h
- * @brief Объявление класса Workstation.
+ * @brief Declaration of the Workstation class.
  */
 #pragma once
 #include <vector>
@@ -10,40 +10,40 @@ class GPU;
 
 /**
  * @class Workstation
- * @brief Производный класс, представляющий рабочую станцию.
+ * @brief Derived class representing a workstation.
  * 
- * Расширяет базовый класс Computer, добавляя поддержку нескольких 
- * видеокарт и возможность выполнения задач по рендерингу.
+ * Extends the base class Computer by adding support for multiple 
+ * graphics cards and the ability to perform rendering tasks.
  */
 class Workstation:public Computer{
 private:
-    int renderJobs;///<Счетчик выполненных задач рендеринга.
-    std::vector<GPU*> gpus;///<Вектор установленных видеокарт.
+    int renderJobs;///<Counter of completed rendering tasks.
+    std::vector<GPU*> gpus;///<Vector of installed graphics cards.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Workstation();
 
 /**
- * @brief Конструктор с указанием имени.
- * @param hostname Сетевое имя рабочей станции.
+ * @brief Constructor with name specification.
+ * @param hostname Network name of the workstation.
  */
     explicit Workstation(const std::string& hostname);
 
 /**
- * @brief Добавляет видеокарту в систему.
- * @param gpu Указатель на объект видеокарты.
+ * @brief Adds a graphics card to the system.
+ * @param gpu Pointer to the graphics card object.
  */
     void addGpu(GPU* gpu);
 
 /**
- * @brief Выполняет задачу рендеринга.
- * Распределяет нагрузку между имеющимися видеокартами.
- * @param complexity Сложность сцены для рендеринга.
- * @return Время выполнения рендеринга в миллисекундах (берется по самой медленной карте).
- * @exception InvalidConfigurationException если в системе нет ни одной видеокарты.
+ * @brief Performs a rendering task.
+ * Distributes the load among the available graphics cards.
+ * @param complexity Complexity of the scene to render.
+ * @return Rendering execution time in milliseconds (taken from the slowest card).
+ * @exception InvalidConfigurationException if there is no graphics card in the system.
  */
     double renderTask(int complexity);
 };

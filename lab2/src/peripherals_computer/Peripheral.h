@@ -1,6 +1,6 @@
 /**
  * @file Peripheral.h
- * @brief Объявление базового класса Peripheral.
+ * @brief Declaration of the base class Peripheral.
  */
 #pragma once
 #include <string>
@@ -9,45 +9,45 @@ class Port;
 
 /**
  * @class Peripheral
- * @brief Базовый класс для всех периферийных устройств.
+ * @brief Base class for all peripheral devices.
  * 
- * Хранит общие свойства (название, статус подключения) и 
- * предоставляет базовые методы для работы с портами.
+ * Stores common properties (name, connection status) and 
+ * provides basic methods for working with ports.
  */
 class Peripheral{
 protected:
-    std::string name;///<Название периферийного устройства.
-    bool isConnected;///<Флаг, указывающий, подключено ли устройство.
-    Port* port;///<Указатель на порт, к которому подключено устройство.
+    std::string name;///<Name of the peripheral device.
+    bool isConnected;///<Flag indicating whether the device is connected.
+    Port* port;///<Pointer to the port to which the device is connected.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Peripheral();
 
 /**
- * @brief Конструктор с указанием имени устройства.
- * @param name Название устройства.
+ * @brief Constructor with device name specified.
+ * @param name Device name.
  */
     explicit Peripheral(const std::string& name);
 
 /**
- * @brief Виртуальный деструктор по умолчанию default.
+ * @brief Virtual default destructor.
  */
     virtual ~Peripheral()=default;
 
 /**
- * @brief Подключает устройство к заданному порту.
- * @param targetPort Указатель на порт.
- * @exception PeripheralNotRespondingException если порт не отвечает.
+ * @brief Connects the device to the specified port.
+ * @param targetPort Pointer to the port.
+ * @exception PeripheralNotRespondingException if the port does not respond.
  */
     void connectTo(Port* targetPort);
 
 /**
- * @brief Проверяет отклик устройства.
- * @return Задержка отклика в наносекундах.
- * @exception PeripheralNotRespondingException если устройство не подключено или нет сигнала.
+ * @brief Checks the device response.
+ * @return Response latency in nanoseconds.
+ * @exception PeripheralNotRespondingException if the device is not connected or there is no signal.
  */
     int ping();
 };

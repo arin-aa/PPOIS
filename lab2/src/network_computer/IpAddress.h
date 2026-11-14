@@ -1,48 +1,48 @@
 /**
  * @file IpAddress.h
- * @brief Объявление класса IpAddress.
+ * @brief Declaration of the IpAddress class.
  */
 #pragma once
 #include <string>
 
 /**
  * @class IpAddress
- * @brief Класс, представляющий IP-адрес.
+ * @brief Class representing an IP address.
  * 
- * Хранит строковое представление адреса и маску подсети, 
- * позволяет проверять корректность адреса и сравнивать подсети.
+ * Stores the string representation of the address and the subnet mask,
+ * allows checking the validity of the address and comparing subnets.
  */
 class IpAddress{
 private:
-    std::string address;///<Строковое представление IP-адреса.
-    int subnetMask;///<Маска подсети.
+    std::string address;///<String representation of the IP address.
+    int subnetMask;///<Subnet mask.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     IpAddress();
 
 /**
- * @brief Конструктор с параметрами.
- * @param address Строковое представление IP.
- * @param subnetMask Маска подсети.
+ * @brief Constructor with parameters.
+ * @param address String representation of the IP.
+ * @param subnetMask Subnet mask.
  */
     IpAddress(const std::string& address,int subnetMask);
 
 /**
- * @brief Проверяет корректность IP-адреса.
+ * @brief Checks the validity of the IP address.
  * 
- * Разбирает строку, проверяя наличие 4 октетов и их значения.
- * @exception InvalidAddressException если адрес имеет неверный формат.
+ * Parses the string, checking for the presence of 4 octets and their values.
+ * @exception InvalidAddressException if the address has an invalid format.
  */ 
     void validate();
 
 /**
- * @brief Проверяет, находится ли другой IP в той же подсети.
- * @param other Строковое представление другого IP.
- * @return true, если адреса в одной подсети.
- * @exception InvalidAddressException если текущий или переданный адрес некорректен.
+ * @brief Checks whether another IP is in the same subnet.
+ * @param other String representation of another IP.
+ * @return true if the addresses are in the same subnet.
+ * @exception InvalidAddressException if the current or passed address is invalid.
  */
     bool sameSubnet(const std::string& other);
 };

@@ -1,6 +1,6 @@
 /**
  * @file Laptop.h
- * @brief Объявление класса Laptop.
+ * @brief Declaration of the Laptop class.
  */
 #pragma once
 #include "Computer.h"
@@ -9,48 +9,48 @@ class Battery;
 
 /**
  * @class Laptop
- * @brief Производный класс, представляющий ноутбук.
+ * @brief Derived class representing a laptop.
  * 
- * Расширяет базовый класс Computer, добавляя экран, батарею и 
- * возможность работы от аккумулятора.
+ * Extends the base class Computer by adding a screen, a battery, and 
+ * the ability to run on battery power.
  */
 class Laptop:public Computer{
 private:
-    int screenInches;///<Диагональ экрана в дюймах.
-    int chargedMinutes;///<Количество минут, на которое заряжена батарея.
-    Battery* battery;///<Указатель на объект батареи.
+    int screenInches;///<Screen diagonal in inches.
+    int chargedMinutes;///<Number of minutes the battery is charged for.
+    Battery* battery;///<Pointer to the battery object.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Laptop();
 
 /**
- * @brief Конструктор с параметрами.
- * @param hostname Сетевое имя.
- * @param screenInches Диагональ экрана.
- * @param battery Указатель на батарею.
+ * @brief Constructor with parameters.
+ * @param hostname Network name.
+ * @param screenInches Screen diagonal.
+ * @param battery Pointer to the battery.
  */
     Laptop(const std::string& hostname,int screenInches,Battery* battery);
 
 /**
- * @brief Подключает ноутбук к зарядке.
- * @param minutes Время зарядки в минутах.
- * @return Текущий процент заряда батареи.
+ * @brief Connects the laptop to charging.
+ * @param minutes Charging time in minutes.
+ * @return Current battery charge percentage.
  */
     int plugIn(int minutes);
 
 /**
- * @brief Рассчитывает время автономной работы.
- * @return Время работы от батареи в минутах.
+ * @brief Calculates the battery life.
+ * @return Battery operation time in minutes.
  */   
     int batteryMinutes();
 
 /**
- * @brief Переопределенный метод расчета энергопотребления.
- * Учитывает потребление экрана и базовых компонентов.
- * @return Потребляемая мощность в ваттах.
+ * @brief Overridden method for calculating power consumption.
+ * Takes into account the power consumption of the screen and base components.
+ * @return Power consumption in watts.
  */    
     int powerDraw() override;
 };

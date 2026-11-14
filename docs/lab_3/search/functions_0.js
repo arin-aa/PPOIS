@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['account_0',['Account',['../classAccount.html#a05eb8c37d410db3d4dad13e6feef92ae',1,'Account']]],
+  ['add_1',['add',['../classPlaybackHistory.html#a421a7fa23b61c61c6e546069284ac2a2',1,'PlaybackHistory::add()'],['../classQueue.html#a7468973ca4324e3f3a02deb7b142191a',1,'Queue::add()']]],
+  ['addcollaborator_2',['addCollaborator',['../classSharedPlaylist.html#ace79794db73eca3f72dd42093ec27b1a',1,'SharedPlaylist']]],
+  ['addtrack_3',['addTrack',['../classMediaLibrary.html#a3dbed57a2b0273f55ceac8b24ff3b42a',1,'MediaLibrary::addTrack()'],['../classPlaylist.html#a75ffc85c36562682c5ca4ec1aa2a7ba8',1,'Playlist::addTrack()']]],
+  ['album_4',['Album',['../classAlbum.html#a84e997148d0c52eb85630ba1c9d04b6a',1,'Album']]],
+  ['applypreset_5',['applyPreset',['../classEqualizer.html#aef578a0aa41ce4639dc4f9b3ac1f2609',1,'Equalizer']]],
+  ['applyresolution_6',['applyResolution',['../classSyncConflict.html#a66cc158848f7f602a21c0de3632d0f65',1,'SyncConflict']]],
+  ['appsettings_7',['AppSettings',['../classAppSettings.html#ac327d0a43da29c01585c7a256b49b31a',1,'AppSettings']]],
+  ['apptheme_8',['AppTheme',['../classAppTheme.html#a14ed2ef9ee1989496747a4a0daec0720',1,'AppTheme']]],
+  ['artist_9',['Artist',['../classArtist.html#a595e2d2f581d5d79de308c5b36182f52',1,'Artist']]],
+  ['artwork_10',['Artwork',['../classArtwork.html#ae5e316e3be5a1cb038e5803ca395abcd',1,'Artwork']]],
+  ['audioengine_11',['AudioEngine',['../classAudioEngine.html#ae2f13eeba683cd73f5ab4dd5b5e1a670',1,'AudioEngine']]],
+  ['audioengineexception_12',['AudioEngineException',['../classAudioEngineException.html#a55f0c75d8004c93ce2ab11c3513d65dc',1,'AudioEngineException']]],
+  ['audiofile_13',['AudioFile',['../classAudioFile.html#abfef53b3ce630a355de76b4aaf0d846c',1,'AudioFile']]],
+  ['authenticationexception_14',['AuthenticationException',['../classAuthenticationException.html#a6856602ea9a552653bdd885665255ef4',1,'AuthenticationException']]],
+  ['authenticationservice_15',['AuthenticationService',['../classAuthenticationService.html#a974b9f1d74ce8f750564810b81ae4e43',1,'AuthenticationService']]]
+];

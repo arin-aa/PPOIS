@@ -1,37 +1,37 @@
 /**
  * @file Scanner.h
- * @brief Объявление класса Scanner.
+ * @brief Declaration of the Scanner class.
  */
 #pragma once
 #include "Peripheral.h"
 
 /**
  * @class Scanner
- * @brief Класс сканера, наследуемый от Peripheral.
+ * @brief Scanner class, inheriting from Peripheral.
  */
 class Scanner:public Peripheral{
 private:
-    int resolutionDpi;///<Разрешение сканирования.
-    int colorBits;///<Глубина цвета в битах.
-    int pagesScanned;///<Общее количество отсканированных страниц.
+    int resolutionDpi;///<Scanning resolution.
+    int colorBits;///<Color depth in bits.
+    int pagesScanned;///<Total number of scanned pages.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Scanner();
 
 /**
- * @brief Конструктор с указанием параметров сканирования.
- * @param resolutionDpi Разрешение.
- * @param colorBits Глубина цвета.
+ * @brief Constructor with scanning parameters specified.
+ * @param resolutionDpi Resolution.
+ * @param colorBits Color depth.
  */
     Scanner(int resolutionDpi,int colorBits);
 
 /**
- * @brief Сканирует заданное количество страниц.
- * @param pages Количество страниц.
- * @return Объем полученных данных в килобайтах.
+ * @brief Scans the specified number of pages.
+ * @param pages Number of pages.
+ * @return Amount of received data in kilobytes.
  */
     int scanPages(int pages);
 };

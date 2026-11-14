@@ -1,6 +1,6 @@
 /**
  * @file Folder.h
- * @brief Объявление класса Folder.
+ * @brief Declaration of the Folder class.
  */
 #pragma once
 #include <vector>
@@ -9,35 +9,35 @@ class File;
 
 /**
  * @class Folder
- * @brief Класс папки, содержащей файлы.
+ * @brief Class of a folder containing files.
  */
 class Folder{
 private:
-    int freeMb;///<Свободное место в папке в МБ.
-    std::vector<File*> files;///<Список файлов в папке.
+    int freeMb;///<Free space in the folder in MB.
+    std::vector<File*> files;///<List of files in the folder.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     Folder();
 
 /**
- * @brief Конструктор с указанием свободного места.
- * @param freeMb Начальное свободное место в МБ.
+ * @brief Constructor with free space specified.
+ * @param freeMb Initial free space in MB.
  */
     explicit Folder(int freeMb);
 
 /**
- * @brief Добавляет файл в папку.
- * @param file Указатель на файл.
- * @exception DiskFullException если файл не помещается в папку.
+ * @brief Adds a file to the folder.
+ * @param file Pointer to the file.
+ * @exception DiskFullException if the file does not fit into the folder.
  */
     void addFile(File* file);
 
 /**
- * @brief Считает общее количество страниц во всех файлах папки.
- * @return Суммарное количество страниц.
+ * @brief Counts the total number of pages in all files of the folder.
+ * @return Total number of pages.
  */
     int totalPages();
 };

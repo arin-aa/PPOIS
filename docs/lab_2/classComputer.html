@@ -92,7 +92,7 @@ $(function(){initNavTree('classComputer.html','','classComputer-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Класс, представляющий персональный компьютер.  
+<p>Class representing a personal computer.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;Computer.h&gt;</code></p>
@@ -102,53 +102,53 @@ Inheritance diagram for Computer:</div>
  <div class="center">
   <img src="classComputer.png" usemap="#Computer_map" alt=""/>
   <map id="Computer_map" name="Computer_map">
-<area href="classLaptop.html" title="Производный класс, представляющий ноутбук." alt="Laptop" shape="rect" coords="0,56,77,80"/>
-<area href="classServer.html" title="Производный класс, представляющий сервер." alt="Server" shape="rect" coords="87,56,164,80"/>
-<area href="classWorkstation.html" title="Производный класс, представляющий рабочую станцию." alt="Workstation" shape="rect" coords="174,56,251,80"/>
+<area href="classLaptop.html" title="Derived class representing a laptop." alt="Laptop" shape="rect" coords="0,56,77,80"/>
+<area href="classServer.html" title="Derived class representing a server." alt="Server" shape="rect" coords="87,56,164,80"/>
+<area href="classWorkstation.html" title="Derived class representing a workstation." alt="Workstation" shape="rect" coords="174,56,251,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a52056dfe9041f024ac58c1eaf02945d3" id="r_a52056dfe9041f024ac58c1eaf02945d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52056dfe9041f024ac58c1eaf02945d3">Computer</a> ()</td></tr>
-<tr class="memdesc:a52056dfe9041f024ac58c1eaf02945d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию. Создает ПК с пустым именем и нулевыми указателями.  <br /></td></tr>
+<tr class="memdesc:a52056dfe9041f024ac58c1eaf02945d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. Creates a PC with an empty name and null pointers.  <br /></td></tr>
 <tr class="memitem:aacc4aef319fccadd26142bb81cdd7d12" id="r_aacc4aef319fccadd26142bb81cdd7d12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacc4aef319fccadd26142bb81cdd7d12">Computer</a> (const std::string &amp;<a class="el" href="#abb917b90513ec0122ca3955b3f9675fa">hostname</a>)</td></tr>
-<tr class="memdesc:aacc4aef319fccadd26142bb81cdd7d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с указанием имени.  <br /></td></tr>
+<tr class="memdesc:aacc4aef319fccadd26142bb81cdd7d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with name specification.  <br /></td></tr>
 <tr class="memitem:aee89e258acd38c2fc6ccfa52d7f3786f" id="r_aee89e258acd38c2fc6ccfa52d7f3786f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee89e258acd38c2fc6ccfa52d7f3786f">~Computer</a> ()=default</td></tr>
-<tr class="memdesc:aee89e258acd38c2fc6ccfa52d7f3786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Виртуальный деструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:aee89e258acd38c2fc6ccfa52d7f3786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual default destructor.  <br /></td></tr>
 <tr class="memitem:abf1aa1eb91f56e4fbad6fdbf8722ba5a" id="r_abf1aa1eb91f56e4fbad6fdbf8722ba5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf1aa1eb91f56e4fbad6fdbf8722ba5a">assemble</a> (<a class="el" href="classMotherboard.html">Motherboard</a> *board, <a class="el" href="classPSU.html">PSU</a> *supply)</td></tr>
-<tr class="memdesc:abf1aa1eb91f56e4fbad6fdbf8722ba5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Собирает компьютер, устанавливая материнскую плату и блок питания.  <br /></td></tr>
+<tr class="memdesc:abf1aa1eb91f56e4fbad6fdbf8722ba5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assembles the computer by installing the motherboard and power supply.  <br /></td></tr>
 <tr class="memitem:a568855a7a4e82f6970536bb79055f006" id="r_a568855a7a4e82f6970536bb79055f006"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a568855a7a4e82f6970536bb79055f006">addStorage</a> (<a class="el" href="classStorage.html">Storage</a> *storage)</td></tr>
-<tr class="memdesc:a568855a7a4e82f6970536bb79055f006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавляет накопитель в систему.  <br /></td></tr>
+<tr class="memdesc:a568855a7a4e82f6970536bb79055f006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a storage device to the system.  <br /></td></tr>
 <tr class="memitem:ae41ba35db9816e2bfa2bafd99a51847e" id="r_ae41ba35db9816e2bfa2bafd99a51847e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae41ba35db9816e2bfa2bafd99a51847e">installOs</a> (<a class="el" href="classOperatingSystem.html">OperatingSystem</a> *newOs)</td></tr>
-<tr class="memdesc:ae41ba35db9816e2bfa2bafd99a51847e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Устанавливает операционную систему.  <br /></td></tr>
+<tr class="memdesc:ae41ba35db9816e2bfa2bafd99a51847e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Installs the operating system.  <br /></td></tr>
 <tr class="memitem:a133ecaaeb36ae9af4b4ed8706e7f380e" id="r_a133ecaaeb36ae9af4b4ed8706e7f380e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a133ecaaeb36ae9af4b4ed8706e7f380e">powerOn</a> ()</td></tr>
-<tr class="memdesc:a133ecaaeb36ae9af4b4ed8706e7f380e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Включает компьютер.  <br /></td></tr>
+<tr class="memdesc:a133ecaaeb36ae9af4b4ed8706e7f380e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Powers on the computer.  <br /></td></tr>
 <tr class="memitem:afd5ef95967f5003ef9d04a6ee84fb1a9" id="r_afd5ef95967f5003ef9d04a6ee84fb1a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd5ef95967f5003ef9d04a6ee84fb1a9">freeStorageGb</a> ()</td></tr>
-<tr class="memdesc:afd5ef95967f5003ef9d04a6ee84fb1a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет общий объем свободного места на всех накопителях.  <br /></td></tr>
+<tr class="memdesc:afd5ef95967f5003ef9d04a6ee84fb1a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the total free space on all storage devices.  <br /></td></tr>
 <tr class="memitem:af6de10e2428ed1c52bf053c9729c08c0" id="r_af6de10e2428ed1c52bf053c9729c08c0"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6de10e2428ed1c52bf053c9729c08c0">powerDraw</a> ()</td></tr>
-<tr class="memdesc:af6de10e2428ed1c52bf053c9729c08c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет текущее энергопотребление компьютера.  <br /></td></tr>
+<tr class="memdesc:af6de10e2428ed1c52bf053c9729c08c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the current power consumption of the computer.  <br /></td></tr>
 <tr class="memitem:a2218d66ec511c33cd1ebd62af84cda81" id="r_a2218d66ec511c33cd1ebd62af84cda81"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2218d66ec511c33cd1ebd62af84cda81">powerReserve</a> ()</td></tr>
-<tr class="memdesc:a2218d66ec511c33cd1ebd62af84cda81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет резерв мощности блока питания.  <br /></td></tr>
+<tr class="memdesc:a2218d66ec511c33cd1ebd62af84cda81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the power reserve of the power supply.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:abb917b90513ec0122ca3955b3f9675fa" id="r_abb917b90513ec0122ca3955b3f9675fa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb917b90513ec0122ca3955b3f9675fa">hostname</a></td></tr>
-<tr class="memdesc:abb917b90513ec0122ca3955b3f9675fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сетевое имя компьютера.  <br /></td></tr>
+<tr class="memdesc:abb917b90513ec0122ca3955b3f9675fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Network name of the computer.  <br /></td></tr>
 <tr class="memitem:a55ee1aeb482a47bfb049e675c899e429" id="r_a55ee1aeb482a47bfb049e675c899e429"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55ee1aeb482a47bfb049e675c899e429">bootCount</a></td></tr>
-<tr class="memdesc:a55ee1aeb482a47bfb049e675c899e429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество успешных включений.  <br /></td></tr>
+<tr class="memdesc:a55ee1aeb482a47bfb049e675c899e429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of successful boots.  <br /></td></tr>
 <tr class="memitem:a5b42cd8c6d0d04c677c6cd6f56ab2ea5" id="r_a5b42cd8c6d0d04c677c6cd6f56ab2ea5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMotherboard.html">Motherboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b42cd8c6d0d04c677c6cd6f56ab2ea5">motherboard</a></td></tr>
-<tr class="memdesc:a5b42cd8c6d0d04c677c6cd6f56ab2ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на материнскую плату.  <br /></td></tr>
+<tr class="memdesc:a5b42cd8c6d0d04c677c6cd6f56ab2ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the motherboard.  <br /></td></tr>
 <tr class="memitem:a51806a70e2b3c2209f3556e5329cf5c3" id="r_a51806a70e2b3c2209f3556e5329cf5c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPSU.html">PSU</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51806a70e2b3c2209f3556e5329cf5c3">psu</a></td></tr>
-<tr class="memdesc:a51806a70e2b3c2209f3556e5329cf5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на блок питания.  <br /></td></tr>
+<tr class="memdesc:a51806a70e2b3c2209f3556e5329cf5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the power supply.  <br /></td></tr>
 <tr class="memitem:ae24eb5a79b1733c417317dde8d9c84e6" id="r_ae24eb5a79b1733c417317dde8d9c84e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classOperatingSystem.html">OperatingSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae24eb5a79b1733c417317dde8d9c84e6">os</a></td></tr>
-<tr class="memdesc:ae24eb5a79b1733c417317dde8d9c84e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на установленную операционную систему.  <br /></td></tr>
+<tr class="memdesc:ae24eb5a79b1733c417317dde8d9c84e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the installed operating system.  <br /></td></tr>
 <tr class="memitem:a733419508d29dd508cc013c190bb416d" id="r_a733419508d29dd508cc013c190bb416d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classStorage.html">Storage</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a733419508d29dd508cc013c190bb416d">storages</a></td></tr>
-<tr class="memdesc:a733419508d29dd508cc013c190bb416d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вектор установленных накопителей.  <br /></td></tr>
+<tr class="memdesc:a733419508d29dd508cc013c190bb416d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of installed storage devices.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Класс, представляющий персональный компьютер. </p>
-<p>Хранит информацию о комплектующих (материнская плата, блок питания, накопители), позволяет собирать систему, устанавливать ОС и рассчитывать энергопотребление. Является базовым классом для <a class="el" href="classLaptop.html" title="Производный класс, представляющий ноутбук.">Laptop</a>, <a class="el" href="classServer.html" title="Производный класс, представляющий сервер.">Server</a> и <a class="el" href="classWorkstation.html" title="Производный класс, представляющий рабочую станцию.">Workstation</a>. </p>
+<div class="textblock"><p>Class representing a personal computer. </p>
+<p>Stores information about components (motherboard, power supply, storage devices), allows assembling the system, installing an OS, and calculating power consumption. Is a base class for <a class="el" href="classLaptop.html" title="Derived class representing a laptop.">Laptop</a>, <a class="el" href="classServer.html" title="Derived class representing a server.">Server</a>, and <a class="el" href="classWorkstation.html" title="Derived class representing a workstation.">Workstation</a>. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a52056dfe9041f024ac58c1eaf02945d3" name="a52056dfe9041f024ac58c1eaf02945d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52056dfe9041f024ac58c1eaf02945d3">&#9670;&#160;</a></span>Computer() <span class="overload">[1/2]</span></h2>
@@ -165,7 +165,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. Создает ПК с пустым именем и нулевыми указателями. </p>
+<p>Default constructor. Creates a PC with an empty name and null pointers. </p>
 
 </div>
 </div>
@@ -192,10 +192,10 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Конструктор с указанием имени. </p>
+<p>Constructor with name specification. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hostname</td><td>Сетевое имя компьютера. </td></tr>
+    <tr><td class="paramname">hostname</td><td>Network name of the computer. </td></tr>
   </table>
   </dd>
 </dl>
@@ -225,7 +225,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Виртуальный деструктор по умолчанию. </p>
+<p>Virtual default destructor. </p>
 
 </div>
 </div>
@@ -245,10 +245,10 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Добавляет накопитель в систему. </p>
+<p>Adds a storage device to the system. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">storage</td><td>Указатель на объект накопителя. </td></tr>
+    <tr><td class="paramname">storage</td><td>Pointer to the storage object. </td></tr>
   </table>
   </dd>
 </dl>
@@ -274,11 +274,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Собирает компьютер, устанавливая материнскую плату и блок питания. </p>
+<p>Assembles the computer by installing the motherboard and power supply. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">board</td><td>Указатель на материнскую плату. </td></tr>
-    <tr><td class="paramname">supply</td><td>Указатель на блок питания. </td></tr>
+    <tr><td class="paramname">board</td><td>Pointer to the motherboard. </td></tr>
+    <tr><td class="paramname">supply</td><td>Pointer to the power supply. </td></tr>
   </table>
   </dd>
 </dl>
@@ -300,8 +300,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Вычисляет общий объем свободного места на всех накопителях. </p>
-<dl class="section return"><dt>Returns</dt><dd>Суммарное свободное место в гигабайтах. </dd></dl>
+<p>Calculates the total free space on all storage devices. </p>
+<dl class="section return"><dt>Returns</dt><dd>Total free space in gigabytes. </dd></dl>
 
 </div>
 </div>
@@ -320,16 +320,16 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Устанавливает операционную систему. </p>
+<p>Installs the operating system. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newOs</td><td>Указатель на устанавливаемую ОС. </td></tr>
+    <tr><td class="paramname">newOs</td><td>Pointer to the OS to be installed. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classInvalidConfigurationException.html" title="Исключение при некорректной конфигурации.">InvalidConfigurationException</a></td><td>если в системе нет ни одного накопителя. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classInvalidConfigurationException.html" title="Exception for an invalid configuration.">InvalidConfigurationException</a></td><td>if there is no storage device in the system. </td></tr>
   </table>
   </dd>
 </dl>
@@ -359,8 +359,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Вычисляет текущее энергопотребление компьютера. </p>
-<dl class="section return"><dt>Returns</dt><dd>Потребляемая мощность в ваттах. Может быть переопределен в наследниках. </dd></dl>
+<p>Calculates the current power consumption of the computer. </p>
+<dl class="section return"><dt>Returns</dt><dd>Power consumption in watts. Can be overridden in derived classes. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classLaptop.html#adc7b0a90c67f869b082af7f447fba664">Laptop</a>, and <a class="el" href="classServer.html#a6902f76b22b3da3d62ed5c8e4ca26fa1">Server</a>.</p>
 
@@ -381,11 +381,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Включает компьютер. </p>
+<p>Powers on the computer. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classBootFailureException.html" title="Исключение при невозможности загрузки системы или компонента.">BootFailureException</a></td><td>если компьютер не собран (нет платы или БП). </td></tr>
-    <tr><td class="paramname"><a class="el" href="classInsufficientPowerException.html" title="Исключение при недостаточной мощности блока питания.">InsufficientPowerException</a></td><td>если мощности БП недостаточно. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classBootFailureException.html" title="Exception when the system or a component fails to boot.">BootFailureException</a></td><td>if the computer is not assembled (no motherboard or <a class="el" href="classPSU.html" title="Power supply unit class.">PSU</a>). </td></tr>
+    <tr><td class="paramname"><a class="el" href="classInsufficientPowerException.html" title="Exception for insufficient power supply capacity.">InsufficientPowerException</a></td><td>if the <a class="el" href="classPSU.html" title="Power supply unit class.">PSU</a> power is insufficient. </td></tr>
   </table>
   </dd>
 </dl>
@@ -407,11 +407,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Вычисляет резерв мощности блока питания. </p>
-<dl class="section return"><dt>Returns</dt><dd>Разница между мощностью БП и текущим потреблением (в ваттах). </dd></dl>
+<p>Calculates the power reserve of the power supply. </p>
+<dl class="section return"><dt>Returns</dt><dd>Difference between <a class="el" href="classPSU.html" title="Power supply unit class.">PSU</a> power and current consumption (in watts). </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classBootFailureException.html" title="Исключение при невозможности загрузки системы или компонента.">BootFailureException</a></td><td>если блок питания не установлен. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classBootFailureException.html" title="Exception when the system or a component fails to boot.">BootFailureException</a></td><td>if the power supply is not installed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -439,7 +439,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Количество успешных включений. </p>
+<p>Number of successful boots. </p>
 
 </div>
 </div>
@@ -463,7 +463,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Сетевое имя компьютера. </p>
+<p>Network name of the computer. </p>
 
 </div>
 </div>
@@ -487,7 +487,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Указатель на материнскую плату. </p>
+<p>Pointer to the motherboard. </p>
 
 </div>
 </div>
@@ -511,7 +511,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Указатель на установленную операционную систему. </p>
+<p>Pointer to the installed operating system. </p>
 
 </div>
 </div>
@@ -535,7 +535,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Указатель на блок питания. </p>
+<p>Pointer to the power supply. </p>
 
 </div>
 </div>
@@ -559,7 +559,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Вектор установленных накопителей. </p>
+<p>Vector of installed storage devices. </p>
 
 </div>
 </div>

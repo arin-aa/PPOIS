@@ -92,7 +92,7 @@ $(function(){initNavTree('classCompatibilityChecker.html','','classCompatibility
 </div><!--header-->
 <div class="contents">
 
-<p>Класс для проверки совместимости блока питания и энергопотребления.  
+<p>Class for checking power supply and power consumption compatibility.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;CompatibilityChecker.h&gt;</code></p>
@@ -100,24 +100,24 @@ $(function(){initNavTree('classCompatibilityChecker.html','','classCompatibility
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac8620c19ed4ba8a46d8c25c6bab08b9d" id="r_ac8620c19ed4ba8a46d8c25c6bab08b9d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8620c19ed4ba8a46d8c25c6bab08b9d">CompatibilityChecker</a> ()</td></tr>
-<tr class="memdesc:ac8620c19ed4ba8a46d8c25c6bab08b9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:ac8620c19ed4ba8a46d8c25c6bab08b9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:a7d04a953153c9f67403990e8009cc5d9" id="r_a7d04a953153c9f67403990e8009cc5d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d04a953153c9f67403990e8009cc5d9">CompatibilityChecker</a> (bool <a class="el" href="#a996f4a5424a2a18fc6c62a29102740b1">strictMode</a>, int <a class="el" href="#a10cb320c4cb34d7220ff9f2bf5432d6a">minReserveWatts</a>)</td></tr>
-<tr class="memdesc:a7d04a953153c9f67403990e8009cc5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с параметрами.  <br /></td></tr>
+<tr class="memdesc:a7d04a953153c9f67403990e8009cc5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
 <tr class="memitem:a9b5f0de6daace3c99e63b6ec8ca14ae5" id="r_a9b5f0de6daace3c99e63b6ec8ca14ae5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b5f0de6daace3c99e63b6ec8ca14ae5">checkPower</a> (int supplyWatts, int demandWatts)</td></tr>
-<tr class="memdesc:a9b5f0de6daace3c99e63b6ec8ca14ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет достаточно ли мощности блока питания.  <br /></td></tr>
+<tr class="memdesc:a9b5f0de6daace3c99e63b6ec8ca14ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the power supply capacity is sufficient.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a996f4a5424a2a18fc6c62a29102740b1" id="r_a996f4a5424a2a18fc6c62a29102740b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a996f4a5424a2a18fc6c62a29102740b1">strictMode</a></td></tr>
-<tr class="memdesc:a996f4a5424a2a18fc6c62a29102740b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Флаг строгого режима проверки.  <br /></td></tr>
+<tr class="memdesc:a996f4a5424a2a18fc6c62a29102740b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Strict checking mode flag.  <br /></td></tr>
 <tr class="memitem:ab72b8edd13104cfedc831aae94db4821" id="r_ab72b8edd13104cfedc831aae94db4821"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab72b8edd13104cfedc831aae94db4821">checksDone</a></td></tr>
-<tr class="memdesc:ab72b8edd13104cfedc831aae94db4821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Счетчик выполненных проверок.  <br /></td></tr>
+<tr class="memdesc:ab72b8edd13104cfedc831aae94db4821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter of performed checks.  <br /></td></tr>
 <tr class="memitem:a10cb320c4cb34d7220ff9f2bf5432d6a" id="r_a10cb320c4cb34d7220ff9f2bf5432d6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10cb320c4cb34d7220ff9f2bf5432d6a">minReserveWatts</a></td></tr>
-<tr class="memdesc:a10cb320c4cb34d7220ff9f2bf5432d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Минимально допустимый резерв мощности в ваттах.  <br /></td></tr>
+<tr class="memdesc:a10cb320c4cb34d7220ff9f2bf5432d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum allowed power reserve in watts.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Класс для проверки совместимости блока питания и энергопотребления. </p>
-<p>Позволяет рассчитать резерв мощности и выбросить исключение, если резерв ниже минимально допустимого. </p>
+<div class="textblock"><p>Class for checking power supply and power consumption compatibility. </p>
+<p>Allows calculating the power reserve and throwing an exception if the reserve is below the minimum allowed. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac8620c19ed4ba8a46d8c25c6bab08b9d" name="ac8620c19ed4ba8a46d8c25c6bab08b9d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac8620c19ed4ba8a46d8c25c6bab08b9d">&#9670;&#160;</a></span>CompatibilityChecker() <span class="overload">[1/2]</span></h2>
@@ -134,7 +134,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -157,11 +157,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор с параметрами. </p>
+<p>Constructor with parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">strictMode</td><td>Включить ли строгий режим. </td></tr>
-    <tr><td class="paramname">minReserveWatts</td><td>Минимальный резерв мощности. </td></tr>
+    <tr><td class="paramname">strictMode</td><td>Whether to enable strict mode. </td></tr>
+    <tr><td class="paramname">minReserveWatts</td><td>Minimum power reserve. </td></tr>
   </table>
   </dd>
 </dl>
@@ -188,18 +188,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Проверяет достаточно ли мощности блока питания. </p>
+<p>Checks whether the power supply capacity is sufficient. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">supplyWatts</td><td>Мощность блока питания. </td></tr>
-    <tr><td class="paramname">demandWatts</td><td>Требуемая мощность. </td></tr>
+    <tr><td class="paramname">supplyWatts</td><td>Power supply wattage. </td></tr>
+    <tr><td class="paramname">demandWatts</td><td>Required wattage. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Резерв мощности (разница между supplyWatts и demandWatts). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Power reserve (difference between supplyWatts and demandWatts). </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classInsufficientPowerException.html" title="Исключение при недостаточной мощности блока питания.">InsufficientPowerException</a></td><td>если в строгом режиме резерв меньше минимального. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classInsufficientPowerException.html" title="Exception for insufficient power supply capacity.">InsufficientPowerException</a></td><td>if in strict mode the reserve is less than the minimum. </td></tr>
   </table>
   </dd>
 </dl>
@@ -227,7 +227,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Счетчик выполненных проверок. </p>
+<p>Counter of performed checks. </p>
 
 </div>
 </div>
@@ -251,7 +251,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Минимально допустимый резерв мощности в ваттах. </p>
+<p>Minimum allowed power reserve in watts. </p>
 
 </div>
 </div>
@@ -275,7 +275,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Флаг строгого режима проверки. </p>
+<p>Strict checking mode flag. </p>
 
 </div>
 </div>

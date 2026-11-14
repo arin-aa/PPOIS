@@ -92,7 +92,7 @@ $(function(){initNavTree('classProcess.html','','classProcess-members'); });
 </div><!--header-->
 <div class="contents">
 
-<p>Класс, представляющий запущенный процесс приложения.  
+<p>Class representing a running application process.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;Process.h&gt;</code></p>
@@ -100,25 +100,25 @@ $(function(){initNavTree('classProcess.html','','classProcess-members'); });
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f4553eac74c657bb451f390c17d6bea" id="r_a9f4553eac74c657bb451f390c17d6bea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f4553eac74c657bb451f390c17d6bea">Process</a> ()</td></tr>
-<tr class="memdesc:a9f4553eac74c657bb451f390c17d6bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор по умолчанию.  <br /></td></tr>
+<tr class="memdesc:a9f4553eac74c657bb451f390c17d6bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="memitem:af991285cb316afe852a9f590f166db21" id="r_af991285cb316afe852a9f590f166db21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af991285cb316afe852a9f590f166db21">Process</a> (<a class="el" href="classApplication.html">Application</a> *<a class="el" href="#a40e249cb3f0a16fc76eadaf455c413a6">app</a>)</td></tr>
-<tr class="memdesc:af991285cb316afe852a9f590f166db21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с указанием приложения.  <br /></td></tr>
+<tr class="memdesc:af991285cb316afe852a9f590f166db21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with application specified.  <br /></td></tr>
 <tr class="memitem:a7db268af3df8fb5f8674993dedadd56f" id="r_a7db268af3df8fb5f8674993dedadd56f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7db268af3df8fb5f8674993dedadd56f">start</a> (int freeRamMb)</td></tr>
-<tr class="memdesc:a7db268af3df8fb5f8674993dedadd56f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запускает процесс.  <br /></td></tr>
+<tr class="memdesc:a7db268af3df8fb5f8674993dedadd56f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the process.  <br /></td></tr>
 <tr class="memitem:a70f15c5d7ae55263603bc4af09dfb85a" id="r_a70f15c5d7ae55263603bc4af09dfb85a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70f15c5d7ae55263603bc4af09dfb85a">terminate</a> ()</td></tr>
-<tr class="memdesc:a70f15c5d7ae55263603bc4af09dfb85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завершает процесс.  <br /></td></tr>
+<tr class="memdesc:a70f15c5d7ae55263603bc4af09dfb85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminates the process.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af9f3cd09a8eea161d5a693d5c59085ba" id="r_af9f3cd09a8eea161d5a693d5c59085ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9f3cd09a8eea161d5a693d5c59085ba">ramUsageMb</a></td></tr>
-<tr class="memdesc:af9f3cd09a8eea161d5a693d5c59085ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Объем используемой оперативной памяти.  <br /></td></tr>
+<tr class="memdesc:af9f3cd09a8eea161d5a693d5c59085ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of <a class="el" href="classRAM.html" title="Random access memory class.">RAM</a> used.  <br /></td></tr>
 <tr class="memitem:ae80f7c93854deeec49103c2898e5940a" id="r_ae80f7c93854deeec49103c2898e5940a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae80f7c93854deeec49103c2898e5940a">state</a></td></tr>
-<tr class="memdesc:ae80f7c93854deeec49103c2898e5940a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Текущее состояние процесса ("new", "running", "stopped").  <br /></td></tr>
+<tr class="memdesc:ae80f7c93854deeec49103c2898e5940a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current process state ("new", "running", "stopped").  <br /></td></tr>
 <tr class="memitem:a40e249cb3f0a16fc76eadaf455c413a6" id="r_a40e249cb3f0a16fc76eadaf455c413a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classApplication.html">Application</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40e249cb3f0a16fc76eadaf455c413a6">app</a></td></tr>
-<tr class="memdesc:a40e249cb3f0a16fc76eadaf455c413a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на запущенное приложение.  <br /></td></tr>
+<tr class="memdesc:a40e249cb3f0a16fc76eadaf455c413a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the running application.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Класс, представляющий запущенный процесс приложения. </p>
+<div class="textblock"><p>Class representing a running application process. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9f4553eac74c657bb451f390c17d6bea" name="a9f4553eac74c657bb451f390c17d6bea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f4553eac74c657bb451f390c17d6bea">&#9670;&#160;</a></span>Process() <span class="overload">[1/2]</span></h2>
@@ -135,7 +135,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Конструктор по умолчанию. </p>
+<p>Default constructor. </p>
 
 </div>
 </div>
@@ -162,10 +162,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Конструктор с указанием приложения. </p>
+<p>Constructor with application specified. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>Указатель на приложение. </td></tr>
+    <tr><td class="paramname">app</td><td>Pointer to the application. </td></tr>
   </table>
   </dd>
 </dl>
@@ -188,17 +188,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Запускает процесс. </p>
+<p>Starts the process. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">freeRamMb</td><td>Доступная оперативная память. </td></tr>
+    <tr><td class="paramname">freeRamMb</td><td>Available <a class="el" href="classRAM.html" title="Random access memory class.">RAM</a>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Объем памяти, занятый процессом. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Amount of memory occupied by the process. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classMemoryOverflowException.html" title="Исключение при нехватке оперативной или видеопамяти.">MemoryOverflowException</a></td><td>если приложению не хватает памяти. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classMemoryOverflowException.html" title="Exception for insufficient RAM or video memory.">MemoryOverflowException</a></td><td>if the application does not have enough memory. </td></tr>
   </table>
   </dd>
 </dl>
@@ -220,8 +220,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Завершает процесс. </p>
-<dl class="section return"><dt>Returns</dt><dd>Освобожденный объем оперативной памяти. </dd></dl>
+<p>Terminates the process. </p>
+<dl class="section return"><dt>Returns</dt><dd>Amount of freed <a class="el" href="classRAM.html" title="Random access memory class.">RAM</a>. </dd></dl>
 
 </div>
 </div>
@@ -246,7 +246,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Указатель на запущенное приложение. </p>
+<p>Pointer to the running application. </p>
 
 </div>
 </div>
@@ -270,7 +270,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Объем используемой оперативной памяти. </p>
+<p>Amount of <a class="el" href="classRAM.html" title="Random access memory class.">RAM</a> used. </p>
 
 </div>
 </div>
@@ -294,7 +294,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Текущее состояние процесса ("new", "running", "stopped"). </p>
+<p>Current process state ("new", "running", "stopped"). </p>
 
 </div>
 </div>

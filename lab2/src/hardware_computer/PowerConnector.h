@@ -1,34 +1,34 @@
 /**
  * @file PowerConnector.h
- * @brief Объявление класса PowerConnector.
+ * @brief Declaration of the PowerConnector class.
  */
 #pragma once
 
 /**
  * @class PowerConnector
- * @brief Класс разъема питания.
+ * @brief Power connector class.
  */
 class PowerConnector{
 private:
-    int pinCount;///<Количество пинов.
-    bool isPlugged;///<Флаг подключения.
+    int pinCount;///<Number of pins.
+    bool isPlugged;///<Connection flag.
 
 public:
 /**
- * @brief Конструктор по умолчанию.
+ * @brief Default constructor.
  */
     PowerConnector();
 
 /**
- * @brief Конструктор с указанием количества пинов.
- * @param pinCount Количество пинов.
+ * @brief Constructor with pin count specified.
+ * @param pinCount Number of pins.
  */
     explicit PowerConnector(int pinCount);
 
 /**
- * @brief Подключает разъем.
- * @return Количество пинов.
- * @exception InvalidConfigurationException если уже подключен.
+ * @brief Connects the connector.
+ * @return Number of pins.
+ * @exception InvalidConfigurationException if already connected.
  */ 
     int attach();
 };
