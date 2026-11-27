@@ -12,6 +12,7 @@
 | 1 | C++ | CantorSet, TicTacToe | [set](https://arin-aa.github.io/PPOIS/lab_1/set/), [tictactoe](https://arin-aa.github.io/PPOIS/lab_1/tictactoe/) |
 | 2 | C++ | Computer | [computer](https://arin-aa.github.io/PPOIS/lab_2/) |
 | 3 | C++ | MusicPlayer | [music player](https://arin-aa.github.io/PPOIS/lab_3/) |
+| 4 | C++ | Graph (неориентированный граф), Sorting (Smoothsort, Pancake sort) | [graph](https://arin-aa.github.io/PPOIS/lab_4/graph/), [sorting](https://arin-aa.github.io/PPOIS/lab_4/sort/) |
 
 
 ## Требования
@@ -41,6 +42,8 @@
 - `tictactoe` — Лаба 1 (Крестики-нолики)
 - `lab2_computer` — Лаба 2 (Компьютер)
 - `lab3_music_player` — Лаба 3 (Приложение музыкального плеера)
+- `lab4_graph` — Лаба 4 (Неориентированный граф)
+- `lab4_sorting` — Лаба 4 (Сортировки Smoothsort и Pancake sort)
 
 
 ## CI/CD
@@ -49,7 +52,7 @@
 На каждый push и Pull Request запускается [CI/CD пайплайн](https://github.com/arin-aa/PPOIS/actions), который автоматически:
 
 
-- собирает CLI для всех четырех проектов;
+- собирает CLI для всех шести проектов;
 - запускает unit-тесты (с использованием Catch2);
 - проверяет покрытие кода (требование: ≥ 90%, с генерацией отчета `lcov`);
 - проводит статический анализ кода (линтер `cppcheck`);
