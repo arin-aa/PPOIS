@@ -143,7 +143,7 @@ private:
       std::size_t order = forest[n - 2].order + 1;
       forest.pop_back();
       forest.back() = {order, i};
-    } else if (n >= 1 && forest[n - 1].order == 1) {
+    } else if (!forest.empty() && n >= 1 && forest[n - 1].order == 1) {
       forest.push_back({0, i});
     } else {
       forest.push_back({1, i});
