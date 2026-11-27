@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [lab1, lab1_2, lab2, lab3, main]
+    branches: [lab1, lab1_2, lab2, lab3, lab4, main]
   pull_request:
     branches: [main]
 
@@ -44,7 +44,7 @@ jobs:
           lcov --list coverage_filtered.info
           COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
           echo "Coverage: $COVERAGE%"
-          
+
           if (( $(echo "$COVERAGE < 90" | bc -l) )); then
             echo "FAIL: Coverage below 90%"
             exit 1
@@ -107,7 +107,7 @@ jobs:
           lcov --list coverage_filtered.info
           COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
           echo "Coverage: $COVERAGE%"
-          
+
           if (( $(echo "$COVERAGE < 90" | bc -l) )); then
             echo "FAIL: Coverage below 90%"
             exit 1
@@ -183,7 +183,7 @@ jobs:
           lcov --list coverage_filtered.info
           COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
           echo "Coverage: $COVERAGE%"
-          
+
           if (( $(echo "$COVERAGE < 90" | bc -l) )); then
             echo "FAIL: Coverage below 90%"
             exit 1
@@ -255,7 +255,7 @@ jobs:
           lcov --list coverage_filtered.info
           COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
           echo "Coverage: $COVERAGE%"
-          
+
           if (( $(echo "$COVERAGE < 90" | bc -l) )); then
             echo "FAIL: Coverage below 90%"
             exit 1
@@ -282,9 +282,141 @@ jobs:
           path: lab3/lab3
 
 
+  lab4-graph-build-test:
+    name: Lab4 (Graph) — build, test, coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cppcheck lcov catch2 bc
+
+      - name: Build CLI
+        run: |
+          cd lab4
+          g++ -std=c++17 -O2 -I graph graph/main.cpp -o graph_cli
+
+      - name: Build tests with coverage
+        run: |
+          cd lab4
+          g++ --coverage -std=c++17 -I graph \
+              $(find tests/graph_tests -name '*.cpp') \
+              -lCatch2Main -lCatch2 \
+              -o run_graph_tests
+
+      - name: Run tests
+        run: |
+          cd lab4
+          ./run_graph_tests
+
+      - name: Generate coverage report and check >= 90%
+        run: |
+          cd lab4
+          lcov --capture --directory . --output-file coverage.info
+          lcov --extract coverage.info '*/lab4/graph/*' --output-file coverage_filtered.info
+          lcov --list coverage_filtered.info
+          COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
+          echo "Coverage: $COVERAGE%"
+
+          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+            echo "FAIL: Coverage below 90%"
+            exit 1
+          fi
+          echo "PASS: Coverage >= 90%"
+
+      - name: Run linter (cppcheck)
+        run: |
+          cd lab4
+          cppcheck --enable=warning,performance,portability \
+                   --error-exitcode=1 \
+                   --suppress=missingIncludeSystem \
+                   -I graph graph/main.cpp
+
+      - name: Test CLI
+        run: |
+          cd lab4
+          printf "1\n1\n1\n2\n2\n1\n2\n17\n0\n" | ./graph_cli
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab4-graph-linux
+          path: lab4/graph_cli
+
+
+  lab4-sort-build-test:
+    name: Lab4 (Sorting) — build, test, coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cppcheck lcov catch2 bc
+
+      - name: Build CLI
+        run: |
+          cd lab4
+          g++ -std=c++17 -O2 -I sort sort/main.cpp -o sort_cli
+
+      - name: Build tests with coverage
+        run: |
+          cd lab4
+          g++ --coverage -std=c++17 -I sort \
+              $(find tests/sort_tests -name '*.cpp') \
+              -lCatch2Main -lCatch2 \
+              -o run_sort_tests
+
+      - name: Run tests
+        run: |
+          cd lab4
+          ./run_sort_tests
+
+      - name: Generate coverage report and check >= 90%
+        run: |
+          cd lab4
+          lcov --capture --directory . --output-file coverage.info
+          lcov --extract coverage.info '*/lab4/sort/*' --output-file coverage_filtered.info
+          lcov --list coverage_filtered.info
+          COVERAGE=$(lcov --summary coverage_filtered.info 2>&1 | grep "lines" | awk '{print $2}' | tr -d '%')
+          echo "Coverage: $COVERAGE%"
+
+          if (( $(echo "$COVERAGE < 90" | bc -l) )); then
+            echo "FAIL: Coverage below 90%"
+            exit 1
+          fi
+          echo "PASS: Coverage >= 90%"
+
+      - name: Run linter (cppcheck)
+        run: |
+          cd lab4
+          cppcheck --enable=warning,performance,portability \
+                   --error-exitcode=1 \
+                   --suppress=missingIncludeSystem \
+                   -I sort sort/main.cpp
+
+      - name: Test CLI
+        run: |
+          cd lab4
+          ./sort_cli
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab4-sort-linux
+          path: lab4/sort_cli
+
+
   release:
     name: Create Release
-    needs: [set-build-test, tictactoe-build-test, lab2-build-test, lab3-build-test]
+    needs: [set-build-test, tictactoe-build-test, lab2-build-test, lab3-build-test, lab4-graph-build-test, lab4-sort-build-test]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
@@ -322,6 +454,16 @@ jobs:
               $(find src -type d -printf "-I%p ") \
               -o lab3_music_player
 
+      - name: Build Lab4 Graph binary
+        run: |
+          cd lab4
+          g++ -std=c++17 -O2 -I graph graph/main.cpp -o lab4_graph
+
+      - name: Build Lab4 Sorting binary
+        run: |
+          cd lab4
+          g++ -std=c++17 -O2 -I sort sort/main.cpp -o lab4_sorting
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -332,6 +474,8 @@ jobs:
             lab1/tictactoe/tictactoe
             lab2/lab2_computer
             lab3/lab3_music_player
+            lab4/lab4_graph
+            lab4/lab4_sorting
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
